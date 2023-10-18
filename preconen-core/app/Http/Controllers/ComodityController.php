@@ -4,18 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Comodity;
 use Illuminate\Http\Request;
+use DataTables;
 
 class ComodityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function ups()
     {
-        //
-    }
-
-    function ups() : Returntype {
         $komoditas = [
             [
                 'name' => 'KACANG TANAH',
@@ -75,51 +69,92 @@ class ComodityController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = Comodity::whereNull('deleted_at')->get();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+                        $btn = '
+                        <div>
+                        <button type="button" title="EDIT" class="btn btn-sm btn-biru me-1" data-bs-toggle="modal"
+                        data-bs-target="#updateData" data-id="'.$row->id.'"
+                        data-name="'.$row->name.'"
+                        data-latin="'.$row->latin.'"
+                        data-temp="'.$row->temp.'"
+                        data-ph="'.$row->ph.'"
+                        data-planting_distance="'.$row->planting_distance.'"
+                        data-fertilizer_dose="'.$row->fertilizer_dose.'"
+                        data-potential_results="'.$row->potential_results.'"
+
+                        data-url="'.route('comodity.update', ['id' => $row->id]).'">
+                        <i class="bi bi-pen"></i>
+                    </button>
+                            <form id="deleteForm" action="' . route('comodity.delete', ['id' => $row->id]) . '" method="POST">
+                            ' . csrf_field() . '
+                            ' . method_field('DELETE') . '
+                                <button type="button" title="DELETE" class="btn btn-sm btn-biru btn-delete" onclick="confirmDelete(event)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>';
+                        return $btn;
+                    })
+
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin.comodity.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function guest(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = Comodity::whereNull('deleted_at')->get();
+            return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('priview-pdf', function ($row) {
+                $btn = '
+                <div class="d-flex">
+                    <a class="btn btn-sm btn-biru"
+                        href="' . asset('storage/comodity/' . $row->file_materi) . '" target="_blank"> <i class="bi bi-trash"></i> Lihat
+                    </a>
+                </div>
+                ';
+                return $btn;
+            })
+            ->rawColumns(['priview-pdf'])
+            ->make(true);
+        }
+        return view('comodity.guest');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Comodity $comodity)
+    public function store(CreateComodityRequest $request)
     {
-        //
+        $this->validate($request, [
+            'file_materi' => 'required|file|mimes:pdf|max:30720',
+        ]);
+
+        $file = $request->file('file_materi');
+        $filename = time() . '-' . $file->getClientOriginalName();
+        Storage::disk('public')->put('comodity/' . $filename, file_get_contents($file));
+
+        $data = $request->validated();
+        $data['file_materi'] = $filename;
+
+        Comodity::create($data);
+        return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comodity $comodity)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Comodity $comodity)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Comodity $comodity)
-    {
-        //
+        $comodity = Comodity::findOrFail($id);
+        if ($comodity->file_materi) {
+            $filePath = Storage::disk('public')->path('comodity/' . $comodity->file_materi);
+            File::delete($filePath);
+        }
+        $comodity->delete();
+        return redirect()->back()->with(['message' => 'Lahan berhasil di Hapus','status' => 'success']);
     }
 }

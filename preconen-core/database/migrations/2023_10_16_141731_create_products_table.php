@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('thumb');
 
             $table->timestamp('deleted_at')->nullable();
-            $table->timestamps();
 
             $table->timestamps();
         });
