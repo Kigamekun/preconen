@@ -9,8 +9,6 @@ if response.status_code == 200:
     data = []
 
     for element in elements:
-                # Extract data from elements with the specified class
-        # data.append(element.text)
         data = element.text
         items = data.replace("\\n", "")
         items = data.replace("\r", "")
@@ -27,7 +25,6 @@ if response.status_code == 200:
             values = [line.strip() for line in lines[3:] if line.strip()]  # Lines 3 and onwards are the values
             parsed_data[key] = values
 
-        # Print the parsed data as a dictionary
         print(json.dumps(parsed_data, indent=2))
 
 
