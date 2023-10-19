@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediksi Komoditas Tanaman</title>
+</head>
+<body>
+    <h1>Prediksi Komoditas Tanaman</h1>
+    <form method="POST">
+        <label for="nitrogen">Nitrogen (N):</label>
+        <input type="number" name="N"  required><br>
+
+        <label for="Phosphat">Phosphat (P):</label>
+        <input type="number" name="P"  required><br>
+
+        <label for="Kallium">Kallium (P):</label>
+        <input type="number" name="K"  required><br>
+
+        <label for="temperature">Temperature :</label>
+        <input type="text" name="temperature"  required><br>
+
+        <label for="humidity">Humidity :</label>
+        <input type="text" name="humidity"  required><br>
+
+        
+        <label for="ph">PH :</label>
+        <input type="text" name="ph"  required><br>
+
+        <label for="rainfall">Rainfall :</label>
+        <input type="text" name="rainfall"  required><br>
+
+        <input type="submit" value="Prediksi">
+    </form>
+
+    {% if recommended_commodity %}
+    <p>Rekomendasi Komoditas yang Harus Ditanam: {{ recommended_commodity }}</p>
+    {% endif %}
+</body>
+</html>
