@@ -48,17 +48,7 @@ class LandController extends Controller
             $data = Land::whereNull('deleted_at')->get();
             return DataTables::of($data)
             ->addIndexColumn()
-            ->addColumn('priview-pdf', function ($row) {
-                $btn = '
-                <div class="d-flex">
-                    <a class="btn btn-sm btn-biru"
-                        href="' . asset('storage/land/' . $row->file_materi) . '" target="_blank"> <i class="bi bi-trash"></i> Lihat
-                    </a>
-                </div>
-                ';
-                return $btn;
-            })
-            ->rawColumns(['priview-pdf'])
+
             ->make(true);
         }
         return view('land.guest');
@@ -70,14 +60,11 @@ class LandController extends Controller
             'file_materi' => 'required|file|mimes:pdf|max:30720',
         ]);
 
-        $file = $request->file('file_materi');
-        $filename = time() . '-' . $file->getClientOriginalName();
-        Storage::disk('public')->put('land/' . $filename, file_get_contents($file));
+        Land::create([
+            'plants'=>'wortel',
+            'luas'=>200
+        ]);
 
-        $data = $request->validated();
-        $data['file_materi'] = $filename;
-
-        Land::create($data);
         return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
     }
 

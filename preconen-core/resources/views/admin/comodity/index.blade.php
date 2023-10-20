@@ -1,8 +1,7 @@
-@extends('layouts.base')
+@extends('layouts.admin')
 
 @section('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 @endsection
 
 @section('content')
@@ -17,24 +16,43 @@
         </div>
 
 
-        <div class="table-responsive mt-5 mb-5" style="padding-bottom: 30px;">
-            <table id="datatable-table" class="table w-100">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Aksi</th>
-                        <th>Name</th>
-                        <th>Latin</th>
-                        <th>Temperature</th>
-                        <th>PH</th>
-                        <th>Planting Distance</th>
-                        <th>Fertilizer Dose</th>
-                        <th>Potential Result</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                </tbody>
-            </table>
+        <div class="table table-responsive mt-5 mb-5" style="padding-bottom: 30px;">
+            <div class="container-fluid py-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header pb-0">
+                                <h6>Authors table</h6>
+                            </div>
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-5">
+
+                                    <table id="datatable-table" class=" table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Aksi</th>
+                                                <th>Name</th>
+                                                <th>Latin</th>
+                                                <th>Temperature</th>
+                                                <th>PH</th>
+                                                <th>Planting Distance</th>
+                                                <th>Fertilizer Dose</th>
+                                                <th>Potential Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
 
 
