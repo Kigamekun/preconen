@@ -1,12 +1,12 @@
 <aside x-bind:class="{ 'w-1/5': open, 'w-0': !open }"
-    class="bg-gray-200 h-screen fixed  transition-width duration-300 ease-in-out">
+    class="bg-gray-200 h-screen fixed  transition-width duration-300 ease-in-out opacity-100 bg-white z-10">
     <!-- Logo atau Nama Aplikasi -->
     <!-- Navigasi Sidebar -->
-    {{ $active = 'home' }}
+    @php $active = 'home'; @endphp
     <nav x-show="open" class="mt-16">
         <ul class="space-y-1">
             <li
-                class="flex items-center justify-start pl-4  btn {{ $active == 'home' ? 'btn-neutral btn-disabled' : 'btn-ghost hover:bg-gray-300' }} normal-case text-left">
+                class="flex items-center justify-start pl-4 btn {{ $active == 'home' ? 'btn-neutral btn-disabled' : 'btn-ghost hover:bg-gray-300' }} normal-case text-left">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-house-door-fill text-black" viewBox="0 0 16 16">
                     <path
@@ -35,17 +35,3 @@
     </nav>
 
 </aside>
-
-<!-- Tombol untuk meng-collapse/expand sidebar -->
-{{-- <div class="fixed right-0 top-0 m-4 cursor-pointer">
-        <button class="text-gray-600 focus:outline-none">
-            <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-            <svg x-show="open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
-    </div> --}}

@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 shadow-md">
+<div class="navbar bg-base-100 shadow-md z-20">
     <div class="flex-none">
         <button class="btn btn-circle btn-cirlce-outline btn-ghost" @click="open = !open">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -7,9 +7,7 @@
             </svg>
         </button>
     </div>
-    <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-    </div>
+
     @php $authenticated = true; @endphp
     <div class="flex-none">
         <div class="dropdown dropdown-button">
