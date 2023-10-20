@@ -9,7 +9,7 @@
     <div class="xl:container px-4 mx-auto">
         <h2 class="text-4xl font-extrabold my-3 mb-4">Halo, Selamat datang Lorem</h2>
         <div class="grid grid-cols-4 grid-rows-3 gap-4 my-3  mx-auto">
-            <div class="rounded-lg opacity-80 border-2 border-neutral-400/50 drop-shadow-md col-span-2 row-span-3">
+            <div class="rounded-lg opacity-80 border-2 border-neutral-400/50  col-span-2 row-span-3">
                 <a class="weatherwidget-io" href="https://forecast7.com/en/n6d55106d63/bogor/" data-label_1="BOGOR"
                     data-label_2="Cuaca Hari Ini" data-mode="Current" data-theme="original">BOGOR Cuaca Hari Ini</a>
                 <script>
@@ -108,26 +108,32 @@
             </div>
 
         </div>
-        <div class="grid grid-cols-3 gap-4 my-3 m-auto">
-            <div class="bg-slate-400 h-42 rounded-lg p-4 flex-col items-center">
-                <p class="text-center text-2xl text-white font-bold mb-4">Kecepatan Angin</p>
+        <div class="grid grid-cols-3 gap-4 my-3 m-auto ">
+            <div class="bg-white h-42 rounded-lg p-4 flex-col items-center "
+                style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);">
+                <p class="text-center text-2xl text-slate-500 font-bold mb-4">Kecepatan Angin</p>
                 <div class="flex flex-1 justify-center items-center">
-                    <img src="{{ asset('img/wind.svg') }}" class="h-16 mr-5" alt="">
-                    <p class="text-4xl text-white font-bold"> 14 km/h</p>
+                    <div class="h-12 w-12 mx-2">@include('icons/wind')</div>
+                    <p class="text-4xl text-slate-500 font-bold"> 14 km/h</p>
                 </div>
             </div>
-            <div class="bg-slate-400 h-42 rounded-lg p-4 flex-col items-center">
-                <p class="text-center text-2xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+            <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
+                style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);">
+                <p class="text-center text-2xl text-slate-500 font-bold mb-4">Kemungkinan Hujan</p>
                 <div class="flex flex-1 justify-center items-center">
-                    <img src="{{ asset('img/precip.png') }}" class="h-16 mr-5" alt="">
-                    <p class="text-4xl text-white font-bold"> 28%</p>
+                    <div class="h-12 w-12 mx-2">@include('icons/rain')</div>
+                    <p class="text-4xl text-slate-500 font-bold"> 28%</p>
                 </div>
             </div>
-            <div class="bg-slate-400 h-42 rounded-lg p-4 flex-col items-center">
-                <p class="text-center text-2xl text-white font-bold mb-4">Tutupan Awan</p>
+            <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
+                style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);">
+                <p class="text-center text-2xl text-slate-500 font-bold mb-4">Tutupan Awan</p>
                 <div class="flex flex-1 justify-center items-center">
-                    <img src="{{ asset('img/cloud.png') }}" class="h-16 mr-5" alt="">
-                    <p class="text-4xl text-white font-bold"> 24%</p>
+                    <div class="h-12 w-12 mx-2">@include('icons/cloud')</div>
+                    <p class="text-4xl text-slate-500 font-bold"> 24%</p>
                 </div>
             </div>
         </div>
@@ -190,33 +196,45 @@
             <div class="flex-shrink-0">
                 <div class="flex flex-row gap-2">
                     <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-4">Hari ini</p>
-                        <img src="{{ asset('img/cerah-berawan.svg') }}" class="h-12 mr-5 mx-auto" alt="">
+                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
+                        <div class="h-16">
+                            @include('icons/cerah-berawan')
+                        </div>
                         <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
                     </div>
                     <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-4">Hari ini</p>
-                        <img src="{{ asset('img/cerah-berawan.svg') }}" class="h-12 mr-5 mx-auto" alt="">
+                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
+                        <div class="h-16">
+                            @include('icons/berawan')
+                        </div>
                         <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
                     </div>
                     <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-4">Hari ini</p>
-                        <img src="{{ asset('img/cerah-berawan.svg') }}" class="h-12 mr-5 mx-auto" alt="">
+                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
+                        <div class="h-16">
+                            @include('icons/cerah')
+                        </div>
                         <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
                     </div>
                     <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-4">Hari ini</p>
-                        <img src="{{ asset('img/cerah-berawan.svg') }}" class="h-12 mr-5 mx-auto" alt="">
+                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
+                        <div class="h-16">
+                            @include('icons/hujan')
+                        </div>
                         <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
                     </div>
                     <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-4">Hari ini</p>
-                        <img src="{{ asset('img/cerah-berawan.svg') }}" class="h-12 mr-5 mx-auto" alt="">
+                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
+                        <div class="h-16">
+                            @include('icons/cerah-berawan')
+                        </div>
                         <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
                     </div>
                     <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-4">Hari ini</p>
-                        <img src="{{ asset('img/cerah-berawan.svg') }}" class="h-12 mr-5 mx-auto" alt="">
+                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
+                        <div class="h-16">
+                            @include('icons/hujan')
+                        </div>
                         <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
                     </div>
                 </div>
