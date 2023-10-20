@@ -116,7 +116,8 @@
                     <p class="text-4xl text-white font-bold"> 14 km/h</p>
                 </div>
             </div>
-            <div class="bg-slate-400 h-42 rounded-lg p-4 flex-col items-center">
+            <div class=" h-42 rounded-lg p-4 flex-col items-center " style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            ">
                 <p class="text-center text-2xl text-white font-bold mb-4">Kemungkinan Hujan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <img src="{{ asset('img/precip.png') }}" class="h-16 mr-5" alt="">
