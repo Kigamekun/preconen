@@ -42,21 +42,21 @@ y = crop['label']
 
 X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.25,shuffle = True, random_state = 0)
 
-kn_classifier = KNeighborsClassifier()
-kn_classifier.fit(X_train,y_train)
+# kn_classifier = KNeighborsClassifier()
+# kn_classifier.fit(X_train,y_train)
 
-logs = LogisticRegression(solver='liblinear', random_state=0).fit(x, y)
+# logs = LogisticRegression(solver='liblinear', random_state=0).fit(x, y)
 
-sv = SVC(kernel='linear').fit(x, y)
-
-
-print('Training set score: {:.4f}'.format(kn_classifier.score(X_train, y_train)))
-print('Test set score: {:.4f}'.format(kn_classifier.score(X_test, y_test)))
+sv = SVC(kernel='linear').fit(X_train, y_train)
 
 
+# print('Training set score: {:.4f}'.format(kn_classifier.score(X_train, y_train)))
+# print('Test set score: {:.4f}'.format(kn_classifier.score(X_test, y_test)))
 
-print('Training set score: {:.4f}'.format(logs.score(X_train, y_train)))
-print('Test set score: {:.4f}'.format(logs.score(X_test, y_test)))
+
+
+# print('Training set score: {:.4f}'.format(logs.score(X_train, y_train)))
+# print('Test set score: {:.4f}'.format(logs.score(X_test, y_test)))
 
 
 print('Training set score: {:.4f}'.format(sv.score(X_train, y_train)))
@@ -68,7 +68,7 @@ def index():
     if request.method == 'POST':
         
         print(request.form)
-        prediction=kn_classifier.predict([[int(request.form['N']),int(request.form['P']),int(request.form['K']),float(request.form['temperature']),float(request.form['humidity']),float(request.form['ph']),float(request.form['rainfall'])]])
+        prediction=sv.predict([[float(request.form['temperature']),float(request.form['humidity']),float(request.form['ph']),float(request.form['rainfall'])]])
         # prediction=kn_classifier.predict([[60,55,44,23.004459,82.320763,7.840207,263.964248]])
 
         recommended_commodity = prediction[0]

@@ -10,7 +10,8 @@
                 <img src={{ asset('img/preconen-logo.svg') }} alt="Preconen" class="w-1/5 mb-2">
                 <h2 class="text-4xl font-bold text-center">Daftar Disini</h2>
                 <p class="text-lg font-semibold text-center my-2">Daftar terlebih dahulu untuk menggunakan aplikasi</p>
-                <form action="" class="w-3/5 grid">
+                <form action="{{ route('register') }}" method="POST" class="w-3/5 grid">
+                    @csrf
                     <div class="relative rounded-lg shadow-md my-2">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -21,7 +22,7 @@
                         </div>
 
                         <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
-                        <input type="text" placeholder="Username" name="username"
+                        <input type="text" placeholder="Username"  name="name"
                             class="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300" />
                     </div>
                     <div class="relative rounded-lg shadow-md my-2">
@@ -48,7 +49,7 @@
                         </div>
 
                         <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
-                        <input type="text" placeholder="No Telepon" name="telp"
+                        <input type="text" placeholder="No Telepon" name="phone"
                             class="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300" />
                     </div>
                     <div class="relative rounded-lg shadow-md my-2">
@@ -76,7 +77,7 @@
                         </div>
 
                         <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
-                        <input type="text" placeholder="Konfirmasi Password" name="password_confirm"
+                        <input type="text" placeholder="Konfirmasi Password" name="password_confirmation"
                             class="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300" />
                     </div>
                     <div class="relative rounded-lg shadow-md my-2">
@@ -91,16 +92,16 @@
                         <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
                         <select
                             class="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-                            placeholder="jdnjs">
+                            placeholder="jdnjs" name="role">
                             <option value="" disabled selected>Kamu adalah?</option>
-                            <option value="option1">Konsumen</option>
-                            <option value="option2">Petani</option>
+                            <option value="consumer">Konsumen</option>
+                            <option value="farmer">Petani</option>
                         </select>
                     </div>
                     <p class="text-center text-gray-500">Sudah memiliki akun? <a class="underline"
                             href={{ route('login') }}>Masuk
                             disini?</a></p>
-                    <button class="rounded-full bg-white px-5 py-2 my-2 justify-self-center border border-black">Daftar
+                    <button type="submit" class="rounded-full bg-white px-5 py-2 my-2 justify-self-center border border-black">Daftar
                     </button>
                 </form>
             </div>

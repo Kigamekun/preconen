@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ForecastController,ComodityController};
+use App\Http\Controllers\{ForecastController,ComodityController,LandController};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,29 +29,47 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/forecast',[ForecastController::class,'index']);
-Route::get('/scratch',[ForecastController::class,'scratch']);
+Route::get('/forecast', [ForecastController::class,'index']);
+Route::get('/scratch', [ForecastController::class,'scratch']);
 
 
-Route::prefix('comodity')->group(function () {
-    Route::get('/', [ComodityController::class,'index'])->name('comodity.index');
-    Route::get('/create', [ComodityController::class,'create'])->name('comodity.create');
-    Route::post('/store', [ComodityController::class,'store'])->name('comodity.store');
-    Route::get('/edit/{id}', [ComodityController::class,'edit'])->name('comodity.edit');
-    Route::patch('/update/{id}', [ComodityController::class,'update'])->name('comodity.update');
-    Route::delete('/delete/{id}', [ComodityController::class,'destroy'])->name('comodity.delete');
-    Route::get('/download/{id}', [ComodityController::class,'download'])->name('comodity.download');
+Route::prefix('admin')->group(function () {
+    Route::prefix('comodity')->group(function () {
+        Route::get('/', [ComodityController::class,'index'])->name('comodity.index');
+        Route::get('/create', [ComodityController::class,'create'])->name('comodity.create');
+        Route::post('/store', [ComodityController::class,'store'])->name('comodity.store');
+        Route::get('/edit/{id}', [ComodityController::class,'edit'])->name('comodity.edit');
+        Route::patch('/update/{id}', [ComodityController::class,'update'])->name('comodity.update');
+        Route::delete('/delete/{id}', [ComodityController::class,'destroy'])->name('comodity.delete');
+        Route::get('/download/{id}', [ComodityController::class,'download'])->name('comodity.download');
+    });
+    Route::prefix('product')->group(function () {
+        Route::get('/', [ProductController::class,'index'])->name('product.index');
+        Route::get('/create', [ProductController::class,'create'])->name('product.create');
+        Route::post('/store', [ProductController::class,'store'])->name('product.store');
+        Route::get('/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
+        Route::patch('/update/{id}', [ProductController::class,'update'])->name('product.update');
+        Route::delete('/delete/{id}', [ProductController::class,'destroy'])->name('product.delete');
+        Route::get('/download/{id}', [ProductController::class,'download'])->name('product.download');
+    });
+    // Route::prefix('land')->group(function () {
+    //     Route::get('/', [LandController::class,'index'])->name('land.index');
+    //     Route::get('/create', [LandController::class,'create'])->name('land.create');
+    //     Route::post('/store', [LandController::class,'store'])->name('land.store');
+    //     Route::get('/edit/{id}', [LandController::class,'edit'])->name('land.edit');
+    //     Route::patch('/update/{id}', [LandController::class,'update'])->name('land.update');
+    //     Route::delete('/delete/{id}', [LandController::class,'destroy'])->name('land.delete');
+    //     Route::get('/download/{id}', [LandController::class,'download'])->name('land.download');
+    // });
+});
+Route::prefix('land')->group(function () {
+    Route::get('/', [LandController::class,'index'])->name('land.index');
+    Route::get('/create', [LandController::class,'create'])->name('land.create');
+    Route::post('/store', [LandController::class,'store'])->name('land.store');
+    Route::get('/edit/{id}', [LandController::class,'edit'])->name('land.edit');
+    Route::patch('/update/{id}', [LandController::class,'update'])->name('land.update');
+    Route::delete('/delete/{id}', [LandController::class,'destroy'])->name('land.delete');
+    Route::get('/download/{id}', [LandController::class,'download'])->name('land.download');
 });
 
-
-Route::prefix('product')->group(function () {
-    Route::get('/', [ProductController::class,'index'])->name('product.index');
-    Route::get('/create', [ProductController::class,'create'])->name('product.create');
-    Route::post('/store', [ProductController::class,'store'])->name('product.store');
-    Route::get('/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
-    Route::patch('/update/{id}', [ProductController::class,'update'])->name('product.update');
-    Route::delete('/delete/{id}', [ProductController::class,'destroy'])->name('product.delete');
-    Route::get('/download/{id}', [ProductController::class,'download'])->name('product.download');
-});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
