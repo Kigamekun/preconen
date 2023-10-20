@@ -86,7 +86,7 @@ class ForecastController extends Controller
             echo "Total not found";
         }
 
-        return response()->json(['statusCode' => 200,'message' => 'Success scrapping data','data' => $jsonOutput], 200);
+        return response()->json(['statusCode' => 200,'message' => 'Success scrapping data','data' => $data], 200);
     }
 
 
