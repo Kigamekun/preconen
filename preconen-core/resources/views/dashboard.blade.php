@@ -109,21 +109,21 @@
 
         </div>
         <div class="grid grid-cols-3 gap-4 my-3 m-auto">
-            <div class="bg-slate-400 h-56 rounded-lg p-4 flex-col items-center">
+            <div class="bg-slate-400 h-42 rounded-lg p-4 flex-col items-center">
                 <p class="text-center text-2xl text-white font-bold mb-4">Kecepatan Angin</p>
                 <div class="flex flex-1 justify-center items-center">
                     <img src="{{ asset('img/wind.svg') }}" class="h-20 mr-5" alt="">
                     <p class="text-4xl text-white font-bold"> 14 km/h</p>
                 </div>
             </div>
-            <div class="bg-slate-400 h-56 rounded-lg p-4 flex-col items-center">
+            <div class="bg-slate-400 h-42 rounded-lg p-4 flex-col items-center">
                 <p class="text-center text-2xl text-white font-bold mb-4">Kemungkinan Hujan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <img src="{{ asset('img/precip.png') }}" class="h-20 mr-5" alt="">
                     <p class="text-4xl text-white font-bold"> 28%</p>
                 </div>
             </div>
-            <div class="bg-slate-400 h-56 rounded-lg p-4 flex-col items-center">
+            <div class="bg-slate-400 h-42 rounded-lg p-4 flex-col items-center">
                 <p class="text-center text-2xl text-white font-bold mb-4">Tutupan Awan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <img src="{{ asset('img/cloud.png') }}" class="h-20 mr-5" alt="">
@@ -189,10 +189,52 @@
         <div class="flex flex-row overflow-x-auto">
             <div class="flex-shrink-0">
                 <div class="flex flex-row gap-2">
-                    <div class="bg-slate-400 h-56 w-72 rounded-lg p-4 flex-col items-center">
-                        <p class="text-center text-2xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+                    <div class="bg-slate-400 h-36 w-72 rounded-lg p-4 flex-col items-center">
+                        <p class="text-center text-xl text-white font-bold mb-4">Kemungkinan Hujan</p>
                         <div class="flex flex-1 justify-center items-center">
-                            <img src="{{ asset('img/precip.png') }}" class="h-20 mr-5" alt="">
+                            <img src="{{ asset('img/precip.png') }}" class="h-12 mr-5" alt="">
+                            <p class="text-4xl text-white font-bold"> 28%</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-400 h-36 w-72 rounded-lg p-4 flex-col items-center">
+                        <p class="text-center text-xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+                        <div class="flex flex-1 justify-center items-center">
+                            <img src="{{ asset('img/precip.png') }}" class="h-12 mr-5" alt="">
+                            <p class="text-4xl text-white font-bold"> 28%</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-400 h-36 w-72 rounded-lg p-4 flex-col items-center">
+                        <p class="text-center text-xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+                        <div class="flex flex-1 justify-center items-center">
+                            <img src="{{ asset('img/precip.png') }}" class="h-12 mr-5" alt="">
+                            <p class="text-4xl text-white font-bold"> 28%</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-400 h-42 w-72 rounded-lg p-4 flex-col items-center">
+                        <p class="text-center text-xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+                        <div class="flex flex-1 justify-center items-center">
+                            <img src="{{ asset('img/precip.png') }}" class="h-12 mr-5" alt="">
+                            <p class="text-4xl text-white font-bold"> 28%</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-400 h-42 w-72 rounded-lg p-4 flex-col items-center">
+                        <p class="text-center text-xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+                        <div class="flex flex-1 justify-center items-center">
+                            <img src="{{ asset('img/precip.png') }}" class="h-12 mr-5" alt="">
+                            <p class="text-4xl text-white font-bold"> 28%</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-400 h-42 w-72 rounded-lg p-4 flex-col items-center">
+                        <p class="text-center text-xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+                        <div class="flex flex-1 justify-center items-center">
+                            <img src="{{ asset('img/precip.png') }}" class="h-12 mr-5" alt="">
+                            <p class="text-4xl text-white font-bold"> 28%</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-400 h-42 w-72 rounded-lg p-4 flex-col items-center">
+                        <p class="text-center text-xl text-white font-bold mb-4">Kemungkinan Hujan</p>
+                        <div class="flex flex-1 justify-center items-center">
+                            <img src="{{ asset('img/precip.png') }}" class="h-12 mr-5" alt="">
                             <p class="text-4xl text-white font-bold"> 28%</p>
                         </div>
                     </div>
