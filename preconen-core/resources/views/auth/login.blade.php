@@ -2,19 +2,17 @@
 
 @section('content')
     <div class="min-h-full md:flex flex-row">
-        <div class="md:w-1/4 bg-lime-600 min-h-screen py-5">
-            <h1 class="text-4xl font-bold text-center my-3">PRECONEN</h1>
-            <div class="img-container relative m-10 rounded-lg overflow-hidden aspect-video">
-                <img src={{ asset('img/placeholder-farm.jpg') }} alt="Farm 1" class="w-full h-full object-cover ">
-                <div class="absolute inset-0 bg-slate-300 opacity-50"></div>
-            </div>
+        <div class="md:w-1/3 bg-lime-600 min-h-screen ">
+            <img src="{{ asset('img/sawah.jpg') }}" alt="" class="object-cover h-100">
         </div>
-        <div class="md:w-3/4 bg-slate-200 min-h-screen flex grid place-items-center">
+        <div class="md:w-2/3 bg-slate-200 min-h-screen flex grid place-items-center">
             <div class="w-1/2 grid justify-items-center">
+                <img src={{ asset('img/preconen-logo.svg') }} alt="Preconen" class="w-1/5 mb-2">
+
                 <h2 class="text-4xl font-bold text-center">Masuk ke Aplikasi</h2>
                 <p class="text-lg font-semibold text-center my-2">Silakan masuk untuk menggunakan aplikasi</p>
                 <form action="{{ route('login') }}" class="w-3/5 grid">
-                    <div class="relative rounded-full shadow-md my-2">
+                    <div class="relative rounded-lg shadow-md my-2">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-person" viewBox="0 0 16 16">
@@ -25,10 +23,10 @@
 
                         <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
                         <input type="text" placeholder="Username" name="username"
-                            class="w-full pl-10 pr-4 py-2 rounded-full focus:outline-none focus:ring focus:border-blue-300" />
+                            class="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300" />
                     </div>
 
-                    <div class="relative rounded-full shadow-md my-2">
+                    <div class="relative rounded-lg shadow-md mt-2">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-key" viewBox="0 0 16 16">
@@ -40,10 +38,15 @@
 
                         <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
                         <input type="text" placeholder="Password" name="password"
-                            class="w-full pl-10 pr-4 py-2 rounded-full focus:outline-none focus:ring focus:border-blue-300" />
+                            class="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300" />
                     </div>
+                    <p class="text-right  text-gray-500 mb-2 text-sm"><a class="underline" href={{ route('register') }}>Lupa
+                            password?</a></p>
+                    <p class="text-center  text-gray-500">Belum memiliki akun? <a class="underline"
+                            href={{ route('register') }}>Daftar
+                            disini</a></p>
 
-                    <button class="rounded-full bg-white px-5 py-2 my-2 justify-self-center border border-black">Masuk
+                    <button class="rounded-lg bg-white px-5 py-2 my-2 justify-self-center border border-black">Masuk
                     </button>
                 </form>
             </div>
