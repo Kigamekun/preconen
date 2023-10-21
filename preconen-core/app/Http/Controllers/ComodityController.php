@@ -11,59 +11,102 @@ class ComodityController extends Controller
     public function ups()
     {
         $komoditas = [
+            // [
+            //     'name' => 'KACANG TANAH',
+            //     'latin' => 'Arachis hypogaea L.',
+            //     'temp' => '28 - 32°C',
+            //     'ph' => '6-6.5',
+            //     'planting_distance' => '40×20 cm',
+            //     'fertilizer_dose' => 'pupuk Urea (100 kg/ha), SP-36 (200 kg/ha), KCl (100 kg/ha)',
+            //     'potential_results' => 'Isi potensi hasil untuk KACANG TANAH di sini',
+            // ],
+            // [
+            //     'name' => 'JAGUNG MANIS',
+            //     'latin' => 'Zea mays saccharata Sturt',
+            //     'temp' => '23-27 °C',
+            //     'ph' => '5.5-7.0',
+            //     'planting_distance' => '75×20 cm',
+            //     'fertilizer_dose' => 'pupuk Urea (200 kg/ha), SP-36 (200 kg/ha), KCl (100 kg/ha)',
+            //     'potential_results' => 'Isi potensi hasil untuk JAGUNG MANIS di sini',
+            // ],
+            // [
+            //     'name' => 'KANGKUNG',
+            //     'latin' => 'Ipomoea reptans',
+            //     'temp' => '25–30 °C',
+            //     'ph' => '5.5-6.5',
+            //     'planting_distance' => '20×10 cm',
+            //     'fertilizer_dose' => '200 kg Urea, 200 kg SP-36, dan 200 kg KCL',
+            //     'potential_results' => 'Isi potensi hasil untuk KANGKUNG di sini',
+            // ],
+            // [
+            //     'name' => 'BAYAM',
+            //     'latin' => 'Amaranthus sp',
+            //     'temp' => '16-20 °C',
+            //     'ph' => '6-7',
+            //     'planting_distance' => '20',
+            //     'fertilizer_dose' => '200 kg Urea, 200 kg SP-36, dan 200 kg KCL',
+            //     'potential_results' => 'Isi potensi hasil untuk BAYAM di sini',
+            // ],
+            // [
+            //     'name' => 'KACANG PANJANG',
+            //     'latin' => 'Vigna sinensis var. Sesquipedalis',
+            //     'temp' => '20-35°C',
+            //     'ph' => 'Isi pH yang sesuai',
+            //     'planting_distance' => '50×50 cm',
+            //     'fertilizer_dose' => '150 kg Urea, 100 kg SP-36, dan 100 kg KCL',
+            //     'potential_results' => 'Isi potensi hasil untuk KACANG PANJANG di sini',
+            // ],
+            // [
+            //     'name' => 'CABAI',
+            //     'latin' => 'Capsicum annuum L',
+            //     'temp' => '25-35 °C',
+            //     'ph' => '6-7',
+            //     'planting_distance' => '50×50 cm',
+            //     'fertilizer_dose' => '200 kg Urea, 200 kg SP-36, dan 200 kg KCL',
+            //     'potential_results' => 'Isi potensi hasil untuk CABAI di sini',
+            // ],
+
             [
-                'name' => 'KACANG TANAH',
-                'latin' => 'Arachis hypogaea L.',
-                'temp' => '28 - 32°C',
-                'ph' => '6-6.5',
-                'planting_distance' => '40×20 cm',
-                'fertilizer_dose' => 'pupuk Urea (100 kg/ha), SP-36 (200 kg/ha), KCl (100 kg/ha)',
-                'potential_results' => 'Isi potensi hasil untuk KACANG TANAH di sini',
+                'name' => 'Jagung Hibrida',
+                'latin' => '',
+                'temp' => '',
+                'ph' => '',
+                'planting_distance' => '',
+                'fertilizer_dose' => '',
+                'potential_results' => '',
+                'kode'=>'JPK'
             ],
             [
-                'name' => 'JAGUNG MANIS',
-                'latin' => 'Zea mays saccharata Sturt',
-                'temp' => '23-27 °C',
-                'ph' => '5.5-7.0',
-                'planting_distance' => '75×20 cm',
-                'fertilizer_dose' => 'pupuk Urea (200 kg/ha), SP-36 (200 kg/ha), KCl (100 kg/ha)',
-                'potential_results' => 'Isi potensi hasil untuk JAGUNG MANIS di sini',
+                'name' => 'Padi',
+                'latin' => '',
+                'temp' => '',
+                'ph' => '',
+                'planting_distance' => '',
+                'fertilizer_dose' => '',
+                'potential_results' => '',
+                'kode'=>'GKP'
             ],
+
             [
-                'name' => 'KANGKUNG',
-                'latin' => 'Ipomoea reptans',
-                'temp' => '25–30 °C',
-                'ph' => '5.5-6.5',
-                'planting_distance' => '20×10 cm',
-                'fertilizer_dose' => '200 kg Urea, 200 kg SP-36, dan 200 kg KCL',
-                'potential_results' => 'Isi potensi hasil untuk KANGKUNG di sini',
+                'name' => 'Cabai Merah Besar',
+                'latin' => '',
+                'temp' => '',
+                'ph' => '',
+                'planting_distance' => '',
+                'fertilizer_dose' => '',
+                'potential_results' => '',
+                'kode'=>'CMB'
             ],
+
             [
-                'name' => 'BAYAM',
-                'latin' => 'Amaranthus sp',
-                'temp' => '16-20 °C',
-                'ph' => '6-7',
-                'planting_distance' => '20',
-                'fertilizer_dose' => '200 kg Urea, 200 kg SP-36, dan 200 kg KCL',
-                'potential_results' => 'Isi potensi hasil untuk BAYAM di sini',
-            ],
-            [
-                'name' => 'KACANG PANJANG',
-                'latin' => 'Vigna sinensis var. Sesquipedalis',
-                'temp' => '20-35°C',
-                'ph' => 'Isi pH yang sesuai',
-                'planting_distance' => '50×50 cm',
-                'fertilizer_dose' => '150 kg Urea, 100 kg SP-36, dan 100 kg KCL',
-                'potential_results' => 'Isi potensi hasil untuk KACANG PANJANG di sini',
-            ],
-            [
-                'name' => 'CABAI',
-                'latin' => 'Capsicum annuum L',
-                'temp' => '25-35 °C',
-                'ph' => '6-7',
-                'planting_distance' => '50×50 cm',
-                'fertilizer_dose' => '200 kg Urea, 200 kg SP-36, dan 200 kg KCL',
-                'potential_results' => 'Isi potensi hasil untuk CABAI di sini',
+                'name' => 'Cabai Keriting',
+                'latin' => '',
+                'temp' => '',
+                'ph' => '',
+                'planting_distance' => '',
+                'fertilizer_dose' => '',
+                'potential_results' => '',
+                'kode'=>'CMK'
             ],
         ];
 
@@ -71,6 +114,61 @@ class ComodityController extends Controller
 
     public function index(Request $request)
     {
+
+        // $cm = [
+        //     [
+        //         'name' => 'Jagung Hibrida',
+        //         'latin' => '',
+        //         'temp' => '',
+        //         'ph' => '',
+        //         'planting_distance' => '',
+        //         'fertilizer_dose' => '',
+        //         'potential_results' => '',
+        //         'code'=>'JPK',
+        //         'thumb'=>'',
+
+        //     ],
+        //     [
+        //         'name' => 'Padi',
+        //         'latin' => '',
+        //         'temp' => '',
+        //         'ph' => '',
+        //         'planting_distance' => '',
+        //         'fertilizer_dose' => '',
+        //         'potential_results' => '',
+        //         'code'=>'GKP',
+        //         'thumb'=>'',
+
+        //     ],
+
+        //     [
+        //         'name' => 'Cabai Merah Besar',
+        //         'latin' => '',
+        //         'temp' => '',
+        //         'ph' => '',
+        //         'planting_distance' => '',
+        //         'fertilizer_dose' => '',
+        //         'potential_results' => '',
+        //         'code'=>'CMB',
+        //         'thumb'=>'',
+        //     ],
+
+        //     [
+        //         'name' => 'Cabai Keriting',
+        //         'latin' => '',
+        //         'temp' => '',
+        //         'ph' => '',
+        //         'planting_distance' => '',
+        //         'fertilizer_dose' => '',
+        //         'potential_results' => '',
+        //         'thumb'=>'',
+        //         'code'=>'CMK'
+        //     ],
+        // ];
+
+        // foreach ($cm as $key => $value) {
+        //    Comodity::create($value);
+        // }
         if ($request->ajax()) {
             $data = Comodity::whereNull('deleted_at')->get();
             return DataTables::of($data)

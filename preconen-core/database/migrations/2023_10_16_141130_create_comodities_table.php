@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comodities', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('code', 255);
+
             $table->string('name', 255)->default('text');
             $table->string('latin', 255)->default('text');
             $table->string('temp', 255)->default('text');
@@ -21,6 +23,7 @@ return new class extends Migration
             $table->string('fertilizer_dose', 255)->default('text');
             $table->string('potential_results', 255)->default('text');
 
+            $table->text('thumb');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
