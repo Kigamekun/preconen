@@ -9,10 +9,10 @@
     </div>
 
     <div class="flex-none">
-        <div class="dropdown dropdown-button">
+        <div class="dropdown dropdown-button dropdown-end">
             <button class="btn btn-ghost mr-3 normal-case">
                 @if (Auth::check())
-                    <p class="mr-2 text-xl">{{Auth::user()->name}}</p>
+                    <p class="mr-2 text-xl">{{ Auth::user()->name }}</p>
                 @endif
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                     class="bi bi-person-circle text-black" viewBox="0 0 16 16">
