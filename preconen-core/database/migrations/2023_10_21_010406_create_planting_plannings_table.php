@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lands', function (Blueprint $table) {
-            $table->bigIncrements('id');
-
+        Schema::create('planting_plannings', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('comodity_id');
-            $table->float('wide');
+            $table->date('start_from');
+            $table->date('end_at');
 
             $table->foreign('comodity_id')->references('id')->on('comodities')->onDelete('cascade');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lands');
+        Schema::dropIfExists('planting_plannings');
     }
 };

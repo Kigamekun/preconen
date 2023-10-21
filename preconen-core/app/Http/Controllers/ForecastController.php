@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 class ForecastController extends Controller
 {
-    public function index()
+    public function forecastWeather()
     {
         $client = new \GuzzleHttp\Client();
 
@@ -30,7 +30,7 @@ class ForecastController extends Controller
     }
 
 
-    public function scrapping($url,$pattern)
+    public function scrappingPriceComodity($url,$pattern)
     {
 
         $labelScrapping = [
