@@ -6,22 +6,24 @@
 @stop
 @section('content')
 
-<style>
-    .color-calendar {
-        width: 100%;
-        height: 100%;
-    }
-    .calendar__weekdays {
-        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
-    }
-    .calendar__header {
-        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
-    }
-    .calendar__days {
-        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
-    }
+    <style>
+        .color-calendar {
+            width: 100%;
+            height: 100%;
+        }
 
-</style>
+        .calendar__weekdays {
+            grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
+        }
+
+        .calendar__header {
+            grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
+        }
+
+        .calendar__days {
+            grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
+        }
+    </style>
     @include('components.navigation')
     <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen">
         <h2 class="text-4xl font-extrabold my-3 mb-4">Halo, Selamat datang Lorem</h2>
@@ -48,20 +50,22 @@
                     <div class="flex-shrink-0">
                         <div class="flex flex-row gap-2">
                             @foreach (DB::table('comodities')->get() as $item)
-                            <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
-                                <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                                <img src="{{ asset('storage/comodities/'.$item->thumb) }}" alt="Gambar"
-                                    class="w-full h-full object-cover rounded-lg">
+                                <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
+                                    <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
+                                    <img src="{{ asset('storage/comodities/' . $item->thumb) }}" alt="Gambar"
+                                        class="w-full h-full object-cover rounded-lg">
 
-                                <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                                    <div class="absolute p-3 inset-x-0 bottom-0">
-                                        <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">{{$item->name}}</p>
-                                        <p class="text-md font-bold text-white">Rp. {{$price[$item->code]['total']}}</p>
+                                    <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
+                                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
+                                        <div class="absolute p-3 inset-x-0 bottom-0">
+                                            <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">
+                                                {{ $item->name }}</p>
+                                            <p class="text-md font-bold text-white">Rp. {{ $price[$item->code]['total'] }}
+                                            </p>
+                                        </div>
+
                                     </div>
-
                                 </div>
-                            </div>
                             @endforeach
 
 
@@ -96,7 +100,7 @@
                 <p class="text-center text-2xl text-slate-500 font-bold mb-4">Kecepatan Angin</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/wind')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> 14 km/h</p>
+                    <p class="text-4xl text-slate-500 font-bold"> {{ $forecast[0]['speed'] }} km/h</p>
                 </div>
             </div>
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
@@ -105,7 +109,7 @@
                 <p class="text-center text-2xl text-slate-500 font-bold mb-4">Kemungkinan Hujan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/rain')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> 28%</p>
+                    <p class="text-4xl text-slate-500 font-bold"> {{ $forecast[0]['rain'] }}%</p>
                 </div>
             </div>
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
@@ -114,7 +118,7 @@
                 <p class="text-center text-2xl text-slate-500 font-bold mb-4">Tutupan Awan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/cloud')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> 24%</p>
+                    <p class="text-4xl text-slate-500 font-bold"> {{ $forecast[0]['clouds'] }}%</p>
                 </div>
             </div>
         </div>
@@ -123,113 +127,56 @@
             <div class="rounded-lg  row-span-2 col-span-1 py-3">
                 <h3 class="text-2xl text-center font-semibold flex">Komoditas</h3>
                 <div></div>
-                <div class="h-20 rounded-lg bg-white my-3"
-                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
-                backdrop-filter: blur(2px);">
 
-                </div>
                 <div class="h-20 rounded-lg bg-white my-3"
                     style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
-                backdrop-filter: blur(2px);">
-
-                </div>
-                <div class="h-20 rounded-lg bg-white my-3"
-                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
-                backdrop-filter: blur(2px);">
-
-                </div>
-                <div class="h-20 rounded-lg bg-white my-3"
-                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
-                backdrop-filter: blur(2px);">
-
-                </div>
-                <div class="h-20 rounded-lg bg-white my-3"
-                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
-                backdrop-filter: blur(2px);">
+            backdrop-filter: blur(2px);">
 
                 </div>
             </div>
 
-            <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
-                <img src="{{ asset('img/lahan.png') }}" alt="" class="object-cover w-full ">
-                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                    <div class="absolute p-3 inset-x-0 bottom-0">
-                        <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">Sawah Tadah Hujan</p>
+            @foreach (App\Models\Land::where('user_id', Auth::id())->get() as $item)
+                <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
+                    <img src="{{ asset('img/lahan.png') }}" alt="" class="object-cover w-full ">
+                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
+                        <div class="absolute p-3 inset-x-0 bottom-0">
+                            <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">{{ $item->comodity->name }}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
-                <img src="{{ asset('img/lahan.png') }}" alt="" class="object-cover w-full ">
-                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                    <div class="absolute p-3 inset-x-0 bottom-0">
-                        <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">Gurun Pasir</p>
-                    </div>
-                </div>
-            </div>
-            <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
-                <img src="{{ asset('img/lahan.png') }}" alt="" class="object-cover w-full ">
-                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                    <div class="absolute p-3 inset-x-0 bottom-0">
-                        <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">Pegunungan</p>
-                    </div>
-                </div>
-            </div>
-            <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
-                <img src="{{ asset('img/lahan.png') }}" alt="" class="object-cover w-full ">
-                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                    <div class="absolute p-3 inset-x-0 bottom-0">
-                        <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">Lahan Gambut</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
         <h2 class="text-4xl font-extrabold mt-5 mb-3">Prakiraan Cuaca</h2>
         <div class="flex flex-row overflow-x-auto">
             <div class="flex-shrink-0">
                 <div class="flex flex-row gap-2">
-                    <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
-                        <div class="h-16">
-                            @include('icons/cerah-berawan')
+
+                    @foreach ($forecast as $item)
+                        <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
+                            <p class="text-center text-xl text-white font-bold mb-3">{{ $item['date'] }}</p>
+                            <div class="h-16">
+                                @switch($item['weather'][0]['main'])
+                                    @case('Rain')
+                                        @include('icons/hujan')
+                                    @break
+
+                                    @case('Clouds')
+                                        @include('icons/berawan')
+                                    @break
+
+                                    @case('Clear')
+                                        @include('icons/cerah')
+                                    @break
+
+                                    @default
+                                @endswitch
+                            </div>
+                            <p class="text-4xl text-white  text-center"> {{ $item['temp']['day'] - 273.15 }}&#xb0;C</p>
                         </div>
-                        <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
-                    </div>
-                    <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
-                        <div class="h-16">
-                            @include('icons/berawan')
-                        </div>
-                        <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
-                    </div>
-                    <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
-                        <div class="h-16">
-                            @include('icons/cerah')
-                        </div>
-                        <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
-                    </div>
-                    <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
-                        <div class="h-16">
-                            @include('icons/hujan')
-                        </div>
-                        <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
-                    </div>
-                    <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
-                        <div class="h-16">
-                            @include('icons/cerah-berawan')
-                        </div>
-                        <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
-                    </div>
-                    <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                        <p class="text-center text-xl text-white font-bold mb-3">Hari ini</p>
-                        <div class="h-16">
-                            @include('icons/hujan')
-                        </div>
-                        <p class="text-4xl text-white  text-center"> 22&#xb0;C</p>
-                    </div>
+                    @endforeach
+
                 </div>
 
             </div>

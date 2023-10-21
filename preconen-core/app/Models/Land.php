@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Land extends Model
 {
+
+    public function comodity()
+    {
+        return $this->belongsTo(Comodity::class, 'comodity_id');
+    }
+
     use HasFactory;
 }
