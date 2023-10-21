@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index() {
-        $price = [
-            'JPK'=>['nama'=>'JPK','harga'=>12000],
-            'GKP'=>['nama'=>'GKP','harga'=>7000],
-            'CMB'=>['nama'=>'CMB','harga'=>9000],
-            'CMK'=>['nama'=>'CMK','harga'=>4000],
-        ];
 
-        return view('dashboard',['price'=>$price]);
+
+        $pangan = app('App\Http\Controllers\ForecastController')->scrappingPriceComodity('https://infoharga.agrojowo.biz/tanaman-pangan-menu/harga-produsen','/tanaman_pangan___([^\s]+)/');
+        $sayuran = app('App\Http\Controllers\ForecastController')->scrappingPriceComodity('https://infoharga.agrojowo.biz/sayuran/sayuran-info-harga-produsen','/sayuran_produsen___([^\s]+)/');
+        $solve = array_merge($pangan,$sayuran);
+        return view('dashboard',['price'=>$solve]);
     }
 }

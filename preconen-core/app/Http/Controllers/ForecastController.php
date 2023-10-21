@@ -35,21 +35,9 @@ class ForecastController extends Controller
 
         $labelScrapping = [
             ['nama' => 'Gabah Kering Panen', 'kode' => 'GKP'],
-            ['nama' => 'Gabah Kering Giling', 'kode' => 'GKG'],
-            ['nama' => 'Beras Medium', 'kode' => 'BM'],
-            ['nama' => 'Beras Premium', 'kode' => 'BP'],
             ['nama' => 'Jagung Pipilan Kering', 'kode' => 'JPK'],
-            ['nama' => 'Kedelai Lokal Biji Kering', 'kode' => 'KLBK'],
-            ['nama' => 'Kedelai Impor', 'kode' => 'KI'],
-            ['nama' => 'Kacang Hijau Biji Kering', 'kode' => 'KHBK'],
-            ['nama' => 'Kacang Tanah Lokal Polong Basah', 'kode' => 'KTLPB'],
-            ['nama' => 'Kacang Tanah Impor', 'kode' => 'KTI'],
-            ['nama' => 'Kacang Tanah Lokal Ose 8mm', 'kode' => 'KTLO8'],
-            ['nama' => 'Ubi Kayu Basah', 'kode' => 'UKB'],
-            ['nama' => 'Ubi Jalar Basah', 'kode' => 'UJB'],
-            ['nama' => 'Gaplek Gelondongan', 'kode' => 'GG'],
-            ['nama' => 'Porang', 'kode' => 'P'],
-            ['nama' => 'Porang Kering', 'kode' => 'PK'],
+            ['nama' => 'Cabai Merah Keriting', 'kode' => 'CMK'],
+            ['nama' => 'Cabai Merah Besar', 'kode' => 'CMB'],
         ];
 
         $client = new ClientScrapping();
@@ -87,7 +75,17 @@ class ForecastController extends Controller
             echo "Total not found";
         }
 
-        return $data;
+        $solve = [];
+        foreach ($data as $key => $value) {
+                try {
+                    $solve[$value['nama']] = $value;
+
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+        }
+
+        return $solve;
         return response()->json(['statusCode' => 200,'message' => 'Success scrapping data','data' => $data], 200);
     }
 
