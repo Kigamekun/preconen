@@ -6,32 +6,63 @@
 @stop
 @section('content')
 
-<style>
-    .color-calendar {
-        width: 100%;
-        height: 100%;
-    }
-    .calendar__weekdays {
-        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
-    }
-    .calendar__header {
-        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
-    }
-    .calendar__days {
-        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
-    }
+    <style>
+        .color-calendar {
+            width: 100%;
+            height: 100%;
+        }
 
-</style>
+        .calendar__weekdays {
+            grid-template-columns: repeat(7, 1fr) !important;
+        }
+
+        .calendar__header {
+            grid-template-columns: repeat(7, 1fr) !important;
+        }
+
+        .calendar__days {
+            grid-template-columns: repeat(7, 1fr) !important;
+        }
+
+        .color-calendar.basic .calendar__days .calendar__day-selected .calendar__day-box {
+            background-color: #89B565;
+
+
+        }
+
+        .color-calendar .calendar__days .calendar__day-event .calendar__day-box {
+            background-color: #FFCA2A;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(55% + 8px);
+            height: 90%;
+            opacity: 1;
+            z-index: -1;
+            cursor: pointer;
+            transition: opacity 0.3s ease-out;
+            will-change: opacity;
+        }
+
+        .color-calendar .calendar__days .calendar__day-event .calendar__day-bullet {
+            background-color: #FFCA2A;
+        }
+
+        .color-calendar.basic {
+            color: #495E57
+        }
+    </style>
     @include('components.navigation')
-    <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen">
-        <h2 class="text-4xl font-extrabold my-3 mb-4">Halo, Selamat datang Lorem</h2>
+    <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen text-[#495E57]">
+        <h2 class="text-4xl font-extrabold my-3 mb-4 ">Halo, Selamat datang Lorem</h2>
         <div class="grid grid-cols-4 grid-rows-3 gap-8 mt-4 mx-auto mb-8">
             <div class="rounded-lg opacity-80 border-2 border-neutral-400/50  col-span-2 row-span-3"
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(2px);">
                 <div class="cuaca h-42 p-4 pb-0 flex flex-row justify-center items-center">
                     <div class="h-36 w-36 mx-3">@include('icons/cerah-berawan')</div>
-                    <div class="kanan flex flex-col pb-3">
+                    <div class="kanan flex flex-col pb-3 text-[#495E57]">
                         <span class="text-3xl font-bold">23&#xb0;C</span>
                         <span class="text-lg">Cerah</span>
                         <span class="text-lg">Bogor, Indonesia</span>
@@ -48,20 +79,22 @@
                     <div class="flex-shrink-0">
                         <div class="flex flex-row gap-2">
                             @foreach (DB::table('comodities')->get() as $item)
-                            <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
-                                <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                                <img src="{{ asset('storage/comodities/wortel.jpg') }}" alt="Gambar"
-                                    class="w-full h-full object-cover rounded-lg">
+                                <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
+                                    <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
+                                    <img src="{{ asset('storage/comodities/wortel.jpg') }}" alt="Gambar"
+                                        class="w-full h-full object-cover rounded-lg">
 
-                                <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                                    <div class="absolute p-3 inset-x-0 bottom-0">
-                                        <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">{{$item->name}}</p>
-                                        <p class="text-md font-bold text-white">Rp. {{$price[$item->code]['harga']}}</p>
+                                    <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
+                                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
+                                        <div class="absolute p-3 inset-x-0 bottom-0">
+                                            <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">
+                                                {{ $item->name }}</p>
+                                            <p class="text-md font-bold text-white">Rp. {{ $price[$item->code]['harga'] }}
+                                            </p>
+                                        </div>
+
                                     </div>
-
                                 </div>
-                            </div>
                             @endforeach
 
 
@@ -89,32 +122,32 @@
             </div>
 
         </div>
-        <div class="grid grid-cols-3 gap-8 my-3 m-auto ">
+        <div class="grid grid-cols-3 gap-8 my-3 m-auto text-[#495E57]">
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center "
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(2px);">
-                <p class="text-center text-2xl text-slate-500 font-bold mb-4">Kecepatan Angin</p>
+                <p class="text-center text-2xl font-bold mb-4">Kecepatan Angin</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/wind')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> 14 km/h</p>
+                    <p class="text-4xl font-bold"> 14 km/h</p>
                 </div>
             </div>
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(2px);">
-                <p class="text-center text-2xl text-slate-500 font-bold mb-4">Kemungkinan Hujan</p>
+                <p class="text-center text-2xl font-bold mb-4 ">Kemungkinan Hujan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/rain')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> 28%</p>
+                    <p class="text-4xl font-bold"> 28%</p>
                 </div>
             </div>
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(2px);">
-                <p class="text-center text-2xl text-slate-500 font-bold mb-4">Tutupan Awan</p>
+                <p class="text-center text-2xl font-bold mb-4">Tutupan Awan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/cloud')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> 24%</p>
+                    <p class="text-4xl font-bold"> 24%</p>
                 </div>
             </div>
         </div>
@@ -240,12 +273,19 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <script>
         const calendarEvents = [{
-            start: '2023-10-21T06:00:00',
-            end: '2021-10-25T20:30:00',
-            name: 'Tanam',
-            desc: 'Tanam Apa gitu',
+                start: '2023-10-22T06:00:00',
+                end: '2021-10-25T20:30:00',
+                name: 'Tanam',
+                desc: 'Tanam Apa gitu',
+            },
+            {
+                start: '2023-10-30T06:00:00',
+                end: '2021-10-31T20:30:00',
+                name: 'Tanam',
+                desc: 'Tanam Apa gitu',
 
-        }, ]
+            },
+        ]
         new Calendar({
             id: '#main-calendar',
             layoutModifiers: ['month-align-left'],
