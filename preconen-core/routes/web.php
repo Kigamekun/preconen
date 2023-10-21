@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ForecastController,ComodityController,LandController};
+use App\Http\Controllers\{ForecastController,DashboardController,ComodityController,LandController};
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +18,8 @@ use App\Http\Controllers\{ForecastController,ComodityController,LandController};
 Route::get('/', function () {
     return view('landing');
 });
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

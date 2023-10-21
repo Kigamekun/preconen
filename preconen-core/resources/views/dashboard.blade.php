@@ -47,63 +47,24 @@
                 <div class="flex flex-row overflow-x-auto">
                     <div class="flex-shrink-0">
                         <div class="flex flex-row gap-2">
+                            @foreach (DB::table('comodities')->get() as $item)
                             <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
                                 <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                                <img src="{{ asset('img/wortel.jpg') }}" alt="Gambar"
+                                <img src="{{ asset('storage/comodities/wortel.jpg') }}" alt="Gambar"
                                     class="w-full h-full object-cover rounded-lg">
 
                                 <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
                                 <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
                                     <div class="absolute p-3 inset-x-0 bottom-0">
-                                        <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">Wortel</p>
-                                        <p class="text-md font-bold text-white">Rp. 20.000</p>
+                                        <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">{{$item->name}}</p>
+                                        <p class="text-md font-bold text-white">Rp. {{$price[$item->code]['harga']}}</p>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
-                                <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                                <img src="{{ asset('img/wortel.jpg') }}" alt="Gambar"
-                                    class="w-full h-full object-cover rounded-lg">
+                            @endforeach
 
-                                <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                                    <div class="absolute p-3 inset-x-0 bottom-0">
-                                        <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">Wortel</p>
-                                        <p class="text-md font-bold text-white">Rp. 20.000</p>
-                                    </div>
 
-                                </div>
-                            </div>
-
-                            <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
-                                <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                                <img src="{{ asset('img/wortel.jpg') }}" alt="Gambar"
-                                    class="w-full h-full object-cover rounded-lg">
-
-                                <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                                    <div class="absolute p-3 inset-x-0 bottom-0">
-                                        <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">Wortel</p>
-                                        <p class="text-md font-bold text-white">Rp. 20.000</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
-                                <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                                <img src="{{ asset('img/wortel.jpg') }}" alt="Gambar"
-                                    class="w-full h-full object-cover rounded-lg">
-
-                                <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                                    <div class="absolute p-3 inset-x-0 bottom-0">
-                                        <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">Wortel</p>
-                                        <p class="text-md font-bold text-white">Rp. 20.000</p>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
