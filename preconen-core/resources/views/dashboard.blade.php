@@ -23,26 +23,26 @@
 
 </style>
     @include('components.navigation')
-    <div class="xl:container px-4 mx-auto">
+    <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen">
         <h2 class="text-4xl font-extrabold my-3 mb-4">Halo, Selamat datang Lorem</h2>
-        <div class="grid grid-cols-4 grid-rows-3 gap-4 my-3  mx-auto">
-            <div class="rounded-lg opacity-80 border-2 border-neutral-400/50  col-span-2 row-span-3">
-                <a class="weatherwidget-io" href="https://forecast7.com/en/n6d55106d63/bogor/" data-label_1="BOGOR"
-                    data-label_2="Cuaca Hari Ini" data-mode="Current" data-theme="original">BOGOR Cuaca Hari Ini</a>
-                <script>
-                    ! function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = 'https://weatherwidget.io/js/widget.min.js';
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, 'script', 'weatherwidget-io-js');
-                </script>
-                <div id="main-calendar" class="flex justify-center  justify-items-stretch"></div>
+        <div class="grid grid-cols-4 grid-rows-3 gap-8 mt-4 mx-auto mb-8">
+            <div class="rounded-lg opacity-80 border-2 border-neutral-400/50  col-span-2 row-span-3"
+                style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);">
+                <div class="cuaca h-42 p-4 pb-0 flex flex-row justify-center items-center">
+                    <div class="h-36 w-36 mx-3">@include('icons/cerah-berawan')</div>
+                    <div class="kanan flex flex-col pb-3">
+                        <span class="text-3xl font-bold">23&#xb0;C</span>
+                        <span class="text-lg">Cerah</span>
+                        <span class="text-lg">Bogor, Indonesia</span>
+
+                    </div>
+                </div>
+                <div id="main-calendar" class="flex justify-center justify-items-stretch"></div>
             </div>
-            <div class="rounded-lg opacity-80 border-2 border-neutral-400/50 drop-shadow-md col-span-2 row-span-2 p-4">
+            <div style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);"
+                class="rounded-lg opacity-80 border-2 border-neutral-400/50 drop-shadow-md col-span-2 row-span-2 p-4">
                 <h2 class="text-2xl mb-3 font-bold ">Harga Komoditas Hari Ini</h2>
                 <div class="flex flex-row overflow-x-auto">
                     <div class="flex-shrink-0">
@@ -75,19 +75,21 @@
                     nulla
                     nisi quis!</p>
             </div>
-            <div
+            <div style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);"
                 class="rounded-lg opacity-80 border-2 border-neutral-400/50 drop-shadow-md col-span-1 row-span-1 justify-center flex flex-col">
                 <h2 class="text-lg m-3 font-bold mx-4 text-center">Jadwalkan Penanaman</h2>
                 <button class="btn btn-outline mx-4 mb-4 mt-2">Jadwalkan</button>
             </div>
-            <div
+            <div style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);"
                 class="rounded-lg opacity-80 border-2 border-neutral-400/50 drop-shadow-md col-span-1 row-span-1 justify-center flex flex-col">
                 <h2 class="text-lg m-3 font-bold mx-4 text-center">Suplai Tanaman</h2>
                 <button class="btn btn-outline mx-4 mb-4 mt-2">Jadwalkan</button>
             </div>
 
         </div>
-        <div class="grid grid-cols-3 gap-4 my-3 m-auto ">
+        <div class="grid grid-cols-3 gap-8 my-3 m-auto ">
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center "
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(2px);">
@@ -118,20 +120,32 @@
         </div>
         <h2 class="text-4xl font-extrabold mt-5 mb-3">Lahan Anda</h2>
         <div class="grid grid-cols-3 grid-rows-2 gap-4 my-3 m-auto">
-            <div class="rounded-lg bg-slate-400 row-span-2 col-span-1 p-3">
-                <div class="h-20 rounded-lg bg-white my-2">
+            <div class="rounded-lg  row-span-2 col-span-1 py-3">
+                <h3 class="text-2xl text-center font-semibold flex">Komoditas</h3>
+                <div></div>
+                <div class="h-20 rounded-lg bg-white my-3"
+                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+                backdrop-filter: blur(2px);">
 
                 </div>
-                <div class="h-20 rounded-lg bg-white my-2">
+                <div class="h-20 rounded-lg bg-white my-3"
+                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+                backdrop-filter: blur(2px);">
 
                 </div>
-                <div class="h-20 rounded-lg bg-white my-2">
+                <div class="h-20 rounded-lg bg-white my-3"
+                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+                backdrop-filter: blur(2px);">
 
                 </div>
-                <div class="h-20 rounded-lg bg-white my-2">
+                <div class="h-20 rounded-lg bg-white my-3"
+                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+                backdrop-filter: blur(2px);">
 
                 </div>
-                <div class="h-20 rounded-lg bg-white my-2">
+                <div class="h-20 rounded-lg bg-white my-3"
+                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+                backdrop-filter: blur(2px);">
 
                 </div>
             </div>
