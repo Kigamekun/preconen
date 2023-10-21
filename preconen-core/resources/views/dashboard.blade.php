@@ -53,7 +53,7 @@
             color: #495E57
         }
     </style>
-    @include('components.navigation')
+
     <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen text-[#495E57]">
         <h2 class="text-4xl font-extrabold my-3 mb-4 ">Halo, Selamat datang Lorem</h2>
         <div class="grid grid-cols-4 grid-rows-3 gap-8 mt-4 mx-auto mb-8">
@@ -153,40 +153,46 @@
         </div>
         <h2 class="text-4xl font-extrabold mt-5 mb-3">Lahan Anda</h2>
         <div class="grid grid-cols-3 grid-rows-2 gap-4 my-3 m-auto">
-            <div class="rounded-lg  row-span-2 col-span-1 py-3">
-                <h3 class="text-2xl text-center font-semibold flex">Komoditas</h3>
-                <div></div>
-
-                <div class="h-20 rounded-lg bg-white my-3"
-                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(2px);">
-
-                </div>
-            </div>
 
             @foreach (App\Models\Land::where('user_id', Auth::id())->get() as $item)
                 <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
                     <img src="{{ asset('img/lahan.png') }}" alt="" class="object-cover w-full ">
                     <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
                         <div class="absolute p-3 inset-x-0 bottom-0">
-                            <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">{{ $item->comodity->name }}
+                            <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">
+                                {{ $item->comodity->name }}
                             </p>
                         </div>
                     </div>
                 </div>
             @endforeach
+            <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
 
+                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
+                    <div class="flex items-center justify-center  h-full p-3 inset-x-0 bottom-0">
+                        <p class="text-3xl font-extrabold text-white">
+                            Tambahkan Lahan {{--  {{ $item->comodity->name }} --}}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <h2 class="text-4xl font-extrabold mt-5 mb-3">Prakiraan Cuaca</h2>
         <div class="flex flex-row overflow-x-auto">
             <div class="flex-shrink-0">
                 <div class="flex flex-row gap-2">
 
+                    @php
+                        $dateFormatter = new IntlDateFormatter('id_ID', IntlDateFormatter::RELATIVE_SHORT, IntlDateFormatter::NONE);
+                    @endphp
                     @foreach ($forecast as $item)
                         <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
-                            <p class="text-center text-xl text-white font-bold mb-3">{{ $item['date'] }}</p>
-                            <div class="h-16">
-                                @switch($item['weather'][0]['main'])
+                            <p class="text-center text-xl text-white  mb-1">
+                                {{ $dateFormatter->format(DateTime::createFromFormat('Y-m-d H:i:s', $item['date'])) }}</p>
+                            <div class="">
+                                <img src="https://openweathermap.org/img/wn/{{ $item['weather'][0]['icon'] }}@2x.png"
+                                    alt="" class="h-20 mx-auto">
+                                {{-- @switch($item['weather'][0]['main'])
                                     @case('Rain')
                                         @include('icons/hujan')
                                     @break
@@ -200,9 +206,10 @@
                                     @break
 
                                     @default
-                                @endswitch
+                                @endswitch --}}
                             </div>
-                            <p class="text-4xl text-white  text-center"> {{ $item['temp']['day'] - 273.15 }}&#xb0;C</p>
+                            <p class="text-4xl text-white  font-bold text-center">
+                                {{ $item['temp']['day'] - 273.15 }}&#xb0;C</p>
                         </div>
                     @endforeach
 

@@ -24,8 +24,9 @@
     <div class="wrapper">
 
 
-
+        @include('components.navigation')
         @yield('content')
+        @include('components.footer')
 
     </div>
 
