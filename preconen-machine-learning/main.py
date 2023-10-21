@@ -64,5 +64,7 @@ def index():
         
         return render_template('./index.html', top_commodities=top_commodities)
     return render_template('./index.html', recommended_commodity=None)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

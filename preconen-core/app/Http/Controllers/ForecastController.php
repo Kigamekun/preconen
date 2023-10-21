@@ -28,7 +28,9 @@ class ForecastController extends Controller
         }
         return response()->json(['statusCode' => 200,'message' => 'Success Scratch Data Forecast','data' => ['forecast'=>$forecast]], 200);
     }
-    public function scratch()
+
+
+    public function scrapping($url,$pattern)
     {
 
         $labelScrapping = [
@@ -52,11 +54,10 @@ class ForecastController extends Controller
 
         $client = new ClientScrapping();
 
-        $website = $client->request('GET', 'https://infoharga.agrojowo.biz/info-hari-ini/tanaman-pangan');
+        $website = $client->request('GET', $url);
         $htmlContent = $website->filter('.fabrik_calculations')->html();
 
         $data = [];
-        $pattern = '/tanaman_pangan___([^\s]+)/';
 
         if (preg_match_all($pattern, $htmlContent, $matches, PREG_SET_ORDER)) {
             $data = [];
@@ -86,6 +87,7 @@ class ForecastController extends Controller
             echo "Total not found";
         }
 
+        return $data;
         return response()->json(['statusCode' => 200,'message' => 'Success scrapping data','data' => $data], 200);
     }
 

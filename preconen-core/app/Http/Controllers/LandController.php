@@ -9,6 +9,13 @@ class LandController extends Controller
 {
     public function index(Request $request)
     {
+        $solve = [];
+        $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/tanaman-pangan','/tanaman_pangan___([^\s]+)/');
+        $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/buah','/buah_produsen___([^\s]+)/');
+        $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/sayuran','/sayuran_produsen___([^\s]+)/');
+        $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/perkebunan','/perkebunan___([^\s]+)/');
+
+        dd($solve);
         return view('user.land');
     }
 
