@@ -5,6 +5,23 @@
     <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
 @stop
 @section('content')
+
+<style>
+    .color-calendar {
+        width: 100%;
+        height: 100%;
+    }
+    .calendar__weekdays {
+        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
+    }
+    .calendar__header {
+        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
+    }
+    .calendar__days {
+        grid-template-columns: repeat(7, minmax(100px, 55px)) !important;
+    }
+
+</style>
     @include('components.navigation')
     <div class="xl:container px-4 mx-auto">
         <h2 class="text-4xl font-extrabold my-3 mb-4">Halo, Selamat datang Lorem</h2>
@@ -90,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+                <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, sapiente. Praesentium reiciendis
                     doloremque,
                     quidem magnam corrupti culpa temporibus itaque repellat dolore suscipit error magni ab ipsa maiores
@@ -256,7 +274,8 @@
         new Calendar({
             id: '#main-calendar',
             layoutModifiers: ['month-align-left'],
-            eventsData: calendarEvents
+            eventsData: calendarEvents,
+            calendarSize: "large",
         })
     </script>
 @stop
