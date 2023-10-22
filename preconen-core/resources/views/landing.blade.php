@@ -19,17 +19,13 @@
 
     <div class="wrapper max-w-7xl mx-auto">
 
-        <div class="navbar bg-base-100 z-20 justify-between max-w-7xl mx-auto">
-            <div class="flex-none">
-                <img src="{{ asset('img/preconen-logo.svg') }}" alt="" class="h-12">
-            </div>
+        @include('components.header', ['buttonText' => 'Login', 'link' => route('login')])
 
-            <div class="flex-none">
-                <button class="btn btn-ghost shadow-lg mr-3 normal-case text-xl py-1">
-                    Login
-                </button>
-            </div>
-        </div>
+        @section('button')
+            <a href="{{ route('login') }}" class="btn btn-ghost shadow-lg mr-3 normal-case text-xl py-1">
+                Login
+            </a>
+        @stop
 
         <div class="jumbotron relative mb-4">
             <img src="{{ asset('img/jumbotron.bg.png') }}" alt="" class="w-full">
