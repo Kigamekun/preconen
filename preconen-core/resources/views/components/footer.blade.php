@@ -19,5 +19,9 @@
 
         </div>
     </div>
-    <hr class="h-2">
+    <div class="h-0.5 w-5/6 bg-white mx-auto max-w-7xl">
+    </div>
+    <div class="flex items-center">
+        <p class="my-6 mx-auto text-white font-semibold text-lg">© 2023 Preconen Indonesia</p>
+    </div>
 </div>
