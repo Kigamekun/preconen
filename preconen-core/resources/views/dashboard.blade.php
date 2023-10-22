@@ -6,56 +6,13 @@
 @stop
 @section('content')
 
-    <style>
-        .color-calendar {
-            width: 100%;
-            height: 100%;
-        }
 
-        .calendar__weekdays {
-            grid-template-columns: repeat(7, 1fr) !important;
-        }
-
-        .calendar__header {
-            grid-template-columns: repeat(7, 1fr) !important;
-        }
-
-        .calendar__days {
-            grid-template-columns: repeat(7, 1fr) !important;
-        }
-
-        .color-calendar.basic .calendar__days .calendar__day-selected .calendar__day-box {
-            background-color: #89B565;
-
-
-        }
-
-        .color-calendar .calendar__days .calendar__day-event .calendar__day-box {
-            background-color: #FFCA2A;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: calc(55% + 8px);
-            height: 90%;
-            opacity: 1;
-            z-index: -1;
-            cursor: pointer;
-            transition: opacity 0.3s ease-out;
-            will-change: opacity;
-        }
-
-        .color-calendar .calendar__days .calendar__day-event .calendar__day-bullet {
-            background-color: #FFCA2A;
-        }
-
-        .color-calendar.basic {
-            color: #495E57
-        }
-    </style>
-
+    @include('components.navigation')
     <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen text-[#495E57]">
+        <br>
+
         <h2 class="text-4xl font-extrabold my-3 mb-4 ">Halo, Selamat datang Lorem</h2>
+        <br>
         <div class="grid grid-cols-4 grid-rows-3 gap-8 mt-4 mx-auto mb-8">
             <div class="rounded-lg opacity-80 border-2 border-neutral-400/50  col-span-2 row-span-3"
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
@@ -79,22 +36,25 @@
                     <div class="flex-shrink-0">
                         <div class="flex flex-row gap-2">
                             @foreach (DB::table('comodities')->get() as $item)
-                                <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
-                                    <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                                    <img src="{{ asset('storage/comodities/' . $item->thumb) }}" alt="Gambar"
-                                        class="w-full h-full object-cover rounded-lg">
+                                @if (array_key_exists($item->code, $price))
+                                    <div class="relative w-48 min-w-48 rounded-lg overflow-hidden">
+                                        <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
+                                        <img src="{{ asset('storage/comodities/' . $item->thumb) }}" alt="Gambar"
+                                            class="w-full h-full object-cover rounded-lg">
 
-                                    <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                                        <div class="absolute p-3 inset-x-0 bottom-0">
-                                            <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">
-                                                {{ $item->name }}</p>
-                                            <p class="text-md font-bold text-white">Rp. {{ $price[$item->code]['total'] }}
-                                            </p>
+                                        <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
+                                        <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
+                                            <div class="absolute p-3 inset-x-0 bottom-0">
+                                                <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">
+                                                    {{ $item->name }}</p>
+                                                <p class="text-md font-bold text-white">Rp.
+                                                    {{ $price[$item->code]['total'] }}
+                                                </p>
+                                            </div>
+
                                         </div>
-
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
 
 

@@ -12,7 +12,7 @@ class PlantingPlanningController extends Controller
      */
     public function index()
     {
-        //
+        return view('planting-planning.index');
     }
 
     /**

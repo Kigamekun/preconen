@@ -1,11 +1,11 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="min-h-full md:flex flex-row">
-        <div class="md:w-1/3 bg-lime-600 min-h-screen ">
+    {{-- <div class="min-h-full md:flex flex-row"> --}}
+    {{-- <div class="md:w-1/3 bg-lime-600 min-h-screen ">
             <img src="{{ asset('img/sawah.jpg') }}" alt="" class="object-cover h-100">
-        </div>
-        <div class="md:w-2/3 bg-slate-200 min-h-screen flex grid place-items-center">
+        </div> --}}
+    {{-- <div class="md:w-2/3 bg-slate-200 min-h-screen flex grid place-items-center">
             <div class="w-1/2 grid justify-items-center">
                 <img src={{ asset('img/preconen-logo.svg') }} alt="Preconen" class="w-1/5 mb-2">
 
@@ -51,7 +51,31 @@
                 </form>
             </div>
 
-        </div>
+        </div> --}}
 
+
+
+
+
+    {{-- di --}}
+
+
+    {{-- </div> --}}
+
+
+    <div class="w-100 flex">
+        <div>
+            <img src="" alt="">
+        </div>
+        <div class="card w-96 glass">
+            <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" /></figure>
+            <div class="card-body">
+                <h2 class="card-title">Life hack</h2>
+                <p>How to park your car at your garage?</p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Learn now!</button>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
