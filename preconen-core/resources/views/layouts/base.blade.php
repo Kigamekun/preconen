@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="assets/vendor/splide-4.1.3/dist/css/splide.min.css">
 
 
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('styles')
 
 </head>
@@ -71,8 +71,9 @@
     <div class="wrapper">
 
 
-
+        @include('components.navigation')
         @yield('content')
+        @include('components.footer')
 
     </div>
 
