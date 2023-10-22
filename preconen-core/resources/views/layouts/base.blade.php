@@ -14,7 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.min.css" rel="stylesheet">
 
 
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('styles')
 
 </head>
