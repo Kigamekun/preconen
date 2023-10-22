@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ForecastController,DashboardController,ComodityController,LandController};
+use App\Http\Controllers\{ForecastController,DashboardController,ComodityController,LandController,PlantingPlanningController};
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +60,18 @@ Route::prefix('admin')->group(function () {
     //     Route::get('/download/{id}', [LandController::class,'download'])->name('land.download');
     // });
 });
+
+
+Route::prefix('planting-planning')->group(function () {
+    Route::get('/', [PlantingPlanningController::class,'index'])->name('planting-planning.index');
+    Route::get('/create', [PlantingPlanningController::class,'create'])->name('planting-planning.create');
+    Route::post('/store', [PlantingPlanningController::class,'store'])->name('planting-planning.store');
+    Route::get('/edit/{id}', [PlantingPlanningController::class,'edit'])->name('planting-planning.edit');
+    Route::patch('/update/{id}', [PlantingPlanningController::class,'update'])->name('planting-planning.update');
+    Route::delete('/delete/{id}', [PlantingPlanningController::class,'destroy'])->name('planting-planning.delete');
+    Route::get('/download/{id}', [PlantingPlanningController::class,'download'])->name('planting-planning.download');
+});
+
 Route::prefix('land')->group(function () {
     Route::get('/', [LandController::class,'index'])->name('land.index');
     Route::get('/create', [LandController::class,'create'])->name('land.create');
@@ -69,5 +81,11 @@ Route::prefix('land')->group(function () {
     Route::delete('/delete/{id}', [LandController::class,'destroy'])->name('land.delete');
     Route::get('/download/{id}', [LandController::class,'download'])->name('land.download');
 });
+
+
+Route::prefix('supplies')->group(function () {
+    Route::get('/', [LandController::class,'index'])->name('land.index');
+});
+
 
 require __DIR__ . '/auth.php';

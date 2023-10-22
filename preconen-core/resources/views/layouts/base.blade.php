@@ -12,6 +12,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendor/splide-4.1.3/dist/css/splide.min.css">
 
 
     @vite('resources/css/app.css')
@@ -20,7 +21,53 @@
 </head>
 
 <body data-theme="light">
+    <style>
+        .color-calendar {
+            width: 100%;
+            height: 100%;
+        }
 
+        .calendar__weekdays {
+            grid-template-columns: repeat(7, 1fr) !important;
+        }
+
+        .calendar__header {
+            grid-template-columns: repeat(7, 1fr) !important;
+        }
+
+        .calendar__days {
+            grid-template-columns: repeat(7, 1fr) !important;
+        }
+
+        .color-calendar.basic .calendar__days .calendar__day-selected .calendar__day-box {
+            background-color: #89B565;
+
+
+        }
+
+        .color-calendar .calendar__days .calendar__day-event .calendar__day-box {
+            background-color: #FFCA2A;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(55% + 8px);
+            height: 90%;
+            opacity: 1;
+            z-index: -1;
+            cursor: pointer;
+            transition: opacity 0.3s ease-out;
+            will-change: opacity;
+        }
+
+        .color-calendar .calendar__days .calendar__day-event .calendar__day-bullet {
+            background-color: #FFCA2A;
+        }
+
+        .color-calendar.basic {
+            color: #495E57
+        }
+    </style>
     <div class="wrapper">
 
 
