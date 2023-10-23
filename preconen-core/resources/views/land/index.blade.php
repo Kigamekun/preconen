@@ -7,10 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
 @endsection
 @section('content')
-    <br>
-    <br>
-
-    <style>
+    {{-- <style>
         input[readonly],
         input[disabled] {
             /* Add your desired styles here */
@@ -26,13 +23,19 @@
             border: none;
             outline: none;
         }
-    </style>
+    </style> --}}
 
-    <div class="container">
-        <div class="flex w-full gap-5" style="height:65vh">
-            <div style="flex: 5;display:flex; flex-direction:column">
-                <h1 style="font-size: 48px" class="text-[#495E57] font-bold">Create Land</h1>
+    <div class="container my-10">
+        <h1 style="font-size: 48px" class="text-[#495E57] font-bold">Lahan Saya</h1>
+        <div class="text-sm breadcrumbs">
+            <ul>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li>Lahan Saya</li>
 
+            </ul>
+        </div>
+        <div class="grid grid-cols-2 gap-5">
+            <div class="flex flex-col">
                 <div class="card mt-10">
                     <div class="p-example__body">
                         <div class="p-example__splide">
@@ -41,23 +44,29 @@
                                     <ul class="splide__list">
 
                                         @foreach (DB::table('lands')->get() as $item)
-                                            <li class="p-splide__slide splide__slide" style="border-radius: 25px;">
-                                                <div style="display: flex;justify-content:center">
-                                                    <div class="card card-side flex"
-                                                        style="margin-top:10px;height:250px;width:500px; box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25); ">
-                                                        <figure style="height: 100%;flex:2; padding:25px"><img
-                                                                style="width: 90%;height:100%;border-radius:25px"
-                                                                src="{{ asset('img/sawah.jpg') }}" alt="Movie" />
-                                                        </figure>
-                                                        <div class="card-body" style="flex:1;">
+                                            <li class="p-splide__slide splide__slide">
 
-                                                            <center>
-                                                                <h2
-                                                                    style="color: #495E57;font-size: 24px;font-weight: 800;   ">
-                                                                    {{ $item->name }}</h2>
+                                                <div class="relative h-[36rem]  rounded-lg overflow-hidden ">
+                                                    <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
+                                                    <img src="{{ asset('img/sawah.jpg') }}" alt="Gambar"
+                                                        class="w-full h-full object-cover rounded-lg">
 
-                                                            </center>
+                                                    <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
+                                                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
+                                                        <div class="absolute p-3 inset-x-0 bottom-0">
+                                                            <p
+                                                                class="text-2xl font-extrabold text-white inset-x-0 bottom-0 mb">
+                                                                {{ $item->name }}</p>
+                                                            <p class="text-md font-bold text-white">
+                                                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                Ratione
+                                                                commodi est cupiditate dignissimos unde? Autem nemo deleniti
+                                                                animi ipsam blanditiis error velit eius omnis delectus
+                                                                soluta,
+                                                                iusto illum explicabo optio!
+                                                            </p>
                                                         </div>
+
                                                     </div>
                                                 </div>
 
@@ -73,57 +82,57 @@
                     </div>
 
                 </div>
+                <button class="btn btn-ghost text-3xl mt-2 h-16" onclick="edit_land.showModal()">+ Tambahkan Lahan</button>
             </div>
-            <div style="flex: 5">
-                <br>
-                <br>
-                <br>
-                <br>
+            <div class="grid grid-cols-2 grid-rows-7 gap-4 text-[#495E57]">
 
-                {{-- <div id="main-calendar" class=" flex justify-center justify-items-stretch mt-5"></div> --}}
+                <div class="col-span-2">
+                    <select class="select w-full text-lg drop-shadow-lg rounded font-semibold">
+                        @foreach (DB::table('comodities')->get() as $item)
+                            <option class="h-8">{{ ucwords($item->name) }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="relative  rounded-[25px] overflow-hidden row-span-3">
+                    <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
+                    <img src="{{ asset('img/sawah.jpg') }}" alt="Gambar"
+                        class="w-full h-full object-cover rounded-[25px]">
 
-                <form action="{{ route('land.store') }}" method="post">
-                    @csrf
-                    <div>
-                        <label class="label">
-                            <span class="label-text">Nama Lahan</span>
-                        </label>
-                        <input type="text" name="name" placeholder="Type here" class="input input-bordered w-full " />
-                        <label class="label">
-                        </label>
+                    <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
+                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-[25px]">
+                        <div class="absolute p-3 inset-x-0 bottom-0 text-white">
+                            <h2 class="text-2xl font-extrabold  inset-x-0 bottom-0 mb">
+                                Wortel</h2>
+                            <p>Rp20.000</p>
+                        </div>
                     </div>
-                    <div>
-                        <label class="label">
-                            <span class="label-text">Luas Area</span>
-                        </label>
-                        <input name="luas"  type="text" placeholder="Type here" class="input input-bordered w-full " />
-                        <label class="label">
-                        </label>
-                    </div>
-
-                    <button class="btn w-100 bg-white ">Submit</button>
-                </form>
-
-
-
+                </div>
+                <div class=" bg-slate-100  rounded-[25px] flex flex-col items-center justify-center row-span-2">
+                    <h2 class="text-2xl font-bold">Luas Lahan</h2>
+                    <div class="bg-white text-3xl font-bold mt-2 px-4 py-2 rounded-[25px]">30000 m^2</div>
+                </div>
+                <div class=" bg-slate-100  rounded-[25px] flex flex-col items-center justify-center row-span-2">
+                    <h2 class="text-2xl font-bold">Suplai saat ini</h2>
+                    <div class="bg-white  text-3xl font-bold mt-2 px-4 py-2 rounded-[25px]">20.600</div>
+                </div>
+                <button class="btn btn-ghost h-full text-2xl normal-case shadow-md" onclick="edit_land.showModal()">Ubah
+                    Lahan</button>
+                <a class="btn btn-ghost h-full text-2xl normal-case shadow-md"
+                    href="{{ route('planting-planning.index') }}">Jadwalkan Penanaman</a>
+                <button class="btn btn-ghost h-full text-2xl normal-case shadow-md">Keuntungan</button>
+                <div class="shadow-md  rounded-lg flex items-center col-span-2 px-4 py-2">
+                    <img src="{{ asset('img/pinpoint.svg') }}" alt="" class="w-4 mr-3">
+                    <p class="flex-1">Jl. Pemuda No.39, Embong Kaliasin, Kec. Genteng, Surabaya, Jawa Timur 60271</p>
+                </div>
 
             </div>
 
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+
 
     </div>
+    @include('components/add-land')
+    @include('components/edit-land')
 @endsection
 
 
@@ -132,16 +141,13 @@
 
     <script>
         var splide = new Splide('.splide', {
-            type: 'loop',
-            padding: '0rem',
-            width: '50rem',
-            height: '30rem',
-            fixedHeight: '20rem',
-            cover: true,
-            arrows: false,
-            autoplay: true,
             direction: 'ttb',
-            repeat: false
+            height: '36rem',
+            wheel: true,
+            autoScroll: {
+                speed: 1,
+            },
+            focus: 'center',
         });
 
         splide.mount();
