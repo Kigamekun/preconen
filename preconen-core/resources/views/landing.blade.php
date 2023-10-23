@@ -9,6 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('styles')
@@ -17,7 +19,7 @@
 
 <body data-theme="light">
 
-    <div class="wrapper max-w-7xl mx-auto">
+    <div class="wrapper  mx-auto">
 
         @include('components.header', ['buttonText' => 'Login', 'link' => route('login')])
 
@@ -38,118 +40,118 @@
                 </div>
             </div>
         </div>
+        <div class="w-11/12 mx-auto max-w-[1440px]">
+            <section class="flex items-center max-h-96 mb-5 ">
+                <img src="{{ 'img/landing.petani1.png' }}" class="w-2/5 p-10 m-4 " alt=" " data-aos="fade-up">
+                <div class="w-3/5 bg-[#495E57] h-72 mx-4 rounded-[20px] p-5 shadow-xl drop-shadow-lg bg-opacity-75 text-white mb-4"
+                    data-aos="fade-up">
+                    <h2 class="text-3xl mb-3">Apa itu Preconen?</h2>
+                    <p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius dolorum esse et
+                        cumque
+                        magnam rerum, debitis, perferendis quibusdam id quasi voluptatum nemo asperiores modi pariatur,
+                        officia libero adipisci consequuntur corporis voluptates eaque. Recusandae obcaecati
+                        consequuntur
+                        possimus, debitis quo eaque iste nesciunt necessitatibus quam et iure cum doloremque fugit nemo
+                        distinctio, perspiciatis quae odit impedit ea incidunt quos dignissimos laborum.</p>
 
-        <section class="flex items-center max-h-96 mb-5">
-            <img src="{{ 'img/landing.petani1.png' }}" class="w-2/5 m-4 scale-75" alt="">
-            <div
-                class="w-3/5 bg-[#495E57] h-72 mx-4 rounded-[20px] p-5 shadow-xl drop-shadow-lg bg-opacity-75 text-white mb-4">
-                <h2 class="text-3xl mb-3">Apa itu Preconen?</h2>
-                <p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius dolorum esse et cumque
-                    magnam rerum, debitis, perferendis quibusdam id quasi voluptatum nemo asperiores modi pariatur,
-                    officia libero adipisci consequuntur corporis voluptates eaque. Recusandae obcaecati consequuntur
-                    possimus, debitis quo eaque iste nesciunt necessitatibus quam et iure cum doloremque fugit nemo
-                    distinctio, perspiciatis quae odit impedit ea incidunt quos dignissimos laborum.</p>
+                </div>
+            </section>
+            <section class="flex items-center max-h-96 mb-5" data-aos="fade-up">
+                <div class="w-3/5 bg-white h-72 mx-4 rounded-[20px] p-5 shadow-2xl drop-shadow-lg bg-opacity-75 text-[#495E57] mb-4"
+                    data-aos="fade-up">
+                    <h2 class="text-3xl mb-3">Kenapa Harus Preconen?</h2>
+                    <p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius dolorum esse et
+                        cumque
+                        magnam rerum, debitis, perferendis quibusdam id quasi voluptatum nemo asperiores modi pariatur,
+                        officia libero adipisci consequuntur corporis voluptates eaque. Recusandae obcaecati
+                        consequuntur
+                        possimus, debitis quo eaque iste nesciunt necessitatibus quam et iure cum doloremque fugit nemo
+                        distinctio, perspiciatis quae odit impedit ea incidunt quos dignissimos laborum.</p>
 
-            </div>
-        </section>
-        <section class="flex items-center max-h-96 mb-5">
-            <div
-                class="w-3/5 bg-white h-72 mx-4 rounded-[20px] p-5 shadow-2xl drop-shadow-lg bg-opacity-75 text-[#495E57] mb-4">
-                <h2 class="text-3xl mb-3">Kenapa Harus Preconen?</h2>
-                <p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius dolorum esse et cumque
-                    magnam rerum, debitis, perferendis quibusdam id quasi voluptatum nemo asperiores modi pariatur,
-                    officia libero adipisci consequuntur corporis voluptates eaque. Recusandae obcaecati consequuntur
-                    possimus, debitis quo eaque iste nesciunt necessitatibus quam et iure cum doloremque fugit nemo
-                    distinctio, perspiciatis quae odit impedit ea incidunt quos dignissimos laborum.</p>
+                </div>
 
-            </div>
+                <img src="{{ 'img/landing.petani2.png' }}" class="w-2/5 p-12  m-4" alt="" data-aos="fade-up">
+            </section>
+            <section class="flex items-center max-h-96 mb-5">
+                <img src="{{ 'img/landing.petani3.png' }}" class="w-2/5 p-12 m-4 " alt="" data-aos="fade-up">
+                <div class="w-3/5 bg-[#495E57] h-72 mx-4 rounded-[20px] p-5 shadow-xl drop-shadow-lg bg-opacity-75 text-white mb-4"
+                    data-aos="fade-up">
+                    <h2 class="text-3xl mb-3">Manfaat Preconen itu apa sih?</h2>
+                    <p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius dolorum esse et
+                        cumque
+                        magnam rerum, debitis, perferendis quibusdam id quasi voluptatum nemo asperiores modi pariatur,
+                        officia libero adipisci consequuntur corporis voluptates eaque. Recusandae obcaecati
+                        consequuntur
+                        possimus, debitis quo eaque iste nesciunt necessitatibus quam et iure cum doloremque fugit nemo
+                        distinctio, perspiciatis quae odit impedit ea incidunt quos dignissimos laborum.</p>
 
-            <img src="{{ 'img/landing.petani2.png' }}" class="w-2/5  scale-75 m-4" alt="">
-        </section>
-        <section class="flex items-center max-h-96 mb-5">
-            <img src="{{ 'img/landing.petani3.png' }}" class="w-2/5 m-4 scale-75" alt="">
-            <div
-                class="w-3/5 bg-[#495E57] h-72 mx-4 rounded-[20px] p-5 shadow-xl drop-shadow-lg bg-opacity-75 text-white mb-4">
-                <h2 class="text-3xl mb-3">Manfaat Preconen itu apa sih?</h2>
-                <p class="text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius dolorum esse et cumque
-                    magnam rerum, debitis, perferendis quibusdam id quasi voluptatum nemo asperiores modi pariatur,
-                    officia libero adipisci consequuntur corporis voluptates eaque. Recusandae obcaecati consequuntur
-                    possimus, debitis quo eaque iste nesciunt necessitatibus quam et iure cum doloremque fugit nemo
-                    distinctio, perspiciatis quae odit impedit ea incidunt quos dignissimos laborum.</p>
-
-            </div>
-        </section>
-        <div class="carousel carousel-center w-full mx-auto p-4 space-x-4 rounded-box h-80">
-            <div class="carousel-item w-96 ">
-                <div class="shrink-0 w-4 sm:w-96"></div>
-            </div>
-            <div class="relative carousel-item">
-                <img src="{{ asset('img/sawah.jpg') }}" class="rounded-box aspect-video object-cover" />
-                <div class="absolute inset-0 bg-white bg-opacity-50">
-                    <div class="flex flex-col text-white items-start justify-end h-full p-4">
-                        <h3 class="text-3xl text-white font-bold mb-3">
-                            Sawah
-                        </h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio aut ipsa autem, aperiam
-                            beatae dolore minus, dignissimos quia fugiat placeat, minima tempora nesciunt! Earum nobis
-                            cum
-                            voluptates. Recusandae, enim eligendi.</p>
+                </div>
+            </section>
+            <div class="carousel carousel-center w-full mx-auto p-4 space-x-4 rounded-box h-80">
+                <div class="carousel-item w-96 ">
+                    <div class="shrink-0 w-4 sm:w-96"></div>
+                </div>
+                <div class="relative carousel-item">
+                    <img src="{{ asset('img/sawah.jpg') }}" class="rounded-box aspect-video object-cover" />
+                    <div class="absolute inset-0 bg-white bg-opacity-50">
+                        <div class="flex flex-col text-white items-start justify-end h-full p-4">
+                            <h3 class="text-3xl text-white font-bold mb-3">
+                                Sawah
+                            </h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio aut ipsa autem,
+                                aperiam
+                                beatae dolore minus, dignissimos quia fugiat placeat, minima tempora nesciunt! Earum
+                                nobis
+                                cum
+                                voluptates. Recusandae, enim eligendi.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="relative carousel-item">
-                <img src="{{ asset('img/sawah.jpg') }}" class="rounded-box aspect-video object-cover" />
-                <div class="absolute inset-0 bg-white bg-opacity-50">
-                    <div class="flex flex-col text-white items-start justify-end h-full p-4">
-                        <h3 class="text-3xl text-white font-bold mb-3">
-                            Kebun
-                        </h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio aut ipsa autem, aperiam
-                            beatae dolore minus, dignissimos quia fugiat placeat, minima tempora nesciunt! Earum nobis
-                            cum
-                            voluptates. Recusandae, enim eligendi.</p>
+                <div class="relative carousel-item">
+                    <img src="{{ asset('img/sawah.jpg') }}" class="rounded-box aspect-video object-cover" />
+                    <div class="absolute inset-0 bg-white bg-opacity-50">
+                        <div class="flex flex-col text-white items-start justify-end h-full p-4">
+                            <h3 class="text-3xl text-white font-bold mb-3">
+                                Kebun
+                            </h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio aut ipsa autem,
+                                aperiam
+                                beatae dolore minus, dignissimos quia fugiat placeat, minima tempora nesciunt! Earum
+                                nobis
+                                cum
+                                voluptates. Recusandae, enim eligendi.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="relative carousel-item">
-                <img src="{{ asset('img/sawah.jpg') }}" class="rounded-box aspect-video object-cover" />
-                <div class="absolute inset-0 bg-white bg-opacity-50">
-                    <div class="flex flex-col text-white items-start justify-end h-full p-4">
-                        <h3 class="text-3xl text-white font-bold mb-3">
-                            Tanah Kosong
-                        </h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio aut ipsa autem, aperiam
-                            beatae dolore minus, dignissimos quia fugiat placeat, minima tempora nesciunt! Earum nobis
-                            cum
-                            voluptates. Recusandae, enim eligendi.</p>
+                <div class="relative carousel-item">
+                    <img src="{{ asset('img/sawah.jpg') }}" class="rounded-box aspect-video object-cover" />
+                    <div class="absolute inset-0 bg-white bg-opacity-50">
+                        <div class="flex flex-col text-white items-start justify-end h-full p-4">
+                            <h3 class="text-3xl text-white font-bold mb-3">
+                                Tanah Kosong
+                            </h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio aut ipsa autem,
+                                aperiam
+                                beatae dolore minus, dignissimos quia fugiat placeat, minima tempora nesciunt! Earum
+                                nobis
+                                cum
+                                voluptates. Recusandae, enim eligendi.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item w-96 snap-center">
-                <div class="shrink-0 w-4 sm:w-96"></div>
+                <div class="carousel-item w-96 snap-center">
+                    <div class="shrink-0 w-4 sm:w-96"></div>
+                </div>
             </div>
         </div>
 
     </div>
-    <div class="bg-[#71817C] h-72 ">
-        <div class="max-w-7xl grid grid-cols-4 gap-8 p-8 mx-auto">
+    <script>
+        AOS.init();
+        AOS.refresh()
+    </script>
 
-            <div class="bg-white rounded-full overflow-hidden h-60 w-60 p-12 mx-auto">
-                <img src="{{ asset('img/nav.supplies.svg') }}" alt="">
-            </div>
-            <div class="bg-white rounded-full overflow-hidden h-60 w-60 p-12 mx-auto">
-                <img src="{{ asset('img/nav.land.svg') }}" alt="">
-            </div>
-            <div class="bg-white rounded-full overflow-hidden h-60 w-60 p-12 mx-auto">
-                <img src="{{ asset('img/nav.schedule.svg') }}" alt="">
-            </div>
-            <div class="bg-white rounded-full overflow-hidden h-60 w-60 p-12 mx-auto">
-                <img src="{{ asset('img/nav.market.svg') }}" alt="">
-            </div>
-        </div>
-    </div>
     @include('components.footer')
-
 </body>
 
 </html>
