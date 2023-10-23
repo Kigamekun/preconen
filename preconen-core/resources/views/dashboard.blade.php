@@ -202,4 +202,34 @@
             calendarSize: "large",
         })
     </script>
+
 @stop
+
+
+@section('scripts')
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+
+            var currentURL = window.location.href;
+
+            var newParameter = `lat=${position.coords.latitude}&long=${position.coords.longitude}`;
+
+            if (currentURL.includes('?')) {
+                currentURL = currentURL + '&' + newParameter;
+            } else {
+                currentURL = currentURL + '?' + newParameter;
+            }
+
+            window.location.href = currentURL;
+        }
+
+    </script>
+@endsection
