@@ -25,9 +25,9 @@
         }
     </style> --}}
 
-    <div class="container my-10">
-        <h1 style="font-size: 48px" class="text-[#495E57] font-bold">Lahan Saya</h1>
-        <div class="text-sm breadcrumbs">
+    <div class=" mb-10 mx-5 mt-4 ">
+        <h1 class="text-[#495E57] text-5xl font-bold">Lahan Saya</h1>
+        <div class="text-sm breadcrumbs mb-8">
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li>Lahan Saya</li>
@@ -36,7 +36,7 @@
         </div>
         <div class="grid grid-cols-2 gap-5">
             <div class="flex flex-col">
-                <div class="card mt-10">
+                <div class="card ">
                     <div class="p-example__body">
                         <div class="p-example__splide">
                             <div class="splide" id="example-grid">
@@ -153,7 +153,6 @@
         splide.mount();
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <script>
         const calendarEvents = [{
                 start: '2023-10-22T06:00:00',

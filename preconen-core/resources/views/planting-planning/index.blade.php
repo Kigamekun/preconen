@@ -10,7 +10,7 @@
     <br>
 
 
-    <div class="container">
+    <div class="container mx-4">
         <div class="flex w-full gap-5" style="height:65vh">
             <div style="flex: 5;display:flex; flex-direction:column;">
                 <div>
@@ -58,9 +58,7 @@
                 <br>
                 <br>
                 <div class="card p-5" style="filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25)); ">
-                    @if (
-                        !is_null(
-                            $data))
+                    @if (!is_null($data))
                         @php
                             $comodity = DB::table('comodities')
                                 ->where('id', $data->comodity_id)
@@ -110,15 +108,15 @@
                         font-size: 24px;margin:auto;line-height: 50px;filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));">
                                     Pasar
                                 </button>
-                                <form action="{{ route('planting-planning.delete', ['id'=>$data->id]) }}" method="post">
+                                <form action="{{ route('planting-planning.delete', ['id' => $data->id]) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn w-100"
-                                    style="flex:1;background:white;color: #495E57;
+                                        style="flex:1;background:white;color: #495E57;
                         text-align: center;min-height:50px;
                         font-size: 24px;margin:auto;line-height: 50px;filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));">
-                                    Hapus
-                                </button>
+                                        Hapus
+                                    </button>
                                 </form>
 
                             </div>
@@ -165,7 +163,6 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <script>
         const calendarData = @json($calendar);
 

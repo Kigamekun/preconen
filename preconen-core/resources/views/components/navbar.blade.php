@@ -1,9 +1,12 @@
-<div class="navbar bg-base-100 shadow-md z-20">
-    <div class="flex-none">
-        <button class="btn btn-circle btn-cirlce-outline btn-ghost" @click="open = !open">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                class="inline-block w-5 h-5 stroke-current">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+<div class="navbar bg-base-100 shadow-md z-20 sticky top-0">
+    <div class="flex-1">
+        <button class="p-2 ml-1 mr-2" @click="isSidebarExpanded = !isSidebarExpanded">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round" class="h-6 w-6 transform" :class="isSidebarExpanded ? 'rotate-180' : 'rotate-0'">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="4" y1="6" x2="14" y2="6" />
+                <line x1="4" y1="18" x2="14" y2="18" />
+                <path d="M4 12h17l-3 -3m0 6l3 -3" />
             </svg>
         </button>
     </div>

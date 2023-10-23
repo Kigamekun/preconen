@@ -5,13 +5,8 @@
     <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
 @stop
 @section('content')
-
-
     <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen text-[#495E57]">
-        <br>
-
-        <h2 class="text-4xl font-extrabold my-3 mb-4 ">Halo, Selamat datang Lorem</h2>
-        <br>
+        <h2 class="text-4xl font-extrabold mt-6 mb-8 ">Halo, Selamat datang Lorem</h2>
         <div class="grid grid-cols-4 grid-rows-3 gap-8 mt-4 mx-auto mb-8">
             <div class="rounded-lg opacity-80 border-2 border-neutral-400/50  col-span-2 row-span-3"
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
@@ -31,7 +26,7 @@
             backdrop-filter: blur(2px);"
                 class="rounded-lg opacity-80 border-2 border-neutral-400/50 drop-shadow-md col-span-2 row-span-2 p-4">
                 <h2 class="text-2xl mb-3 font-bold ">Harga Komoditas Hari Ini</h2>
-                <div class="flex flex-row overflow-x-auto">
+                <div class="flex flex-row overflow-x-auto mb-3">
                     <div class="flex-shrink-0">
                         <div class="flex flex-row gap-2">
                             @foreach (DB::table('comodities')->get() as $item)
@@ -60,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <br>
+
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, sapiente. Praesentium reiciendis
                     doloremque,
                     quidem magnam corrupti culpa temporibus itaque repellat dolore suscipit error magni ab ipsa maiores
@@ -147,7 +142,8 @@
                     @foreach ($forecast as $item)
                         <div class="bg-slate-400 h-48 w-40 rounded-lg p-4 flex-row items-center">
                             <p class="text-center text-xl text-white  mb-1">
-                                {{ $dateFormatter->format(DateTime::createFromFormat('Y-m-d H:i:s', $item['date'])) }}</p>
+                                {{ ucwords($dateFormatter->format(DateTime::createFromFormat('Y-m-d H:i:s', $item['date']))) }}
+                            </p>
                             <div class="">
                                 <img src="https://openweathermap.org/img/wn/{{ $item['weather'][0]['icon'] }}@2x.png"
                                     alt="" class="h-20 mx-auto">
@@ -179,7 +175,6 @@
 
         <div class="mb-5"></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <script>
         const calendarEvents = [
             // {
@@ -218,9 +213,9 @@
 
         function showPosition(position) {
 
-            var currentURL = window.location.href;
+            let currentURL = window.location.href;
 
-            var newParameter = `lat=${position.coords.latitude}&long=${position.coords.longitude}`;
+            let newParameter = `lat=${position.coords.latitude}&long=${position.coords.longitude}`;
 
             if (currentURL.includes('?')) {
                 currentURL = currentURL + '&' + newParameter;
@@ -230,6 +225,5 @@
 
             window.location.href = currentURL;
         }
-
     </script>
 @endsection
