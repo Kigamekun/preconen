@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PlantingPlanning;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class PlantingPlanningController extends Controller
 {
@@ -12,7 +14,17 @@ class PlantingPlanningController extends Controller
      */
     public function index()
     {
-        return view('planting-planning.index');
+        $data = PlantingPlanning::where('user_id', Auth::id())->first();
+        $dataAll = PlantingPlanning::where('user_id', Auth::id())->get();
+
+        $calendar = [];
+        foreach ($dataAll as $key => $value) {
+            $calendar[$key]['start'] = $value->start_from.'T06:00:00';
+            $calendar[$key]['end'] = $value->end_at.'T20:30:00';
+            $calendar[$key]['name'] = '-';
+            $calendar[$key]['desc'] = '-';
+        }
+        return view('planting-planning.index',['data'=>$data,'calendar'=>$calendar]);
     }
 
     /**
@@ -20,7 +32,36 @@ class PlantingPlanningController extends Controller
      */
     public function create()
     {
-        //
+
+
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post('http://127.0.0.1:5000', [
+            'multipart' => [
+                [
+                    'name' => 'temperature',
+                    'contents' => '18.44378617'
+                ],
+                [
+                    'name' => 'humidity',
+                    'contents' => '84.05471041'
+                ],
+                [
+                    'name' => 'ph',
+                    'contents' => '7.401589798'
+                ],
+                [
+                    'name' => 'rainfall',
+                    'contents' => '195'
+                ]
+            ]
+        ]);
+        $responseBody = $response->getBody()->getContents();
+
+
+
+        return view('planting-planning.create',['data'=>json_decode($responseBody,TRUE),'commodities'=>json_decode($responseBody,TRUE)['commodities']]);
+
     }
 
     /**
@@ -28,7 +69,15 @@ class PlantingPlanningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PlantingPlanning::create([
+            'user_id'=>Auth::id(),
+            'land_id'=>$request->land,
+            'comodity_id'=>$request->comodity,
+            'start_from'=>$request->mulai,
+            'end_at'=>$request->akhir
+        ]);
+
+        return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
     }
 
     /**
@@ -58,8 +107,10 @@ class PlantingPlanningController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PlantingPlanning $plantingPlanning)
+    public function destroy($id)
     {
-        //
+        PlantingPlanning::where('id',$id)->delete();
+
+        return redirect()->back()->with(['message' => 'Lahan berhasil di delete','status' => 'success']);
     }
 }

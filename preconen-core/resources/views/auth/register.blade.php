@@ -60,7 +60,7 @@
                     </div>
 
                     <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
-                    <input type="text" placeholder="Password" name="password"
+                    <input type="password" placeholder="Password" name="password"
                         class="w-full pl-10 pr-4 py-2 rounded-lg border-0 outline-none focus:ring focus:border-blue-300" />
                 </div>
 

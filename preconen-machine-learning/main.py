@@ -5,65 +5,44 @@ import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 sns.set_style('darkgrid')
-from sklearn.model_selection import train_test_split ,GridSearchCV
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-import warnings
+from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+import warnings
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
-
-
 app = Flask(__name__)
-
 
 crop = pd.read_csv("./data_komoditas.csv")
 
-crop.head(5)
-crop.describe()
+crop.drop_duplicates(inplace=True)
 
-crop.apply(lambda x: len(x.isnull()))
-assert crop.isnull().sum().sum() == 0
-
-crop.drop_duplicates(inplace= True)
-assert crop.duplicated().sum() == 0
-
-crop.apply(lambda x: len(x.unique()))
-print(crop['label'].unique())
-
-crop.info()
-
-x = crop.drop(['label'], axis = 1)
+x = crop.drop(['label'], axis=1)
 y = crop['label']
 
-X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.25,shuffle = True, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.20, shuffle=True, random_state=0)
 
-sv = SVC(kernel='linear').fit(X_train, y_train)
+logistic_reg = LogisticRegression(max_iter=10000)
+logistic_reg.fit(X_train, y_train)
+print('Training set score: {:.4f}'.format(logistic_reg.score(X_train, y_train)))
+print('Test set score: {:.4f}'.format(logistic_reg.score(X_test, y_test)))
 
-print('Training set score: {:.4f}'.format(sv.score(X_train, y_train)))
-print('Test set score: {:.4f}'.format(sv.score(X_test, y_test)))
-
-prediction_probabilities = sv.decision_function([[23.004459,82.320763,7.840207,263.964248]])
-top_indices = prediction_probabilities.argsort()[0][-3:][::-1]
-top_commodities = [sv.classes_[index] for index in top_indices]
-print(top_commodities)
-        
-        
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        print(request.form)
-        prediction=sv.predict([[float(request.form['temperature']),float(request.form['humidity']),float(request.form['ph']),float(request.form['rainfall'])]])
-        recommended_commodity = prediction[0]
-        prediction_probabilities = sv.decision_function([[float(request.form['temperature']), float(request.form['humidity']), float(request.form['ph']), float(request.form['rainfall'])]])
-        top_indices = prediction_probabilities.argsort()[0][-3:][::-1]
-        
-        top_commodities = [sv.classes_[index] for index in top_indices]
-        
-        
-        return render_template('./index.html', top_commodities=top_commodities)
-    return render_template('./index.html', recommended_commodity=None)
+        data = np.array([
+            float(request.form['temperature']),
+            float(request.form['humidity']),
+            float(request.form['ph']),
+            float(request.form['rainfall'])
+        ]).reshape(1, -1)
+        prediction = logistic_reg.predict(data)
+        probabilities = logistic_reg.predict_proba(data)
+        top_3_indices = probabilities.argsort()[0][::-1][:3]  # Ambil 3 komoditas teratas
+        top_3_commodities = [logistic_reg.classes_[idx] for idx in top_3_indices]
+        top_3_probabilities = [probabilities[0][idx] for idx in top_3_indices]
+        response = {"commodities": top_3_commodities, "probabilities": top_3_probabilities}
+        return jsonify(response)
 
 
 if __name__ == '__main__':

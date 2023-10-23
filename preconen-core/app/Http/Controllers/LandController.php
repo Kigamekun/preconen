@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Land;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandController extends Controller
 {
@@ -15,7 +16,7 @@ class LandController extends Controller
         // $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/sayuran','/sayuran_produsen___([^\s]+)/');
         // $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/perkebunan','/perkebunan___([^\s]+)/');
 
-        return view('user.land');
+        return view('land.index');
     }
 
     public function guest(Request $request)
@@ -30,15 +31,14 @@ class LandController extends Controller
         return view('land.guest');
     }
 
-    public function store(CreateLandRequest $request)
+    public function store(Request $request)
     {
-        $this->validate($request, [
-            'file_materi' => 'required|file|mimes:pdf|max:30720',
-        ]);
+
 
         Land::create([
-            'plants'=>'wortel',
-            'luas'=>200
+            'user_id'=>Auth::id(),
+            'name'=>$request->name,
+            'wide'=>$request->luas
         ]);
 
         return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);

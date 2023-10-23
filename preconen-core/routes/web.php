@@ -84,7 +84,7 @@ Route::prefix('land')->group(function () {
 
 
 Route::prefix('supplies')->group(function () {
-    Route::get('/', [LandController::class,'index'])->name('land.index');
+    Route::get('/', [LandController::class,'index'])->name('supplies.index');
 });
 
 

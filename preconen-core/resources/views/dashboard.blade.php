@@ -7,7 +7,6 @@
 @section('content')
 
 
-    @include('components.navigation')
     <div class="max-w-7xl px-4 mx-auto overflow-hidden max-w-screen text-[#495E57]">
         <br>
 
@@ -72,7 +71,7 @@
             backdrop-filter: blur(2px);"
                 class="rounded-lg opacity-80 border-2 border-neutral-400/50 drop-shadow-md col-span-1 row-span-1 justify-center flex flex-col">
                 <h2 class="text-lg m-3 font-bold mx-4 text-center">Jadwalkan Penanaman</h2>
-                <button class="btn btn-outline mx-4 mb-4 mt-2">Jadwalkan</button>
+                <a href="{{ route('planting-planning.index') }}" class="btn btn-outline mx-4 mb-4 mt-2">Jadwalkan</a>
             </div>
             <div style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(2px);"
@@ -120,7 +119,7 @@
                     <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
                         <div class="absolute p-3 inset-x-0 bottom-0">
                             <p class="text-3xl font-extrabold text-white inset-x-0 bottom-0 mb">
-                                {{ $item->comodity->name }}
+                                {{ $item->name }}
                             </p>
                         </div>
                     </div>
@@ -168,7 +167,7 @@
                                     @default
                                 @endswitch --}}
                             </div>
-                            <p class="text-4xl text-white  font-bold text-center">
+                            <p class="text-2xl text-white  font-bold text-center">
                                 {{ $item['temp']['day'] - 273.15 }}&#xb0;C</p>
                         </div>
                     @endforeach
@@ -182,19 +181,19 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <script>
-        const calendarEvents = [{
-                start: '2023-10-22T06:00:00',
-                end: '2021-10-25T20:30:00',
-                name: 'Tanam',
-                desc: 'Tanam Apa gitu',
-            },
-            {
-                start: '2023-10-30T06:00:00',
-                end: '2021-10-31T20:30:00',
-                name: 'Tanam',
-                desc: 'Tanam Apa gitu',
-
-            },
+        const calendarEvents = [
+            // {
+            //     start: '2023-10-22T06:00:00',
+            //     end: '2021-10-25T20:30:00',
+            //     name: 'Tanam',
+            //     desc: 'Tanam Apa gitu',
+            // },
+            // {
+            //     start: '2023-10-30T06:00:00',
+            //     end: '2021-10-31T20:30:00',
+            //     name: 'Tanam',
+            //     desc: 'Tanam Apa gitu',
+            // },
         ]
         new Calendar({
             id: '#main-calendar',
