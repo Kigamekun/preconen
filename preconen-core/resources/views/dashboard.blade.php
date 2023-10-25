@@ -11,11 +11,13 @@
             <div class="rounded-lg opacity-80 border-2 border-neutral-400/50  col-span-2 row-span-3"
                 style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(2px);">
-                <div class="cuaca h-42 p-4 pb-0 flex flex-row justify-center items-center">
-                    <div class="h-36 w-36 mx-3">@include('icons/cerah-berawan')</div>
+                <div class="cuaca h-36 p-4 pb-0 flex flex-row justify-center items-center">
+                    <img src="https://openweathermap.org/img/wn/{{ $forecast[0]['weather'][0]['icon'] }}@4x.png" />
+
                     <div class="kanan flex flex-col pb-3 text-[#495E57]">
-                        <span class="text-3xl font-bold">23&#xb0;C</span>
-                        <span class="text-lg">Cerah</span>
+                        <span class="text-3xl font-bold">
+                            {{ round($forecast[0]['temp']['day'] - 273.15) }}&#xb0;C</span>
+                        <span class="text-lg">{{ ucwords($forecast[0]['weather'][0]['description']) }}</span>
                         <span class="text-lg">Bogor, Indonesia</span>
 
                     </div>
@@ -106,10 +108,12 @@
             </div>
         </div>
         <h2 class="text-4xl font-extrabold mt-8 mb-8">Lahan Anda</h2>
-        <div class="grid grid-cols-3 grid-rows-2 gap-4 my-3 m-auto">
+        <div class="grid grid-cols-3  gap-4 my-3 m-auto">
 
             @foreach (App\Models\Land::where('user_id', Auth::id())->get() as $item)
-                <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
+                <a class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center"
+                    style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);"
+                    href="{{ route('land.index') . '/' . $item->id }}">
                     <img src="{{ asset('img/lahan.png') }}" alt="" class="object-cover w-full ">
                     <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
                         <div class="absolute p-3 inset-x-0 bottom-0">
@@ -118,14 +122,21 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </a>
             @endforeach
             <a href="{{ route('land.index') }}"
-                class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
+                class="relative h-56 rounded-lg bg-white overflow-hidden flex items-center justify-center"
+                style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);">
 
-                <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
-                    <div class="flex items-center justify-center  h-full p-3 inset-x-0 bottom-0">
-                        <p class="text-3xl font-extrabold text-white">
+                <div class="absolute inset-0 0 rounded-lg">
+                    <div class="flex items-center justify-center  h-full p-3 inset-x-0 bottom-0 flex-col">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                            class="bi bi-plus-circle mb-1 flex-1" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                        <p class="text-3xl font-extrabold  flex-1">
                             Tambahkan Lahan {{--  {{ $item->comodity->name }} --}}
                         </p>
                     </div>

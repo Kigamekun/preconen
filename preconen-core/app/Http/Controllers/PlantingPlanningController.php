@@ -107,7 +107,7 @@ class PlantingPlanningController extends Controller
             'end_at'=>$request->akhir
         ]);
 
-        return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
+        return redirect()->route("planting-planning.index")->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
     }
 
     /**

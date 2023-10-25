@@ -88,7 +88,7 @@
 
                                     </div>
                                 </div>
-                                <div class="card w-80 bg-base-100 shadow-xl"
+                                {{-- <div class="card w-80 bg-base-100 shadow-xl"
                                     style="filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.15));">
                                     <div class="card-body">
                                         <h2
@@ -98,7 +98,7 @@
                                             style="color: #495E57;text-align: center;font-family: Poppins;font-size: 24px;font-style: normal;font-weight: 500;line-height: normal;letter-spacing: 2.4px;">
                                             {{ $land->wide }} M^2</p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="w-80">
                                     <button class="btn w-full"
                                         style=" background:white;color: #495E57;

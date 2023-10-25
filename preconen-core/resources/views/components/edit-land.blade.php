@@ -4,41 +4,43 @@
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="text-2xl font-semibold mb-3">Ubah Data Lahan</h3>
-        <div class="grid grid-cols-2">
-            <div>
-                <div class="relative  rounded-[25px] overflow-hidden row-span-3">
-                    <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                    <img src="{{ asset('img/sawah.jpg') }}" alt="Gambar"
-                        class="w-full h-full object-cover rounded-[25px]">
+        <style>
+            .dropify-render>img {
+                min-width: 100%;
+                object-fit: cover;
+            }
 
-                    <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-[25px]">
-                        <div class="flex items-center justify-center  h-full p-3 inset-x-0 bottom-0">
-                            <p class="text-3xl font-extrabold text-white">
-                                Tambahkan Foto {{--  {{ $item->comodity->name }} --}}
-                            </p>
-                        </div>
+            .dropify-wrapper .dropify-message p {
+                font-size: 1rem;
+            }
+        </style>
+        <form method="POST" action="{{ route('land.edit', ['id' => $data->id]) }}" class="mx-3"
+            enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="grid grid-cols-2 gap-3">
 
-                    </div>
+                <div>
+
+                    <input type="file" class="dropify " data-height="16rem" name="image"
+                        data-default-file="{{ asset('img/sawah.jpg') }}" />
+
                 </div>
-                <div class="bg-opacity-100 bg-white p-4 mt-4 rounded-[25px]">
-                    <h4 class="text-xl font-semibold ">Information</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, dicta ut non inventore
-                        repellat placeat.</p>
-                </div>
-            </div>
-            <div>
-                <form action="" class="mx-3">
+                <div>
                     <label class="label block" for="name">
-                        <span class="label-text text-lg w-full mb-3">Nama Lahan</span>
-                        <input type="text" name="name" class="input input-bordered w-full " />
+                        <span class="label-text text-lg w-full mb-2">Nama Lahan</span>
+                        <input type="text" name="name" class="input input-bordered w-full " required />
                     </label>
                     <label class="label block" for="area">
-                        <span class="label-text text-lg w-full mb-3">Luas Lahan</span>
-                        <input type="text" name="area" class="input input-bordered w-full " />
+                        <span class="label-text text-lg w-full mb-2">Luas Lahan</span>
+                        <input type="number" name="area" class="input input-bordered w-full " required />
                     </label>
                     <label class="label block" for="alamat">
-                        <span class="label-text text-lg w-full mb-3">Alamat Lahan</span>
+                        <span class="label-text text-lg w-full mb-2">Alamat Lahan</span>
+                        <textarea type="text" name="address" class="input input-bordered w-full h-24" rows="20"></textarea>
+                    </label>
+                    <label class="label block" for="alamat">
+                        <span class="label-text text-lg w-full mb-2">Informasi Lahan</span>
                         <textarea type="text" name="address" class="input input-bordered w-full h-24" rows="20"></textarea>
                     </label>
                     <div class="w-full flex justify-center">
@@ -47,8 +49,8 @@
                             class="text-white normal-case text-2xl btn btn-ghost bg-[#495E57]">Simpan</button>
                     </div>
 
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </dialog>

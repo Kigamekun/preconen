@@ -1,4 +1,4 @@
-<div class="flex bg-white h-screen" x-data="{ isSidebarExpanded: true }">
+<div class="flex bg-white h-screen" x-data="{ isSidebarExpanded: false }">
     <aside class="flex flex-col text-gray-300 bg-white transition-all duration-300 ease-in-out"
         :class="isSidebarExpanded ? 'w-64' : 'w-20'">
         <a href="#"

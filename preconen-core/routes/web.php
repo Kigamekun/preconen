@@ -74,6 +74,7 @@ Route::prefix('planting-planning')->group(function () {
 
 Route::prefix('land')->group(function () {
     Route::get('/', [LandController::class,'index'])->name('land.index');
+    Route::get('/{id}', [LandController::class,'detail'])->name('land.detail');
     Route::get('/create', [LandController::class,'create'])->name('land.create');
     Route::post('/store', [LandController::class,'store'])->name('land.store');
     Route::get('/edit/{id}', [LandController::class,'edit'])->name('land.edit');

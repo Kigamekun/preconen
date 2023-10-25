@@ -10,10 +10,7 @@
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/splide-4.1.3/dist/css/splide.min.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
-        integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
     @yield('styles')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -67,7 +64,7 @@
             color: #495E57
         }
     </style>
-    <div class="flex h-full items-stretch" x-data="{ isSidebarExpanded: true }">
+    <div class="flex h-full items-stretch" x-data="{ isSidebarExpanded: true, active: '' }">
         @include('components.sidebar-new')
         <div class="flex-1 flex flex-col max-w-[85%]">
             @include('components.navbar')
@@ -77,6 +74,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
@@ -168,9 +166,17 @@
             });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
-        integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Klik untuk menambahkan gambar',
+                'replace': 'Klik untuk mengubah Gambar',
+                'remove': 'Hapus',
+                'error': 'Ooops, something wrong happened.'
+            }
+        });
+    </script>
+
     @yield('scripts')
 </body>
 

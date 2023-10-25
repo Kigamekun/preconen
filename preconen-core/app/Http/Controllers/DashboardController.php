@@ -21,7 +21,7 @@ class DashboardController extends Controller
         } else {
             $solve = json_decode($res->data, true);
         }
-
+        
 
         $forecast = app('App\Http\Controllers\ForecastController')->forecastWeather();
         return view('dashboard', ['price' => $solve,'forecast' => $forecast]);

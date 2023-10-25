@@ -31,6 +31,14 @@ class LandController extends Controller
         return view('land.index',['data'=>$data,'price'=>$solve]);
     }
 
+    public function detail($id)
+    {
+        $data = $land = Land::where('lands.user_id',Auth::id())->join('planting_plannings', 'lands.id', '=', 'planting_plannings.land_id')
+        ->select('lands.*', 'planting_plannings.*')
+        ->first();
+        return view('land.detail',['data'=> $data]);
+    }
+
 
     public function store(Request $request)
     {
@@ -53,6 +61,6 @@ class LandController extends Controller
             File::delete($filePath);
         }
         $land->delete();
-        return redirect()->back()->with(['message' => 'Lahan berhasil di Hapus','status' => 'success']);
+        return redirect()->route('land.index')->with(['message' => 'Lahan berhasil di Hapus','status' => 'success']);
     }
 }

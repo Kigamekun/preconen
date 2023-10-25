@@ -19,7 +19,7 @@ class ForecastController extends Controller
         $lat = Auth::user()->lat;
         $long = Auth::user()->long;
         if (is_null($res = DB::table('forecasts')->where(['lat'=>Auth::user()->lat,'long'=>Auth::user()->long,'date'=>Carbon::now()->toDateString('Y-m-d')])->first())) {
-            $response = Http::get('http://api.openweathermap.org/data/2.5/forecast/daily?lat=' . $lat . '&lon=' . $long . '&cnt=16&appid=56b5eb5562cadd6a97a78934fed312c9');
+            $response = Http::get('http://api.openweathermap.org/data/2.5/forecast/daily?lat=' . $lat . '&lon=' . $long . '&lang=id' .'&cnt=16&appid=56b5eb5562cadd6a97a78934fed312c9');
             $res = $response->body();
             $data = json_decode($res, true);
             
