@@ -79,19 +79,16 @@
                                     <path
                                         d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
                                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                </svg><span class="flex-1 ml-2">Jl. Pemuda No.39, Embong Kaliasin, Kec. Genteng, Surabaya,
-                                    Jawa
-                                    Timur
-                                    60271</span>
+                                </svg><span class="flex-1 ml-2">
+                                    {{$data->address}}
+                                </span>
                             </div>
                         </div>
                         <div
                             class=" bg-slate-100  pt-4 rounded-[25px] flex flex-col items-stretch justify-center row-span-2">
                             <h2 class="text-2xl font-bold mx-5">Catatan</h2>
                             <div class="bg-white mt-2 px-5 py-4 rounded-[25px]  mx-5 flex items-center mb-5">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, cupiditate? Modi quis eos culpa
-                                suscipit accusamus deserunt, vitae quae veritatis exercitationem iusto saepe nulla ipsa
-                                provident libero quidem dicta magni.
+                                {{$data->information}}
                             </div>
                         </div>
 
@@ -99,35 +96,34 @@
                 </div>
             </div>
             <div class="">
-                @if (true)
+                @if (
+                    !is_null($data) &&
+                        !is_null(
+                            $comodity = DB::table('comodities')->where('id', $data->comodity_id)->first()))
                     <h2 class="text-3xl font-bold text-[#495E57] mb-5">Penanaman di Lahan ini</h2>
                     <div class="grid gap-5 mb-10">
                         <div class=" bg-slate-100 h-36 rounded-[25px] flex flex-col items-center justify-center row-span-2">
                             <h2 class="text-xl font-bold">Komoditas yang ditanam</h2>
-                            <div class="text-white  text-lg font-bold mt-2 px-8 py-4 rounded-[25px] bg-[#495E57]">Wortel
-                                Hijau
-                                {{-- @if (array_key_exists($comodity->code, $price))
-                                {{ number_format(($price[$comodity->code]['total'] * $data->wide * ($comodity->potential_results_max + $comodity->potential_results_min)) / 2, 0, ',', '.') }}
-                            @endif --}}
+                            <div class="text-white  text-lg font-bold mt-2 px-8 py-4 rounded-[25px] bg-[#495E57]">
+                                {{ $comodity->name }}
+
                             </div>
                         </div>
 
                         <div class=" bg-slate-100 h-36 rounded-[25px] flex flex-col items-center justify-center row-span-2">
                             <h2 class="text-xl font-bold">Keuntungan saat ini</h2>
-                            <div class="text-white bg-[#495E57] text-lg font-bold mt-2 px-8 py-4 rounded-[25px]">Rp. 25.000
+                            <div class="text-white bg-[#495E57] text-lg font-bold mt-2 px-8 py-4 rounded-[25px]">Rp
 
-                                {{-- @if (array_key_exists($comodity->code, $price))
-                                {{ number_format(($price[$comodity->code]['total'] * $data->wide * ($comodity->potential_results_max + $comodity->potential_results_min)) / 2, 0, ',', '.') }}
-                            @endif --}}
+                                @if (array_key_exists($comodity->code, $price))
+                                    {{ number_format(($price[$comodity->code]['total'] * $data->wide * ($comodity->potential_results_max + $comodity->potential_results_min)) / 2, 0, ',', '.') }}
+                                @endif
                             </div>
                         </div>
                         <div class=" bg-slate-100 h-36 rounded-[25px] flex flex-col items-center justify-center row-span-2">
                             <h2 class="text-2xl font-bold">Suplai Komoditas</h2>
-                            <div class="bg-white  text-3xl font-bold mt-2 px-8 py-4 rounded-[25px]">80.000
+                            <div class="bg-white  text-3xl font-bold mt-2 px-8 py-4 rounded-[25px]">
+                                -
 
-                                {{-- @if (array_key_exists($comodity->code, $price))
-                                {{ number_format(($price[$comodity->code]['total'] * $data->wide * ($comodity->potential_results_max + $comodity->potential_results_min)) / 2, 0, ',', '.') }}
-                            @endif --}}
                             </div>
                         </div>
                         <a href="{{ route('planting-planning.index') }}"

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class LandController extends Controller
 {
@@ -25,7 +26,7 @@ class LandController extends Controller
         }
 
         $data = Land::where('lands.user_id',Auth::id())->get();
-        
+
         return view('land.index',['data'=>$data,'price'=>$solve]);
     }
 
@@ -43,25 +44,71 @@ class LandController extends Controller
             $solve = json_decode($res->data, true);
         }
         $data = Land::where('lands.id',$id)->leftJoin('planting_plannings', 'lands.id', '=', 'planting_plannings.land_id')
-        ->select('lands.id as id_land','lands.wide','lands.name' ,'planting_plannings.*')
+        ->select('lands.id as id_land','lands.wide','lands.name','lands.information','lands.address','lands.thumb' ,'planting_plannings.*')
         ->first();
-        
-        return view('land.detail',['data'=> $data]);
+
+
+        return view('land.detail',['data'=> $data,'price'=>$solve]);
     }
 
 
     public function store(Request $request)
     {
 
-
-        Land::create([
-            'user_id'=>Auth::id(),
-            'name'=>$request->name,
-            'wide'=>$request->wide
-        ]);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '-' . $file->getClientOriginalName();
+            Storage::disk('public')->put('landImage/'.$filename,file_get_contents($file));
+            Land::create([
+                'user_id'=>Auth::id(),
+                'name'=>$request->name,
+                'wide'=>$request->wide,
+                'address'=>$request->address,
+                'information'=>$request->information,
+                'thumb'=>$filename
+            ]);
+        } else {
+            Land::create([
+                'user_id'=>Auth::id(),
+                'name'=>$request->name,
+                'wide'=>$request->wide,
+                'address'=>$request->address,
+                'information'=>$request->information,
+            ]);
+        }
 
         return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
     }
+
+    public function update(Request $request,$id)
+    {
+
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '-' . $file->getClientOriginalName();
+            Storage::disk('public')->put('landImage/'.$filename,file_get_contents($file));
+            Land::where('id',$id)->update([
+                'user_id'=>Auth::id(),
+                'name'=>$request->name,
+                'wide'=>$request->wide,
+                'address'=>$request->address,
+                'information'=>$request->information,
+                'thumb'=>$filename
+            ]);
+        } else {
+            Land::where('id',$id)->update([
+                'user_id'=>Auth::id(),
+                'name'=>$request->name,
+                'wide'=>$request->wide,
+                'address'=>$request->address,
+                'information'=>$request->information,
+            ]);
+        }
+
+        return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
+    }
+
 
     public function destroy($id)
     {

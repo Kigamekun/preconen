@@ -26,7 +26,7 @@ Route::get('/ph', function (Request $request) {
     // DB::table('lands')->where('id',1)->update(['ph'=>'ada']);
 
 
-    DB::table('lands')->where('id',$_GET['id'])->update(['ph'=>json_encode(['ph'=>$_GET['ph'],'suhu'=>$_GET['suhu'],'Kelembapan'=>$_GET['Kelembapan']])]);
+    DB::table('lands')->where('id',$_GET['id'])->update(['iot'=>json_encode(['ph'=>$_GET['ph'],'suhu'=>$_GET['suhu'],'Kelembapan'=>$_GET['Kelembapan']])]);
 
     return response()->json(['message'=>'berhasil'], 200);
 

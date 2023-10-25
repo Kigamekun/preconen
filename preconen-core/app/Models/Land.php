@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Land extends Model
 {
-    protected $fillable = ['user_id','name','wide'];
+    protected $fillable = ['user_id','name','wide','iot','address','information','thumb'];
 
     public function comodity()
     {

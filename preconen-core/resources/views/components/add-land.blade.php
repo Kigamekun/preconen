@@ -19,8 +19,8 @@
             <div class="grid grid-cols-2 gap-3">
 
                 <div>
-                    <input type="file" class="dropify " data-height="16rem" name="image"
-                        data-default-file="{{ asset('img/sawah.jpg') }}" />
+                    <input type="file" name="file" class="dropify " data-height="16rem" name="image"
+                        />
                 </div>
                 <div>
                     <label class="label block" for="name">
@@ -38,7 +38,7 @@
                     </label>
                     <label class="label block" for="alamat">
                         <span class="label-text text-lg w-full mb-2">Informasi Lahan</span>
-                        <textarea type="text" name="address" class="input input-bordered w-full h-24" rows="20"></textarea>
+                        <textarea type="text" name="information" class="input input-bordered w-full h-24" rows="20"></textarea>
                     </label>
                     <div class="w-full flex justify-center">
 
