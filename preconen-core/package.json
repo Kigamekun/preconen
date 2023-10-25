@@ -19,6 +19,8 @@
     "dependencies": {
         "aos": "^2.3.4",
         "color-calendar": "^1.0.7",
+        "dropify": "^0.2.2",
+        "dropzone": "^6.0.0-beta.2",
         "save": "^2.9.0"
     }
 }

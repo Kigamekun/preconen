@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-        <h2 class="text-4xl font-extrabold mt-5 mb-3">Lahan Anda</h2>
+        <h2 class="text-4xl font-extrabold mt-8 mb-8">Lahan Anda</h2>
         <div class="grid grid-cols-3 grid-rows-2 gap-4 my-3 m-auto">
 
             @foreach (App\Models\Land::where('user_id', Auth::id())->get() as $item)
@@ -120,7 +120,8 @@
                     </div>
                 </div>
             @endforeach
-            <a href="{{ route('land.index') }}" class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
+            <a href="{{ route('land.index') }}"
+                class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
 
                 <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
                     <div class="flex items-center justify-center  h-full p-3 inset-x-0 bottom-0">

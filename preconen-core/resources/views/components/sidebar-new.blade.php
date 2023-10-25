@@ -1,4 +1,4 @@
-<aside class="flex  flex-col text-white bg-[#495E57] transition-all duration-300 ease-in-out"
+<aside class="flex  flex-col text-white bg-[#495E57] transition-all duration-300 ease-in-out min-h-screen"
     :class="isSidebarExpanded ? 'w-64 min-w-[15%]' : 'w-20'">
     <div class="sticky top-0">
 
