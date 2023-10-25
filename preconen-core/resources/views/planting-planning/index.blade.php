@@ -7,8 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
 @endsection
 @section('content')
-    <div class="w-4/5 m-auto mt-20 mb-40">
-        <h1 style="font-size: 48px" class="text-[#495E57] font-bold">Rencana Tanam</h1>
+    <div class="mx-auto mt-10 mb-10">
+        <h1 class="text-[#495E57] text-5xl font-bold">Rencana Tanam</h1>
         <div class="text-sm breadcrumbs mb-8">
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>

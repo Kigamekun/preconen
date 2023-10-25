@@ -4,32 +4,48 @@
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="text-2xl font-semibold mb-3">Tambah Lahan</h3>
-        {{-- <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form> --}}
-        <form action="{{ route('land.store') }}" method="POST" class="mx-3">
-            <div class="grid grid-cols-2">
+        <style>
+            .dropify-render>img {
+                min-width: 100%;
+                object-fit: cover;
+            }
+
+            .dropify-wrapper .dropify-message p {
+                font-size: 1rem;
+            }
+        </style>
+        <form method="POST" action="{{ route('land.store') }}" class="mx-3" enctype="multipart/form-data">
+            @csrf
+            <div class="grid grid-cols-2 gap-3">
+
                 <div>
-                    <input type="file" class="dropify max-w-0" data-default-file="{{ asset('img/sawah.jpg') }}" />
-                    <div class="bg-opacity-100 bg-white p-4 mt-4 rounded-[25px]">
-                        <h4 class="text-xl font-semibold ">Information</h4>
-                        <p>-</p>
-                    </div>
+                    <input type="file" class="dropify " data-height="16rem" name="image"
+                        data-default-file="{{ asset('img/sawah.jpg') }}" />
                 </div>
                 <div>
-
-                    @csrf
                     <label class="label block" for="name">
-                        <span class="label-text text-lg w-full mb-3">Nama Lahan</span>
-                        <input type="text" name="name" class="input input-bordered w-full " />
+                        <span class="label-text text-lg w-full mb-2">Nama Lahan</span>
+                        <input type="text" name="name" class="input input-bordered w-full " required />
                     </label>
-                    <label class="label block" for="area">
-                        <span class="label-text text-lg w-full mb-3">Luas Lahan</span>
-                        <input type="text" name="luas" class="input input-bordered w-full " />
+                    <label class="label block" for="wide">
+                        <span class="label-text text-lg w-full mb-2">Luas Lahan (m<span
+                                class="align-super text-xs font-semibold">2</span>)</span>
+                        <input type="number" name="wide" class="input input-bordered w-full " required />
                     </label>
-                    <div class="w-full flex justify-center mt-5">
+                    <label class="label block" for="alamat">
+                        <span class="label-text text-lg w-full mb-2">Alamat Lahan</span>
+                        <textarea type="text" name="address" class="input input-bordered w-full h-24" rows="20"></textarea>
+                    </label>
+                    <label class="label block" for="alamat">
+                        <span class="label-text text-lg w-full mb-2">Informasi Lahan</span>
+                        <textarea type="text" name="address" class="input input-bordered w-full h-24" rows="20"></textarea>
+                    </label>
+                    <div class="w-full flex justify-center">
 
                         <button type="submit"
                             class="text-white normal-case text-2xl btn btn-ghost bg-[#495E57]">Simpan</button>
                     </div>
+
                 </div>
             </div>
         </form>

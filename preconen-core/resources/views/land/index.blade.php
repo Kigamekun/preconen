@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
 @endsection
 @section('content')
-    <div class="w-4/5 mx-auto mt-20 mb-40 min-h-max">
+    <div class="mt-10 mb-40 min-w-full">
         <h1 class="text-[#495E57] text-5xl font-bold">Lahan Saya</h1>
         <div class="text-sm breadcrumbs mb-8">
             <ul>
@@ -17,7 +17,7 @@
         </div>
         <div class="grid grid-cols-2 gap-5">
             @if (!is_null(DB::table('lands')->where('user_id', Auth::id())->first()))
-                @foreach (DB::table('lands')->where('user_id', Auth::id())->get() as $item)
+                @foreach ($data as $item)
                     <div class="card card-side bg-base-100 shadow-xl">
                         <figure class="w-72"><img src="{{ asset('img/sawah.jpg') }}" alt="Movie" class="h-full" />
                         </figure>
@@ -31,8 +31,8 @@
                                         class="align-super">2</span>
                                 </div>
                             </div>
-                            <div class="card-actions justify-end">
-                                <a class="btn btn-primary text-xs"
+                            <div class="card-actions self-end justify-end">
+                                <a class="btn bg-[#495E57] text-sm text-white "
                                     href="{{ route('land.index') . '/' . $item->id }}">Detail</a>
                             </div>
                         </div>
@@ -48,9 +48,7 @@
                 <div class="h-[100] col-span-2">
 
                     <div class=" flex items-center flex-col min-h-full justify-center">
-                        <p class="text-center text-3xl font-semibold mb-4">
-                            Anda belum mendaftarkan lahan
-                        </p>
+                        <img src="{{ asset('img/no-land.svg') }}" alt="" class="mb-5">
                         <button class="btn btn-outline text-2xl mt-2 h-16 max-w-lg hover:bg-[#495E57] normal-case"
                             onclick="add_land.showModal()">+ Tambahkan
                             Lahan</button>

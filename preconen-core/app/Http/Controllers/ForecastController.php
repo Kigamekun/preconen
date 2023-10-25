@@ -36,9 +36,9 @@ class ForecastController extends Controller
         $forecast = [];
         foreach ($data['list'] as $key => $value) {
             $forecast[$key] = $value;
+            $forecast[$key]["city"] = $data["city"];
             $forecast[$key]['date'] = date('Y-m-d H:i:s', $value['dt']);
         }
-
         return $forecast;
         return response()->json(['statusCode' => 200,'message' => 'Success Scratch Data Forecast','data' => ['forecast' => $forecast]], 200);
     }

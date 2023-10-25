@@ -24,18 +24,28 @@ class LandController extends Controller
             $solve = json_decode($res->data, true);
         }
 
-        $data = Land::where('lands.user_id',Auth::id())->join('planting_plannings', 'lands.id', '=', 'planting_plannings.land_id')
-        ->select('lands.*', 'planting_plannings.*')
-        ->first();
-
+        $data = Land::where('lands.user_id',Auth::id())->get();
+        
         return view('land.index',['data'=>$data,'price'=>$solve]);
     }
 
     public function detail($id)
     {
-        $data = $land = Land::where('lands.user_id',Auth::id())->join('planting_plannings', 'lands.id', '=', 'planting_plannings.land_id')
-        ->select('lands.*', 'planting_plannings.*')
+        if (is_null($res = DB::table('scrappings')->where(['date' => Carbon::now()->toDateString('Y-m-d')])->first())) {
+            $pangan = app('App\Http\Controllers\ForecastController')->scrappingPriceComodity('https://infoharga.agrojowo.biz/tanaman-pangan-menu/harga-produsen', '/tanaman_pangan___([^\s]+)/');
+            $sayuran = app('App\Http\Controllers\ForecastController')->scrappingPriceComodity('https://infoharga.agrojowo.biz/sayuran/sayuran-info-harga-produsen', '/sayuran_produsen___([^\s]+)/');
+            $solve = array_merge($pangan, $sayuran);
+            DB::table('scrappings')->insert([
+                'date' => Carbon::now()->toDateString('Y-m-d'),
+                'data' => json_encode($solve),
+            ]);
+        } else {
+            $solve = json_decode($res->data, true);
+        }
+        $data = Land::where('lands.id',$id)->leftJoin('planting_plannings', 'lands.id', '=', 'planting_plannings.land_id')
+        ->select('lands.id as id_land','lands.wide','lands.name' ,'planting_plannings.*')
         ->first();
+        
         return view('land.detail',['data'=> $data]);
     }
 
@@ -47,7 +57,7 @@ class LandController extends Controller
         Land::create([
             'user_id'=>Auth::id(),
             'name'=>$request->name,
-            'wide'=>$request->luas
+            'wide'=>$request->wide
         ]);
 
         return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);

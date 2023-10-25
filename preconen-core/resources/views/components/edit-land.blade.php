@@ -14,7 +14,7 @@
                 font-size: 1rem;
             }
         </style>
-        <form method="POST" action="{{ route('land.edit', ['id' => $data->id]) }}" class="mx-3"
+        <form method="POST" action="{{ route('land.edit', ['id' => $data->id_land]) }}" class="mx-3"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -31,9 +31,9 @@
                         <span class="label-text text-lg w-full mb-2">Nama Lahan</span>
                         <input type="text" name="name" class="input input-bordered w-full " required />
                     </label>
-                    <label class="label block" for="area">
+                    <label class="label block" for="wide">
                         <span class="label-text text-lg w-full mb-2">Luas Lahan</span>
-                        <input type="number" name="area" class="input input-bordered w-full " required />
+                        <input type="number" name="wide" class="input input-bordered w-full " required />
                     </label>
                     <label class="label block" for="alamat">
                         <span class="label-text text-lg w-full mb-2">Alamat Lahan</span>
