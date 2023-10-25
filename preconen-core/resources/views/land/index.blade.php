@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
 @endsection
 @section('content')
+
     {{-- <style>
         input[readonly],
         input[disabled] {
@@ -25,7 +26,7 @@
         }
     </style> --}}
 
-    <div class=" mb-10 mx-5 mt-4 ">
+    <div class="w-4/5 mx-auto mt-20 mb-40 ">
         <h1 class="text-[#495E57] text-5xl font-bold">Lahan Saya</h1>
         <div class="text-sm breadcrumbs mb-8">
             <ul>
@@ -82,50 +83,72 @@
                     </div>
 
                 </div>
-                <button class="btn btn-ghost text-3xl mt-2 h-16" onclick="edit_land.showModal()">+ Tambahkan Lahan</button>
+                <button class="btn btn-ghost text-3xl mt-2 h-16" onclick="add_land.showModal()">+ Tambahkan Lahan</button>
             </div>
-            <div class="grid grid-cols-2 grid-rows-7 gap-4 text-[#495E57]">
 
-                <div class="col-span-2">
-                    <select class="select w-full text-lg drop-shadow-lg rounded font-semibold">
-                        @foreach (DB::table('comodities')->get() as $item)
-                            <option class="h-8">{{ ucwords($item->name) }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="relative  rounded-[25px] overflow-hidden row-span-3">
-                    <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
-                    <img src="{{ asset('img/sawah.jpg') }}" alt="Gambar"
-                        class="w-full h-full object-cover rounded-[25px]">
+            @if (
+                !is_null(DB::table('lands')->where('user_id', Auth::id())->first()))
+                <div class="grid grid-cols-2 grid-rows-7 gap-4 text-[#495E57]">
 
-                    <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
-                    <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-[25px]">
-                        <div class="absolute p-3 inset-x-0 bottom-0 text-white">
-                            <h2 class="text-2xl font-extrabold  inset-x-0 bottom-0 mb">
-                                Wortel</h2>
-                            <p>Rp20.000</p>
+                    <div class="col-span-2">
+                        <select class="select w-full text-lg drop-shadow-lg rounded font-semibold">
+                            @foreach (DB::table('lands')->where('user_id', Auth::id())->get() as $item)
+                                <option class="h-8">{{ ucwords($item->name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    @if (!is_null($data) &&
+                        !is_null(
+                            $comodity = DB::table('comodities')->where('id', $data->comodity_id)->first()))
+
+                    <div class="relative  rounded-[25px] overflow-hidden row-span-3">
+                        <!-- Gambar dengan rasio 16/9 dan sudut yang dibulatkan -->
+                        <img src="{{ asset('img/sawah.jpg') }}" alt="Gambar"
+                            class="w-full h-full object-cover rounded-[25px]">
+
+                        <!-- Lapisan abu-abu dengan sudut yang dibulatkan -->
+                        <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-[25px]">
+                            <div class="absolute p-3 inset-x-0 bottom-0 text-white">
+                                <h2 class="text-2xl font-extrabold  inset-x-0 bottom-0 mb">
+                                    {{ $comodity->name }}</h2>
+                                <p>Rp{{ number_format($price[$comodity->code]['total'], 0, ',', '.') }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class=" bg-slate-100  rounded-[25px] flex flex-col items-center justify-center row-span-2">
-                    <h2 class="text-2xl font-bold">Luas Lahan</h2>
-                    <div class="bg-white text-3xl font-bold mt-2 px-4 py-2 rounded-[25px]">30000 m^2</div>
-                </div>
-                <div class=" bg-slate-100  rounded-[25px] flex flex-col items-center justify-center row-span-2">
-                    <h2 class="text-2xl font-bold">Suplai saat ini</h2>
-                    <div class="bg-white  text-3xl font-bold mt-2 px-4 py-2 rounded-[25px]">20.600</div>
-                </div>
-                <button class="btn btn-ghost h-full text-2xl normal-case shadow-md" onclick="edit_land.showModal()">Ubah
-                    Lahan</button>
-                <a class="btn btn-ghost h-full text-2xl normal-case shadow-md"
-                    href="{{ route('planting-planning.index') }}">Jadwalkan Penanaman</a>
-                <button class="btn btn-ghost h-full text-2xl normal-case shadow-md">Keuntungan</button>
-                <div class="shadow-md  rounded-lg flex items-center col-span-2 px-4 py-2">
-                    <img src="{{ asset('img/pinpoint.svg') }}" alt="" class="w-4 mr-3">
-                    <p class="flex-1">Jl. Pemuda No.39, Embong Kaliasin, Kec. Genteng, Surabaya, Jawa Timur 60271</p>
+                    <div class=" bg-slate-100  rounded-[25px] flex flex-col items-center justify-center row-span-2">
+                        <h2 class="text-2xl font-bold">Luas Lahan</h2>
+                        <div class="bg-white text-3xl font-bold mt-2 px-4 py-2 rounded-[25px]">{{ $data->wide }} m^2</div>
+                    </div>
+                    <div class=" bg-slate-100  rounded-[25px] flex flex-col items-center justify-center row-span-2">
+                        <h2 class="text-2xl font-bold">Keuntungan saat ini</h2>
+                        <div class="bg-white  text-3xl font-bold mt-2 px-4 py-2 rounded-[25px]">Rp.
+                            {{ number_format(($price[$comodity->code]['total'] * $data->wide * ($comodity->potential_results_max + $comodity->potential_results_min)) / 2, 0, ',', '.') }}
+                        </div>
+                    </div>
+                    @else
+<center>
+    Anda tidak punya Rencana tanam
+
+</center>
+                    @endif
+                    <button class="btn btn-ghost h-full text-2xl normal-case shadow-md" onclick="edit_land.showModal()">Ubah
+                        Lahan</button>
+                    <a class="btn btn-ghost h-full text-2xl normal-case shadow-md"
+                        href="{{ route('planting-planning.index') }}">Jadwalkan Penanaman</a>
+                    <button class="btn btn-ghost h-full text-2xl normal-case shadow-md">Keuntungan</button>
+                    <div class="shadow-md  rounded-lg flex items-center col-span-2 px-4 py-2">
+                        <img src="{{ asset('img/pinpoint.svg') }}" alt="" class="w-4 mr-3">
+                        <p class="flex-1">Jl. Pemuda No.39, Embong Kaliasin, Kec. Genteng, Surabaya, Jawa Timur 60271</p>
+                    </div>
+
                 </div>
 
-            </div>
+                @else
+
+                Anda tidak punya lahan :(
+            @endif
+
 
         </div>
 
@@ -133,6 +156,11 @@
     </div>
     @include('components/add-land')
     @include('components/edit-land')
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 @endsection
 
 

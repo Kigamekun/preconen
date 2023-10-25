@@ -42,7 +42,7 @@
                                                 <p class="text-xl font-extrabold text-white inset-x-0 bottom-0 mb">
                                                     {{ $item->name }}</p>
                                                 <p class="text-md font-bold text-white">Rp.
-                                                    {{ $price[$item->code]['total'] }}
+                                                    {{ number_format($price[$item->code]['total'], 0, ',', '.') }}
                                                 </p>
                                             </div>
 
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             @endforeach
-            <div class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
+            <a href="{{ route('land.index') }}" class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center">
 
                 <div class="absolute inset-0 bg-slate-950 bg-opacity-50 rounded-lg">
                     <div class="flex items-center justify-center  h-full p-3 inset-x-0 bottom-0">
@@ -129,7 +129,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         <h2 class="text-4xl font-extrabold mt-5 mb-3">Prakiraan Cuaca</h2>
         <div class="flex flex-row overflow-x-auto">

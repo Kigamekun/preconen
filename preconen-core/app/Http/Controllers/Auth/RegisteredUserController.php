@@ -37,6 +37,8 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'role' => $request->role,
             'password' => Hash::make($request->password),
+            'lat'=>'-6.652717778558578',
+            'long'=>'106.77295302523758'
         ]);
 
         event(new Registered($user));

@@ -23,23 +23,19 @@
                 </div>
                 <div class="bg-opacity-100 bg-white p-4 mt-4 rounded-[25px]">
                     <h4 class="text-xl font-semibold ">Information</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, dicta ut non inventore
-                        repellat placeat.</p>
+                    <p>-</p>
                 </div>
             </div>
             <div>
-                <form action="" class="mx-3">
+                <form action="{{ route('land.store') }}" method="POST" class="mx-3">
+                    @csrf
                     <label class="label block" for="name">
                         <span class="label-text text-lg w-full mb-3">Nama Lahan</span>
                         <input type="text" name="name" class="input input-bordered w-full " />
                     </label>
                     <label class="label block" for="area">
                         <span class="label-text text-lg w-full mb-3">Luas Lahan</span>
-                        <input type="text" name="area" class="input input-bordered w-full " />
-                    </label>
-                    <label class="label block" for="alamat">
-                        <span class="label-text text-lg w-full mb-3">Alamat Lahan</span>
-                        <textarea type="text" name="address" class="input input-bordered w-full h-24" rows="20"></textarea>
+                        <input type="text" name="luas" class="input input-bordered w-full " />
                     </label>
                     <div class="w-full flex justify-center">
 

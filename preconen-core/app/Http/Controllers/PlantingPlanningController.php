@@ -6,6 +6,8 @@ use App\Models\PlantingPlanning;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class PlantingPlanningController extends Controller
 {
@@ -35,16 +37,44 @@ class PlantingPlanningController extends Controller
 
 
 
+        $forecast = app('App\Http\Controllers\ForecastController')->forecastWeather();
+
+        $foundData;
+
+        $date = Carbon::now()->toDateString('Y-m-d');
+        $date = '2023-11-01';
+        foreach ($forecast as $item) {
+            if (isset($item['date']) && Str::startsWith($item['date'], $date)) {
+                $foundData = $item;
+            }
+        }
+
         $client = new \GuzzleHttp\Client();
         $response = $client->post('http://127.0.0.1:5000', [
             'multipart' => [
+                // [
+                //     'name' => 'temperature',
+                //     'contents' => '18.44378617'
+                // ],
+                // [
+                //     'name' => 'humidity',
+                //     'contents' => '84.05471041'
+                // ],
+                // [
+                //     'name' => 'ph',
+                //     'contents' => '7.401589798'
+                // ],
+                // [
+                //     'name' => 'rainfall',
+                //     'contents' => '195'
+                // ]
                 [
                     'name' => 'temperature',
-                    'contents' => '18.44378617'
+                    'contents' => $foundData['temp']['day'] -273.15
                 ],
                 [
                     'name' => 'humidity',
-                    'contents' => '84.05471041'
+                    'contents' => $foundData['humidity']
                 ],
                 [
                     'name' => 'ph',
@@ -52,7 +82,7 @@ class PlantingPlanningController extends Controller
                 ],
                 [
                     'name' => 'rainfall',
-                    'contents' => '195'
+                    'contents' => $foundData['rain']
                 ]
             ]
         ]);

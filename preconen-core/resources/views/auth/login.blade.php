@@ -6,7 +6,8 @@
 
             <h2 class="text-4xl font-bold text-center">Masuk ke Aplikasi</h2>
             <p class="text-lg font-semibold text-center my-2">Silakan masuk untuk menggunakan aplikasi</p>
-            <form action="{{ route('login') }}" class="grid">
+            <form action="{{ route('login') }}" method="POST" class="grid">
+                @csrf
                 <div class="relative rounded-lg shadow-md my-2">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -17,7 +18,7 @@
                     </div>
 
                     <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
-                    <input type="text" placeholder="Username" name="username"
+                    <input type="email" placeholder="Email" name="email"
                         class="w-full pl-10 pr-4 py-2 rounded-lg border-0 outline-none focus:ring focus:border-blue-300" />
                 </div>
 
@@ -32,7 +33,7 @@
                     </div>
 
                     <!-- Input teks dengan sudut yang dibulatkan dan placeholder -->
-                    <input type="text" placeholder="Password" name="password"
+                    <input type="password" placeholder="Password" name="password"
                         class="w-full pl-10 pr-4 py-2 rounded-lg border-0 outline-none focus:ring focus:border-blue-300 " />
                 </div>
                 <p class="text-right  text-gray-800 mb-2 text-sm"><a class="underline" href={{ route('register') }}>Lupa
@@ -41,7 +42,7 @@
                         href={{ route('register') }}>Daftar
                         disini</a></p>
 
-                <button class="rounded-lg bg-white px-5 py-2 my-2 justify-self-center border border-black">Masuk
+                <button type="submit" class="rounded-lg bg-white px-5 py-2 my-2 justify-self-center border border-black">Masuk
                 </button>
             </form>
         </div>

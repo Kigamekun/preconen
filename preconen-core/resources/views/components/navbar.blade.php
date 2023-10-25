@@ -25,7 +25,15 @@
                 </svg>
             </button>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a class="font-semibold">Logout</a></li>
+                <li>
+
+                    <form action="{{ route('logout') }}" method="post">
+                    @csrf
+
+                    <button type="submit" class="font-semibold">Logout</button>
+                    </form>
+
+                </li>
             </ul>
         </div>
     </div>

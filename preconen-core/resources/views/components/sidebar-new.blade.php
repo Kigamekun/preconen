@@ -10,7 +10,7 @@
                 :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">Preconen</span>
         </a>
         <nav class="p-4 space-y-2 font-medium">
-            <a href="#"
+            <a href="{{ route('dashboard') }}"
                 class="flex items-center h-10 px-3  rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline  {{ $active == 'dashboard' ? 'text-[#495E57] bg-white' : 'text-white bg-[#495E57] hover:bg-white hover:bg-opacity-75' }}">
                 <img class=" max-h-full aspect-square" :class="isSidebarExpanded ? 'p-1' : ''"
                     src="{{ asset('img/nav.dashboard' . ($active == 'dashboard' ? '' : '.white') . '.svg') }}"
@@ -18,7 +18,7 @@
                 <span class="ml-2 duration-300 ease-in-out text-lg text-inherit"
                     :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">Beranda</span>
             </a>
-            <a href="#"
+            <a href="{{ route('planting-planning.index') }}"
                 class="flex items-center h-10 px-3  rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline  {{ $active == 'schedules' ? 'text-[#495E57] bg-white' : 'text-white bg-[#495E57] hover:bg-white hover:bg-opacity-75' }}">
                 <img class=" max-h-full aspect-square" :class="isSidebarExpanded ? 'p-1' : ''"
                     src="{{ asset('img/nav.schedules' . ($active == 'schedules' ? '' : '.white') . '.svg') }}"
@@ -26,7 +26,7 @@
                 <span class="ml-2 duration-300 ease-in-out text-lg"
                     :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">Jadwal</span>
             </a>
-            <a href="#"
+            <a href="{{ route('supplies.index') }}"
                 class="flex items-center h-10 px-3  rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline  {{ $active == 'supplies' ? 'text-[#495E57] bg-white' : 'text-white bg-[#495E57] hover:bg-white hover:bg-opacity-75' }}">
                 <img class=" max-h-full aspect-square" :class="isSidebarExpanded ? 'p-1' : ''"
                     src="{{ asset('img/nav.supplies' . ($active == 'supplies' ? '' : '.white') . '.svg') }}"
@@ -34,7 +34,7 @@
                 <span class="ml-2 duration-300 ease-in-out text-lg"
                     :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">Suplai</span>
             </a>
-            <a href="#"
+            <a href="{{ route('land.index') }}"
                 class="flex items-center h-10 px-3  rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline  {{ $active == 'lands' ? 'text-[#495E57] bg-white' : 'text-white bg-[#495E57] hover:bg-white hover:bg-opacity-75' }}">
                 <img class=" max-h-full aspect-square" :class="isSidebarExpanded ? 'p-1' : ''"
                     src="{{ asset('img/nav.lands' . ($active == 'lands' ? '' : '.white') . '.svg') }}" alt=""

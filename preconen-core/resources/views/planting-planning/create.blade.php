@@ -7,34 +7,39 @@
     <script src="https://cdn.jsdelivr.net/npm/color-calendar/dist/bundle.min.js"></script>
 @endsection
 @section('content')
-    <br>
-    <br>
-
     <style>
         input[readonly],
-            input[disabled] {
-                /* Add your desired styles here */
-                background-color: #f0f0f0;
-                color: #999;
-                cursor: not-allowed;
-                /* Add other styles as needed */
-            }
+        input[disabled] {
+            /* Add your desired styles here */
+            background-color: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+            /* Add other styles as needed */
+        }
 
-            /* Optionally, you can remove the default border and outline for both inputs */
-            input[readonly],
-            input[disabled] {
-                border: none;
-                outline: none;
-            }
-
+        /* Optionally, you can remove the default border and outline for both inputs */
+        input[readonly],
+        input[disabled] {
+            border: none;
+            outline: none;
+        }
     </style>
 
-    <div class="container">
-        <div class="flex w-full gap-5" style="height:65vh">
-            <div style="flex: 5;display:flex; flex-direction:column">
-                <h1 style="font-size: 48px" class="text-[#495E57] font-bold">Create Planting Schedule</h1>
+    <div class="w-4/5 m-auto mt-20 mb-40">
+        <h1 style="font-size: 48px" class="text-[#495E57] font-bold">Buat Rencana Tanam</h1>
+        <div class="text-sm breadcrumbs mb-8">
+            <ul>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('planting-planning.index') }}">Rencana Tanam</a></li>
+                <li>Buat Rencana Tanam</li>
 
-                <div class="card mt-10">
+            </ul>
+        </div>
+        <div class="flex w-full gap-10" style="height:65vh">
+            <div style="flex: 5;display:flex; flex-direction:column">
+
+                <div class="mt-10 card w-100  bg-base-100 shadow-xl"
+                    style="filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));">
 
                     <form action="{{ route('planting-planning.store') }}" method="post">
                         @csrf
@@ -66,7 +71,8 @@
                                 <select id="comodity" name="comodity" class="select select-bordered w-full">
                                     <option disabled selected>Pilih Komoditas</option>
                                     @foreach (DB::table('comodities')->get() as $item)
-                                        <option value="{{$item->id}}" data-lama="{{ $item->umur_panen }}">{{ $item->name }}</option>
+                                        <option value="{{ $item->id }}" data-lama="{{ $item->umur_panen }}">
+                                            {{ $item->name }}</option>
                                     @endforeach
                                 </select>
 
@@ -99,9 +105,7 @@
                 </div>
             </div>
             <div style="flex: 5">
-                <br>
-                <br>
-                <br>
+
                 <br>
                 <div class="p-example__body">
                     <div class="p-example__splide">
@@ -187,8 +191,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <script>
-        const calendarEvents = [
-        ]
+        const calendarEvents = []
         new Calendar({
             id: '#main-calendar',
             layoutModifiers: ['month-align-left'],

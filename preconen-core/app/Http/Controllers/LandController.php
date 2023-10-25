@@ -5,31 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Land;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class LandController extends Controller
 {
     public function index(Request $request)
     {
-        // $solve = [];
-        // $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/tanaman-pangan','/tanaman_pangan___([^\s]+)/');
-        // $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/buah','/buah_produsen___([^\s]+)/');
-        // $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/sayuran','/sayuran_produsen___([^\s]+)/');
-        // $solve[] = app('App\Http\Controllers\ForecastController')->scrapping('https://infoharga.agrojowo.biz/info-hari-ini/perkebunan','/perkebunan___([^\s]+)/');
-
-        return view('land.index');
-    }
-
-    public function guest(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = Land::whereNull('deleted_at')->get();
-            return DataTables::of($data)
-            ->addIndexColumn()
-
-            ->make(true);
+        if (is_null($res = DB::table('scrappings')->where(['date' => Carbon::now()->toDateString('Y-m-d')])->first())) {
+            $pangan = app('App\Http\Controllers\ForecastController')->scrappingPriceComodity('https://infoharga.agrojowo.biz/tanaman-pangan-menu/harga-produsen', '/tanaman_pangan___([^\s]+)/');
+            $sayuran = app('App\Http\Controllers\ForecastController')->scrappingPriceComodity('https://infoharga.agrojowo.biz/sayuran/sayuran-info-harga-produsen', '/sayuran_produsen___([^\s]+)/');
+            $solve = array_merge($pangan, $sayuran);
+            DB::table('scrappings')->insert([
+                'date' => Carbon::now()->toDateString('Y-m-d'),
+                'data' => json_encode($solve),
+            ]);
+        } else {
+            $solve = json_decode($res->data, true);
         }
-        return view('land.guest');
+
+        $data = Land::where('lands.user_id',Auth::id())->join('planting_plannings', 'lands.id', '=', 'planting_plannings.land_id')
+        ->select('lands.*', 'planting_plannings.*')
+        ->first();
+
+        return view('land.index',['data'=>$data,'price'=>$solve]);
     }
+
 
     public function store(Request $request)
     {
