@@ -18,7 +18,7 @@ use App\Http\Controllers\{UserController,ForecastController,DashboardController,
 Route::get('/', function () {
     return view('landing');
 });
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -31,7 +31,7 @@ Route::get('/forecast', [ForecastController::class,'index']);
 Route::get('/scratch', [ForecastController::class,'scratch']);
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     Route::get('/', function () {
         return view('admin.index');
@@ -73,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-Route::prefix('planting-planning')->group(function () {
+Route::prefix('planting-planning')->middleware('auth')->group(function () {
     Route::get('/', [PlantingPlanningController::class,'index'])->name('planting-planning.index');
     Route::get('/create', [PlantingPlanningController::class,'create'])->name('planting-planning.create');
     Route::get('/detail/{id}', [PlantingPlanningController::class,'detail'])->name('planting-planning.detail');
@@ -84,7 +84,7 @@ Route::prefix('planting-planning')->group(function () {
     Route::delete('/delete/{id}', [PlantingPlanningController::class,'destroy'])->name('planting-planning.delete');
 });
 
-Route::prefix('land')->group(function () {
+Route::prefix('land')->middleware('auth')->group(function () {
     Route::get('/', [LandController::class,'index'])->name('land.index');
     Route::get('/{id}', [LandController::class,'detail'])->name('land.detail');
     Route::get('/create', [LandController::class,'create'])->name('land.create');
