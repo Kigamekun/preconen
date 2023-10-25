@@ -17,7 +17,10 @@ class PlantingPlanningController extends Controller
     public function index()
     {
         $data = PlantingPlanning::where('user_id', Auth::id())->first();
-        $dataAll = PlantingPlanning::where('user_id', Auth::id())->get();
+        $dataAll = PlantingPlanning::where('planting_plannings.user_id', Auth::id())->join('comodities','planting_plannings.comodity_id','=','comodities.id')
+                    ->join('lands','lands.id','=','planting_plannings.land_id')
+                    ->select('planting_plannings.id','comodities.name as comodity_name','planting_plannings.start_from','planting_plannings.end_at',
+                                'comodities.potential_results_min','comodities.potential_results_max','lands.name','lands.wide as area')->get();
 
         $calendar = [];
         foreach ($dataAll as $key => $value) {
@@ -26,7 +29,7 @@ class PlantingPlanningController extends Controller
             $calendar[$key]['name'] = '-';
             $calendar[$key]['desc'] = '-';
         }
-        return view('planting-planning.index',['data'=>$data,'calendar'=>$calendar]);
+        return view('planting-planning.index',['data'=>$dataAll,'calendar'=>$calendar]);
     }
 
     /**

@@ -25,8 +25,8 @@
         }
     </style>
 
-    <div class="w-4/5 m-auto mt-20 mb-40">
-        <h1 style="font-size: 48px" class="text-[#495E57] font-bold">Buat Rencana Tanam</h1>
+    <div class=" m-auto mt-10 ">
+        <h1 class="text-[#495E57] text-5xl font-bold">Buat Rencana Tanam</h1>
         <div class="text-sm breadcrumbs mb-8">
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>

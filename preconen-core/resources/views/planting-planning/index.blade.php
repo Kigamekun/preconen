@@ -15,7 +15,54 @@
                 <li>Rencana Tanam</li>
             </ul>
         </div>
-        <div class="flex w-100 mt-5">
+        <div class="overflow-x-auto">
+            <table class="table">
+                <!-- head -->
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nama Lahan</th>
+                        <th>Luas Lahan (m<span class="align-super text-xs font-semibold">2</span>)</span></th>
+                        <th>Jenis Komoditas</th>
+                        <th>Masa Tanam</th>
+                        <th>Potensi Hasil (kg)</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @php
+                        use Carbon\Carbon;
+                    @endphp
+                    @foreach ($data as $item)
+                        <tr class="hover row" onclick="navigate({{ route('land.detail', ['id' => $item->id]) }})">
+                            <th>{{ $loop->index + 1 }}</th>
+                            <th class="flex items-center">{{ $item->name }} <a
+                                    href="{{ route('land.detail', ['id' => $item->id]) }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-eye ml-2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                        <path
+                                            d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                    </svg>
+                                </a></th>
+                            <td>{{ number_format($item->area, 0, ',', '.') }}</td>
+                            <td>{{ ucwords($item->comodity_name) }}</td>
+                            <td>{{ Carbon::createFromFormat('Y-m-d', $item->start_from)->format('d-m-Y') }} -
+                                {{ Carbon::createFromFormat('Y-m-d', $item->end_at)->format('d-m-Y') }}</td>
+                            <td>{{ number_format($item->potential_results_min * 1000, 0, ',', '.') }} -
+                                {{ number_format($item->potential_results_max * 1000, 0, ',', '.') }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="flex justify-center mt-5">
+                <a class="btn btn-ghost" href="{{ route('planting-planning.create') }}">Tambahkan Jadwal Tanam</a>
+            </div>
+        </div>
+        {{-- <div class="flex w-100 mt-5">
             <div style="flex:4;">
                 <div style="border-radius: 25px"
                     class=" opacity-80 border-2 border-neutral-400/50  py-3 col-span-2 row-span-3"
@@ -88,7 +135,7 @@
 
                                     </div>
                                 </div>
-                                {{-- <div class="card w-80 bg-base-100 shadow-xl"
+                                <div class="card w-80 bg-base-100 shadow-xl"
                                     style="filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.15));">
                                     <div class="card-body">
                                         <h2
@@ -98,7 +145,7 @@
                                             style="color: #495E57;text-align: center;font-family: Poppins;font-size: 24px;font-style: normal;font-weight: 500;line-height: normal;letter-spacing: 2.4px;">
                                             {{ $land->wide }} M^2</p>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="w-80">
                                     <button class="btn w-full"
                                         style=" background:white;color: #495E57;
@@ -159,7 +206,7 @@
             </div>
             @endif
 
-        </div>
+        </div> --}}
     </div>
 
 
