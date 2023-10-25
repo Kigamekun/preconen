@@ -110,7 +110,7 @@
         <h2 class="text-4xl font-extrabold my-8">Lahan Anda</h2>
         <div class="grid grid-cols-3  gap-4 my-3 m-auto">
 
-            @foreach (App\Models\Land::where('user_id', Auth::id())->get() as $item)
+            @foreach (App\Models\Land::where('user_id', Auth::id())->limit(5)->get() as $item)
                 <a class="relative h-56 rounded-lg bg-slate-400 overflow-hidden flex items-center justify-center"
                     style="box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);"
                     href="{{ route('land.index') . '/' . $item->id }}">
