@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 shadow-md z-20 sticky top-0">
+<div class="navbar bg-base-100 shadow-md z-20 sticky top-0 max-w-[100%]">
     <div class="flex-1">
         <button class="p-2 ml-1 mr-2" @click="isSidebarExpanded = !isSidebarExpanded">
             <svg viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -28,9 +28,9 @@
                 <li>
 
                     <form action="{{ route('logout') }}" method="post">
-                    @csrf
+                        @csrf
 
-                    <button type="submit" class="font-semibold">Logout</button>
+                        <button type="submit" class="font-semibold">Logout</button>
                     </form>
 
                 </li>

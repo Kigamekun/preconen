@@ -65,10 +65,13 @@
         }
     </style>
     <div class="flex h-full items-stretch" x-data="{ isSidebarExpanded: true, active: '' }">
+        <div>
+
+        </div>
         @include('components.sidebar-new')
-        <div class="flex-1 flex flex-col max-w-[85%]">
+        <div class="flex-1 flex flex-col">
             @include('components.navbar')
-            <main>
+            <main class="w-[85%] mx-auto">
                 @yield('content')
             </main>
         </div>
