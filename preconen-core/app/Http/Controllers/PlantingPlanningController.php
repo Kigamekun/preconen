@@ -17,19 +17,27 @@ class PlantingPlanningController extends Controller
     public function index()
     {
         $data = PlantingPlanning::where('user_id', Auth::id())->first();
-        $dataAll = PlantingPlanning::where('planting_plannings.user_id', Auth::id())->join('comodities','planting_plannings.comodity_id','=','comodities.id')
-                    ->join('lands','lands.id','=','planting_plannings.land_id')
-                    ->select('planting_plannings.id','comodities.name as comodity_name','planting_plannings.start_from','planting_plannings.end_at',
-                                'comodities.potential_results_min','comodities.potential_results_max','lands.name','lands.wide as area')->get();
+        $dataAll = PlantingPlanning::where('planting_plannings.user_id', Auth::id())->join('comodities', 'planting_plannings.comodity_id', '=', 'comodities.id')
+                    ->join('lands', 'lands.id', '=', 'planting_plannings.land_id')
+                    ->select(
+                        'planting_plannings.id',
+                        'comodities.name as comodity_name',
+                        'planting_plannings.start_from',
+                        'planting_plannings.end_at',
+                        'comodities.potential_results_min',
+                        'comodities.potential_results_max',
+                        'lands.name',
+                        'lands.wide as area'
+                    )->get();
 
         $calendar = [];
         foreach ($dataAll as $key => $value) {
-            $calendar[$key]['start'] = $value->start_from.'T06:00:00';
-            $calendar[$key]['end'] = $value->end_at.'T20:30:00';
+            $calendar[$key]['start'] = $value->start_from . 'T06:00:00';
+            $calendar[$key]['end'] = $value->end_at . 'T20:30:00';
             $calendar[$key]['name'] = '-';
             $calendar[$key]['desc'] = '-';
         }
-        return view('planting-planning.index',['data'=>$dataAll,'calendar'=>$calendar]);
+        return view('planting-planning.index', ['data' => $dataAll,'calendar' => $calendar]);
     }
 
     /**
@@ -73,7 +81,7 @@ class PlantingPlanningController extends Controller
                 // ]
                 [
                     'name' => 'temperature',
-                    'contents' => $foundData['temp']['day'] -273.15
+                    'contents' => $foundData['temp']['day'] - 273.15
                 ],
                 [
                     'name' => 'humidity',
@@ -93,7 +101,7 @@ class PlantingPlanningController extends Controller
 
 
 
-        return view('planting-planning.create',['data'=>json_decode($responseBody,TRUE),'commodities'=>json_decode($responseBody,TRUE)['commodities']]);
+        return view('planting-planning.create', ['data' => json_decode($responseBody, true),'commodities' => json_decode($responseBody, true)['commodities']]);
 
     }
 
@@ -103,11 +111,11 @@ class PlantingPlanningController extends Controller
     public function store(Request $request)
     {
         PlantingPlanning::create([
-            'user_id'=>Auth::id(),
-            'land_id'=>$request->land,
-            'comodity_id'=>$request->comodity,
-            'start_from'=>$request->mulai,
-            'end_at'=>$request->akhir
+            'user_id' => Auth::id(),
+            'land_id' => $request->land,
+            'comodity_id' => $request->comodity,
+            'start_from' => $request->mulai,
+            'end_at' => $request->akhir
         ]);
 
         return redirect()->route("planting-planning.index")->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
@@ -116,9 +124,19 @@ class PlantingPlanningController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PlantingPlanning $plantingPlanning)
+    public function detail($id)
     {
-        //
+        $data = PlantingPlanning::where('user_id', Auth::id())->first();
+        $dataAll = PlantingPlanning::where('user_id', Auth::id())->get();
+
+        $calendar = [];
+        foreach ($dataAll as $key => $value) {
+            $calendar[$key]['start'] = $value->start_from.'T06:00:00';
+            $calendar[$key]['end'] = $value->end_at.'T20:30:00';
+            $calendar[$key]['name'] = '-';
+            $calendar[$key]['desc'] = '-';
+        }
+        return view('planting-planning.detail',['data'=>$data,'calendar'=>$calendar]);
     }
 
     /**
@@ -142,7 +160,7 @@ class PlantingPlanningController extends Controller
      */
     public function destroy($id)
     {
-        PlantingPlanning::where('id',$id)->delete();
+        PlantingPlanning::where('id', $id)->delete();
 
         return redirect()->back()->with(['message' => 'Lahan berhasil di delete','status' => 'success']);
     }

@@ -58,7 +58,7 @@
                                 </label>
                                 <select name="land" class="select select-bordered w-full">
                                     <option disabled selected>Pilih Lahan</option>
-                                    @foreach (DB::table('lands')->get() as $item)
+                                    @foreach (DB::table('lands')->where('user_id',Auth::id())->get() as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
