@@ -1,7 +1,6 @@
-@extends('layouts.base')
+@extends('layouts.admin')
 
 @section('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 @endsection
 
@@ -12,29 +11,48 @@
 
         <div class="d-flex justify-content-end mt-4">
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">
-                Tambah Comodity
+                Tambah User
             </button>
         </div>
 
 
-        <div class="table-responsive mt-5 mb-5" style="padding-bottom: 30px;">
-            <table id="datatable-table" class="table w-100">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Aksi</th>
-                        <th>Name</th>
-                        <th>Latin</th>
-                        <th>Temperature</th>
-                        <th>PH</th>
-                        <th>Planting Distance</th>
-                        <th>Fertilizer Dose</th>
-                        <th>Potential Result</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                </tbody>
-            </table>
+        <div class="table table-responsive mt-5 mb-5" style="padding-bottom: 30px;">
+            <div class="container-fluid py-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header pb-0">
+                                <h6>User table</h6>
+                            </div>
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-5">
+
+                                    <table id="datatable-table" class=" table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Aksi</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Role</th>
+                                                <th>Lat</th>
+                                                <th>Long</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
 
 
@@ -60,47 +78,88 @@
         <div class="modal-dialog">
             <div id="modal-content" class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Buat Comodity</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Buat User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('comodity.store') }}" method="post">
+                <form action="{{ route('admin.comodity.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="name">name <span class="text-danger">*</span></label>
+                            <label for="code">Code <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="code" name="code"
+                                placeholder="Enter Code" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control form-require" id="name" name="name"
-                                placeholder="Masukan Kalimat" required>
+                                placeholder="Enter Name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="latin">latin <span class="text-danger">*</span></label>
+                            <label for="latin">Latin <span class="text-danger">*</span></label>
                             <input type="text" class="form-control form-require" id="latin" name="latin"
-                                placeholder="Masukan Kalimat" required>
+                                placeholder="Enter Latin" required>
                         </div>
                         <div class="mb-3">
-                            <label for="temp">temp <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="temp" name="temp"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="ph_max">pH Max <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="ph_max" name="ph_max"
+                                placeholder="Enter pH Max" required>
                         </div>
                         <div class="mb-3">
-                            <label for="ph">ph <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="ph" name="ph"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="ph_min">pH Min <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="ph_min" name="ph_min"
+                                placeholder="Enter pH Min" required>
                         </div>
                         <div class="mb-3">
-                            <label for="planting_distance">planting_distance <span class="text-danger">*</span></label>
+                            <label for="ph_optimal">pH Optimal <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="ph_optimal" name="ph_optimal"
+                                placeholder="Enter pH Optimal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="temp_max">Temperature Max <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="temp_max" name="temp_max"
+                                placeholder="Enter Temperature Max" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="temp_min">Temperature Min <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="temp_min" name="temp_min"
+                                placeholder="Enter Temperature Min" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="humidity_max">Humidity Max <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="humidity_max"
+                                name="humidity_max" placeholder="Enter Humidity Max" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="humidity_min">Humidity Min <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="humidity_min"
+                                name="humidity_min" placeholder="Enter Humidity Min" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="planting_distance">Planting Distance <span class="text-danger">*</span></label>
                             <input type="text" class="form-control form-require" id="planting_distance"
-                                name="planting_distance" placeholder="Masukan Kalimat" required>
+                                name="planting_distance" placeholder="Enter Planting Distance" required>
                         </div>
                         <div class="mb-3">
-                            <label for="fertilizer_dose">fertilizer_dose <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="fertilizer_dose"
-                                name="fertilizer_dose" placeholder="Masukan Kalimat" required>
+                            <label for="umur_panen">Umur Panen <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="umur_panen" name="umur_panen"
+                                placeholder="Enter Umur Panen" required>
                         </div>
-
                         <div class="mb-3">
-                            <label for="potential_results">potential_results <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="potential_results"
-                                name="potential_results" placeholder="Masukan Kalimat" required>
+                            <label for="potential_results_max">Potential Results Max <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="potential_results_max"
+                                name="potential_results_max" placeholder="Enter Potential Results Max" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="potential_results_min">Potential Results Min <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="potential_results_min"
+                                name="potential_results_min" placeholder="Enter Potential Results Min" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="thumb">Thumbnail</label>
+                            <input type="text" class="form-control" id="thumb" name="thumb"
+                                placeholder="Enter Thumbnail">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -121,11 +180,12 @@
             var table = $('#datatable-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('comodity.index') }}",
-                columns: [{
+                ajax: "{{ route('admin.user.index') }}",
+                columns: [
+                    {
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
-                        searchable: false,
+                        searchable: false
                     },
                     {
                         data: 'action',
@@ -137,28 +197,24 @@
                         name: 'name'
                     },
                     {
-                        data: 'latin',
-                        name: 'latin'
+                        data: 'email',
+                        name: 'email'
                     },
                     {
-                        data: 'temp',
-                        name: 'temp'
+                        data: 'phone',
+                        name: 'phone'
                     },
                     {
-                        data: 'ph',
-                        name: 'ph'
+                        data: 'role',
+                        name: 'role'
                     },
                     {
-                        data: 'planting_distance',
-                        name: 'planting_distance'
+                        data: 'lat',
+                        name: 'lat'
                     },
                     {
-                        data: 'fertilizer_dose',
-                        name: 'fertilizer_dose'
-                    },
-                    {
-                        data: 'potential_results',
-                        name: 'potential_results'
+                        data: 'long',
+                        name: 'long'
                     },
                 ]
             });
@@ -167,7 +223,7 @@
         $('#updateData').on('shown.bs.modal', function(e) {
             var html = `
             <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Comodity</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="${$(e.relatedTarget).data('url')}" method="post">

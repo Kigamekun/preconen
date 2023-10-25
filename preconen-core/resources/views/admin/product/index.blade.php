@@ -11,7 +11,7 @@
 
         <div class="d-flex justify-content-end mt-4">
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">
-                Tambah Comodity
+                Tambah Product
             </button>
         </div>
 
@@ -22,7 +22,7 @@
                     <div class="col-12">
                         <div class="card mb-4">
                             <div class="card-header pb-0">
-                                <h6>Comodity table</h6>
+                                <h6>Product table</h6>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-5">
@@ -34,19 +34,6 @@
                                                 <th>Aksi</th>
                                                 <th>Name</th>
                                                 <th>Latin</th>
-                                                <th>Code</th>
-                                                <th>pH Max</th>
-                                                <th>pH Min</th>
-                                                <th>pH Optimal</th>
-                                                <th>Temperature Max</th>
-                                                <th>Temperature Min</th>
-                                                <th>Humidity Max</th>
-                                                <th>Humidity Min</th>
-                                                <th>Planting Distance</th>
-                                                <th>Umur Panen</th>
-                                                <th>Potential Results Max</th>
-                                                <th>Potential Results Min</th>
-                                                <th>Thumbnail</th>
                                             </tr>
                                         </thead>
 
@@ -87,10 +74,10 @@
         <div class="modal-dialog">
             <div id="modal-content" class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Buat Comodity</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Buat Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.comodity.store') }}" method="post">
+                <form action="{{ route('admin.product.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -172,7 +159,7 @@
             var table = $('#datatable-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admin.comodity.index') }}",
+                ajax: "{{ route('admin.product.index') }}",
                 columns: [
                     {
     data: 'DT_RowIndex',
@@ -252,7 +239,7 @@
         $('#updateData').on('shown.bs.modal', function(e) {
             var html = `
             <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Comodity</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="${$(e.relatedTarget).data('url')}" method="post">

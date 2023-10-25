@@ -23,11 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/ph', function (Request $request) {
 
-    DB::table('lands')->where('id',1)->update(['ph'=>'ada']);
+    // DB::table('lands')->where('id',1)->update(['ph'=>'ada']);
+
+
+    DB::table('lands')->where('id',$_GET['id'])->update(['ph'=>json_encode(['ph'=>$_GET['ph'],'suhu'=>$_GET['suhu'],'Kelembapan'=>$_GET['Kelembapan']])]);
 
     return response()->json(['message'=>'berhasil'], 200);
-
-    // DB::table('lands')->where('id',1)->update(['ph'=>json_encode(['ph'=>$_GET['ph'],'suhu'=>$_GET['suhu'],'Kelembapan'=>$_GET['Kelembapan']])]);
 
 });
 

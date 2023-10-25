@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\User;
+use DataTables;
 
-class ProductController extends Controller
+class UserController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Product::all();
+            $data = User::all();
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
@@ -32,12 +33,12 @@ class ProductController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('admin.product.index');
+        return view('admin.user.index');
     }
 
     public function store(Request $request)
     {
-        Product::create([
+        User::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
             'wide' => $request->luas
@@ -47,7 +48,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        Product::create([
+        User::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
             'wide' => $request->luas
@@ -57,7 +58,7 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $land = Product::findOrFail($id);
+        $land = User::findOrFail($id);
         if ($land->file_materi) {
             $filePath = Storage::disk('public')->path('land/' . $land->file_materi);
             File::delete($filePath);

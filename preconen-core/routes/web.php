@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ForecastController,DashboardController,ComodityController,LandController,PlantingPlanningController};
+use App\Http\Controllers\{UserController,ForecastController,DashboardController,ProductController,ComodityController,LandController,PlantingPlanningController};
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,11 @@ Route::get('/forecast', [ForecastController::class,'index']);
 Route::get('/scratch', [ForecastController::class,'scratch']);
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/', function () {
+        return view('admin.index');
+    });
     Route::prefix('comodity')->group(function () {
         Route::get('/', [ComodityController::class,'index'])->name('comodity.index');
         Route::get('/create', [ComodityController::class,'create'])->name('comodity.create');
@@ -48,7 +52,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
         Route::patch('/update/{id}', [ProductController::class,'update'])->name('product.update');
         Route::delete('/delete/{id}', [ProductController::class,'destroy'])->name('product.delete');
-        Route::get('/download/{id}', [ProductController::class,'download'])->name('product.download');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class,'index'])->name('user.index');
+        Route::get('/create', [UserController::class,'create'])->name('user.create');
+        Route::post('/store', [UserController::class,'store'])->name('user.store');
+        Route::get('/edit/{id}', [UserController::class,'edit'])->name('user.edit');
+        Route::patch('/update/{id}', [UserController::class,'update'])->name('user.update');
+        Route::delete('/delete/{id}', [UserController::class,'destroy'])->name('user.delete');
     });
     // Route::prefix('land')->group(function () {
     //     Route::get('/', [LandController::class,'index'])->name('land.index');

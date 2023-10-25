@@ -15,6 +15,7 @@
     <link href="{{ url('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ url('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
+
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="{{ url('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
@@ -49,6 +50,36 @@
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.comodity.index') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-regular fa-seedling"></i>
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+                        <span class="nav-link-text ms-1">Comodity</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.product.index') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Product</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.user.index') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">User</span>
                     </a>
                 </li>
 
