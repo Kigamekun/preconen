@@ -52,8 +52,9 @@
                             <td>{{ ucwords($item->comodity_name) }}</td>
                             <td>{{ Carbon::createFromFormat('Y-m-d', $item->start_from)->format('d-m-Y') }} -
                                 {{ Carbon::createFromFormat('Y-m-d', $item->end_at)->format('d-m-Y') }}</td>
-                            <td>{{ number_format($item->potential_results_min * 1000, 0, ',', '.') }} -
-                                {{ number_format($item->potential_results_max * 1000, 0, ',', '.') }}</td>
+                            <td>{{ number_format(($item->potential_results_min * 1000 * $item->area) / 10000, 0, ',', '.') }} -
+                                {{ number_format(($item->potential_results_max * 1000 * $item->area) / 10000, 0, ',', '.') }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
