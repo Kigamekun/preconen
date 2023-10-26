@@ -32,7 +32,7 @@
         <div class="jumbotron relative mb-4">
             <img src="{{ asset('img/jumbotron.bg.png') }}" alt="" class="w-full">
             <div class="absolute inset-0 text-white p-12">
-                <div class="flex justify-center items-start h-full flex-wrap flex-col">
+                <div class="flex justify-center items-start h-full flex-wrap flex-col w-10/12 mx-auto">
                     <h2 class="text-5xl font-semibold mb-4 drop-shadow-md">Prediksi Cuaca <br>dan Komoditas Panen</h2>
                     <a href="{{ route('register') }} "
                         class="btn px-7 py-4 text-4xl h-min bg-[#495E57] bg-opacity-75 text-white normal-case font-bold border-0 hover:text-slate-500">Join
