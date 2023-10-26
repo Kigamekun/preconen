@@ -53,12 +53,12 @@ class PlantingPlanningController extends Controller
         $foundData;
 
         $date = Carbon::now()->toDateString('Y-m-d');
-        $date = '2023-11-01';
         foreach ($forecast as $item) {
             if (isset($item['date']) && Str::startsWith($item['date'], $date)) {
                 $foundData = $item;
             }
         }
+
 
         $client = new \GuzzleHttp\Client();
         $response = $client->post('http://127.0.0.1:5000', [
@@ -79,6 +79,7 @@ class PlantingPlanningController extends Controller
                 //     'name' => 'rainfall',
                 //     'contents' => '195'
                 // ]
+
                 [
                     'name' => 'temperature',
                     'contents' => $foundData['temp']['day'] - 273.15
@@ -89,7 +90,7 @@ class PlantingPlanningController extends Controller
                 ],
                 [
                     'name' => 'ph',
-                    'contents' => '7.401589798'
+                    'contents' => '7'
                 ],
                 [
                     'name' => 'rainfall',

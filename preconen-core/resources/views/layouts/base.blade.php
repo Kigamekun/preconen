@@ -66,7 +66,6 @@
     </style>
     <div class="flex h-full items-stretch" x-data="{ isSidebarExpanded: true, active: '' }">
         <div>
-
         </div>
         @include('components.sidebar-new')
         <div class="flex-1 flex flex-col">

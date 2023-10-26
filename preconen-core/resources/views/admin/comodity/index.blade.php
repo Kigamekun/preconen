@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container px-5 m-i">
+    <div class=" px-5 m-i">
 
 
 
@@ -32,6 +32,8 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Aksi</th>
+                                                <th>Thumbnail</th>
+
                                                 <th>Name</th>
                                                 <th>Latin</th>
                                                 <th>Code</th>
@@ -46,7 +48,6 @@
                                                 <th>Umur Panen</th>
                                                 <th>Potential Results Max</th>
                                                 <th>Potential Results Min</th>
-                                                <th>Thumbnail</th>
                                             </tr>
                                         </thead>
 
@@ -90,7 +91,7 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Buat Comodity</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.comodity.store') }}" method="post">
+                <form action="{{ route('admin.comodity.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -151,7 +152,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="thumb">Thumbnail</label>
-                            <input type="text" class="form-control" id="thumb" name="thumb" placeholder="Enter Thumbnail">
+                            <input type="file" class="form-control" id="thumb" name="thumb" placeholder="Enter Thumbnail">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -182,7 +183,15 @@
 {
     data: 'action',
     name: 'action',
-    searchable: false
+    searchable: false,
+    orderable:false
+},
+{
+    data: 'thumb',
+    name: 'thumb',
+    searchable: false,
+    orderable:false
+
 },
 {
     data: 'name',
@@ -239,11 +248,8 @@
 {
     data: 'potential_results_min',
     name: 'potential_results_min'
-},
-{
-    data: 'thumb',
-    name: 'thumb'
 }
+
 
                 ]
             });
@@ -255,47 +261,71 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Comodity</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="${$(e.relatedTarget).data('url')}" method="post">
+            <form action="${$(e.relatedTarget).data('url')}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
                 <div class="modal-body">
-                    <div class="mb-3">
-                            <label for="name">name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="name" value="${$(e.relatedTarget).data('name')}" name="name"
-                                placeholder="Masukan Kalimat" required>
-                        </div>
 
                         <div class="mb-3">
-                            <label for="latin">latin <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="latin" value="${$(e.relatedTarget).data('latin')}" name="latin"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="code">Code <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="code" name="code" value="${$(e.relatedTarget).data('code')}" placeholder="Enter Code" required>
                         </div>
                         <div class="mb-3">
-                            <label for="temp">temp <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="temp" value="${$(e.relatedTarget).data('temp')}" name="temp"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="name">Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="name" name="name" value="${$(e.relatedTarget).data('name')}" placeholder="Enter Name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="ph">ph <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="ph" value="${$(e.relatedTarget).data('ph')}" name="ph"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="latin">Latin <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="latin" name="latin" value="${$(e.relatedTarget).data('latin')}" placeholder="Enter Latin" required>
                         </div>
                         <div class="mb-3">
-                            <label for="planting_distance">planting_distance <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="planting_distance" value="${$(e.relatedTarget).data('planting_distance')}" name="planting_distance"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="ph_max">pH Max <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="ph_max" name="ph_max" value="${$(e.relatedTarget).data('ph_max')}" placeholder="Enter pH Max" required>
                         </div>
                         <div class="mb-3">
-                            <label for="fertilizer_dose">fertilizer_dose <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="fertilizer_dose" value="${$(e.relatedTarget).data('fertilizer_dose')}" name="fertilizer_dose"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="ph_min">pH Min <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="ph_min" name="ph_min" value="${$(e.relatedTarget).data('ph_min')}" placeholder="Enter pH Min" required>
                         </div>
-
                         <div class="mb-3">
-                            <label for="potential_results">potential_results <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="potential_results" value="${$(e.relatedTarget).data('potential_results')}" name="potential_results"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="ph_optimal">pH Optimal <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="ph_optimal" name="ph_optimal" value="${$(e.relatedTarget).data('ph_optimal')}" placeholder="Enter pH Optimal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="temp_max">Temperature Max <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="temp_max" name="temp_max" value="${$(e.relatedTarget).data('temp_max')}" placeholder="Enter Temperature Max" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="temp_min">Temperature Min <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="temp_min" name="temp_min" value="${$(e.relatedTarget).data('temp_min')}" placeholder="Enter Temperature Min" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="humidity_max">Humidity Max <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="humidity_max" name="humidity_max" value="${$(e.relatedTarget).data('humidity_max')}" placeholder="Enter Humidity Max" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="humidity_min">Humidity Min <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="humidity_min" name="humidity_min" value="${$(e.relatedTarget).data('humidity_min')}" placeholder="Enter Humidity Min" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="planting_distance">Planting Distance <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="planting_distance" name="planting_distance" value="${$(e.relatedTarget).data('planting_distance')}" placeholder="Enter Planting Distance" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="umur_panen">Umur Panen <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="umur_panen" name="umur_panen" value="${$(e.relatedTarget).data('umur_panen')}" placeholder="Enter Umur Panen" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="potential_results_max">Potential Results Max <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="potential_results_max" name="potential_results_max" value="${$(e.relatedTarget).data('potential_results_max')}" placeholder="Enter Potential Results Max" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="potential_results_min">Potential Results Min <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="potential_results_min" name="potential_results_min" value="${$(e.relatedTarget).data('potential_results_min')}" placeholder="Enter Potential Results Min" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="thumb">Thumbnail</label>
+                            <input type="file" class="form-control" id="thumb" name="thumb" placeholder="Enter Thumbnail">
                         </div>
                 </div>
                 <div class="modal-footer">
