@@ -55,7 +55,7 @@
                             @csrf
 
                             <button type="submit"
-                                class="border-b mb-1 hover:underline hover:cursor-pointer w-full text-left">Logout</button>
+                                class="border-b mb-1 hover:underline hover:cursor-pointer w-full text-left ">Logout</button>
                             {{-- <li class="">Log Out</li> --}}
                         </form>
                     </ul>
@@ -82,10 +82,14 @@
                         <li class="border-b mb-3 ">
                             <p class="text-sm">Alamat</p>
                             <p class="mb-4">{{ Auth::user()->phone }}</p>
-                            <iframe class="w-4/5 mx-auto aspect-video rounded-lg" frameborder="0" scrolling="no"
+                            <iframe class="w-4/5 mx-auto aspect-video rounded-lg mb-2" frameborder="0" scrolling="no"
                                 marginheight="0" marginwidth="0"
                                 src="https://maps.google.com/maps?q={{ Auth::user()->lat }},{{ Auth::user()->long }}&hl=es;z=14&amp;output=embed">
                             </iframe>
+                            <div class="w-4/5 mx-auto">
+
+                                <button class="btn bg-[#495E57] text-white w-full mx-auto">Set Lokasi</button>
+                            </div>
 
                         </li>
                     </ul>
