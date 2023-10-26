@@ -1,42 +1,53 @@
+from flask import Flask, render_template, request, jsonify
 import numpy as np
-import seaborn as sns
 import pandas as pd
-import matplotlib.pyplot as plt
-sns.set_style('darkgrid')
-from sklearn.model_selection import train_test_split ,GridSearchCV
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning)
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
 
-crop = pd.read_csv("./Crop_recommendation.csv")
-# crop.head(5)
-crop.describe()
-crop.apply(lambda x: len(x.isnull()))
-assert crop.isnull().sum().sum() == 0
-crop.drop_duplicates(inplace= True)
-assert crop.duplicated().sum() == 0
-crop.apply(lambda x: len(x.unique()))
-print(crop['label'].unique())
+app = Flask(__name__)
 
-crop.info()
+crop = pd.read_csv("./data_komoditas.csv")
+crop.drop_duplicates(inplace=True)
 
-# plt.figure(figsize=(18,10))
-# sns.boxplot(x="temperature", y="label", data=crop,
-#             whis=[0, 100], width=.6 , orient="h")
-# plt.show()
-
-x = crop.drop(['label'], axis = 1)
+x = crop.drop(['label'], axis=1)
 y = crop['label']
 
-X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.20,shuffle = True, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.20, shuffle=True, random_state=0)
 
-kn_classifier = KNeighborsClassifier()
-kn_classifier.fit(X_train,y_train)
+param_grid = {
+    'n_estimators': [100, 200, 300],
+    'max_depth': [None, 5, 10],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
 
-print('Training set score: {:.4f}'.format(kn_classifier.score(X_train, y_train)))
-print('Test set score: {:.4f}'.format(kn_classifier.score(X_test, y_test)))
+rf = RandomForestClassifier(random_state=0)
+grid_search = GridSearchCV(rf, param_grid, cv=5)
+grid_search.fit(X_train, y_train)
 
-newdata=kn_classifier.predict([[60,55,44,23.004459,82.320763,7.840207,	263.964248]])
+print('Best parameters:', grid_search.best_params_)
+print('Training set score: {:.4f}'.format(grid_search.best_score_))
+print('Test set score: {:.4f}'.format(grid_search.score(X_test, y_test)))
+print('Classification report:')
+print(classification_report(y_test, grid_search.predict(X_test)))
 
-print(newdata)
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        data = np.array([
+            float(request.form['temperature']),
+            float(request.form['humidity']),
+            float(request.form['ph']),
+            float(request.form['rainfall'])
+        ]).reshape(1, -1)
+        prediction = grid_search.predict(data)
+        probabilities = grid_search.predict_proba(data)
+        top_3_indices = probabilities.argsort()[0][::-1][:3]
+        top_3_commodities = [grid_search.classes_[idx] for idx in top_3_indices]
+        top_3_probabilities = [probabilities[0][idx] for idx in top_3_indices]
+        response = {"commodities": top_3_commodities, "probabilities": top_3_probabilities}
+        return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(debug=True)

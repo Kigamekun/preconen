@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('styles')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 @endsection
 
 @section('content')
@@ -32,8 +32,10 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Aksi</th>
+                                                <th>Thumb</th>
                                                 <th>Name</th>
-                                                <th>Latin</th>
+                                                <th>Stock</th>
+                                                <th>Price</th>
                                             </tr>
                                         </thead>
 
@@ -77,69 +79,31 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Buat Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.product.store') }}" method="post">
+                <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="code">Code <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="code" name="code" placeholder="Enter Code" required>
-                        </div>
-                        <div class="mb-3">
                             <label for="name">Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="name" name="name" placeholder="Enter Name" required>
+                            <input type="text" class="form-control form-require" id="name" name="name"
+                                placeholder="Enter Name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="latin">Latin <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="latin" name="latin" placeholder="Enter Latin" required>
+                            <label for="stock">Stock <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="stock" name="stock"
+                                placeholder="Enter Stock" required>
                         </div>
                         <div class="mb-3">
-                            <label for="ph_max">pH Max <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="ph_max" name="ph_max" placeholder="Enter pH Max" required>
+                            <label for="price">Price <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="price" name="price"
+                                placeholder="Enter Latin" required>
                         </div>
                         <div class="mb-3">
-                            <label for="ph_min">pH Min <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="ph_min" name="ph_min" placeholder="Enter pH Min" required>
+                            <label for="price">Thumb <span class="text-danger">*</span></label>
+                            <input type="file" class="form-control form-require" id="thumb" name="thumb"
+                                placeholder="Enter Latin" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="ph_optimal">pH Optimal <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="ph_optimal" name="ph_optimal" placeholder="Enter pH Optimal" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="temp_max">Temperature Max <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="temp_max" name="temp_max" placeholder="Enter Temperature Max" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="temp_min">Temperature Min <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="temp_min" name="temp_min" placeholder="Enter Temperature Min" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="humidity_max">Humidity Max <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="humidity_max" name="humidity_max" placeholder="Enter Humidity Max" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="humidity_min">Humidity Min <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="humidity_min" name="humidity_min" placeholder="Enter Humidity Min" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="planting_distance">Planting Distance <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="planting_distance" name="planting_distance" placeholder="Enter Planting Distance" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="umur_panen">Umur Panen <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="umur_panen" name="umur_panen" placeholder="Enter Umur Panen" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="potential_results_max">Potential Results Max <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="potential_results_max" name="potential_results_max" placeholder="Enter Potential Results Max" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="potential_results_min">Potential Results Min <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="potential_results_min" name="potential_results_min" placeholder="Enter Potential Results Min" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="thumb">Thumbnail</label>
-                            <input type="text" class="form-control" id="thumb" name="thumb" placeholder="Enter Thumbnail">
-                        </div>
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -160,77 +124,34 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('admin.product.index') }}",
-                columns: [
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        searchable: false
+                    },
                     {
-    data: 'DT_RowIndex',
-    name: 'DT_RowIndex',
-    searchable: false
-},
-{
-    data: 'action',
-    name: 'action',
-    searchable: false
-},
-{
-    data: 'name',
-    name: 'name'
-},
-{
-    data: 'latin',
-    name: 'latin'
-},
-{
-    data: 'code',
-    name: 'code'
-},
-{
-    data: 'ph_max',
-    name: 'ph_max'
-},
-{
-    data: 'ph_min',
-    name: 'ph_min'
-},
-{
-    data: 'ph_optimal',
-    name: 'ph_optimal'
-},
-{
-    data: 'temp_max',
-    name: 'temp_max'
-},
-{
-    data: 'temp_min',
-    name: 'temp_min'
-},
-{
-    data: 'humidity_max',
-    name: 'humidity_max'
-},
-{
-    data: 'humidity_min',
-    name: 'humidity_min'
-},
-{
-    data: 'planting_distance',
-    name: 'planting_distance'
-},
-{
-    data: 'umur_panen',
-    name: 'umur_panen'
-},
-{
-    data: 'potential_results_max',
-    name: 'potential_results_max'
-},
-{
-    data: 'potential_results_min',
-    name: 'potential_results_min'
-},
-{
-    data: 'thumb',
-    name: 'thumb'
-}
+                        data: 'action',
+                        name: 'action',
+                        searchable: false
+                    },
+                    {
+                        data: 'thumb',
+                        name: 'thumb'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+
+                    {
+                        data: 'stock',
+                        name: 'stock'
+                    },
+                    {
+                        data: 'price',
+                        name: 'price'
+                    },
+
 
                 ]
             });
@@ -242,47 +163,30 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="${$(e.relatedTarget).data('url')}" method="post">
+            <form action="${$(e.relatedTarget).data('url')}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
                 <div class="modal-body">
                     <div class="mb-3">
-                            <label for="name">name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="name" value="${$(e.relatedTarget).data('name')}" name="name"
-                                placeholder="Masukan Kalimat" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="latin">latin <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="latin" value="${$(e.relatedTarget).data('latin')}" name="latin"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="name">Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="name" name="name"
+                                placeholder="Enter Name" value="${$(e.relatedTarget).data('name')}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="temp">temp <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="temp" value="${$(e.relatedTarget).data('temp')}" name="temp"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="stock">Stock <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" id="stock" name="stock"
+                                placeholder="Enter Stock" value="${$(e.relatedTarget).data('stock')}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="ph">ph <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="ph" value="${$(e.relatedTarget).data('ph')}" name="ph"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="price">Price <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-require" value="${$(e.relatedTarget).data('price')}" id="price" name="price"
+                                placeholder="Enter Latin" required>
                         </div>
                         <div class="mb-3">
-                            <label for="planting_distance">planting_distance <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="planting_distance" value="${$(e.relatedTarget).data('planting_distance')}" name="planting_distance"
-                                placeholder="Masukan Kalimat" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fertilizer_dose">fertilizer_dose <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="fertilizer_dose" value="${$(e.relatedTarget).data('fertilizer_dose')}" name="fertilizer_dose"
-                                placeholder="Masukan Kalimat" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="potential_results">potential_results <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-require" id="potential_results" value="${$(e.relatedTarget).data('potential_results')}" name="potential_results"
-                                placeholder="Masukan Kalimat" required>
+                            <label for="price">Thumb <span class="text-danger">*</span></label>
+                            <input type="file" class="form-control form-require" id="thumb" name="thumb"
+                                placeholder="Enter Latin" required>
                         </div>
                 </div>
                 <div class="modal-footer">

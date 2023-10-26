@@ -61,7 +61,7 @@
                                 <h2
                                     style="color: #495E57;text-align: center;font-size: 42px;font-style: normal;font-weight: 600;line-height: normal;letter-spacing: 3.2px;
                         ">
-                                    {{ $comodity->name }}</h2>
+                                    {{ ucwords($comodity->name) }}</h2>
                             </center>
                             <div class="flex gap-5 justify-center flex-wrap mt-5">
                                 <div class="card w-80 ">

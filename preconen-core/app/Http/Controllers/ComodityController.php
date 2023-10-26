@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comodity;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ComodityController extends Controller
 {
@@ -14,6 +16,10 @@ class ComodityController extends Controller
             $data = Comodity::whereNull('deleted_at')->get();
             return DataTables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('thumb', function ($row) {
+                        return '<img src="' . asset('storage/comodities/' . $row->thumb) . '" style="border-radius: 15px;width:170px" alt="">';
+
+                    })
                     ->addColumn('action', function ($row) {
                         $btn = '
                         <div>
@@ -41,7 +47,7 @@ class ComodityController extends Controller
                             <form id="deleteForm" action="' . route('admin.comodity.delete', ['id' => $row->id]) . '" method="POST">
                             ' . csrf_field() . '
                             ' . method_field('DELETE') . '
-                                <button type="button" title="DELETE" class="btn btn-sm btn-biru btn-delete" onclick="confirmDelete(event)">
+                                <button type="submit" title="DELETE" class="btn btn-sm btn-biru btn-delete" >
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
@@ -49,7 +55,7 @@ class ComodityController extends Controller
                         return $btn;
                     })
 
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','thumb'])
                     ->make(true);
         }
         return view('admin.comodity.index');
@@ -57,36 +63,48 @@ class ComodityController extends Controller
 
 
 
-    public function store(CreateComodityRequest $request)
+    public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'file_materi' => 'required|file|mimes:pdf|max:30720',
-        // ]);
+        if ($request->hasFile('thumb')) {
+            $file = $request->file('thumb');
+            $filename = time() . '-' . $file->getClientOriginalName();
+            Storage::disk('public')->put('comodities/' . $filename, file_get_contents($file));
+            DB::table('comodities')->insert([
+                'name' => $request->input('name'),
+                'latin' => $request->input('latin'),
+                'code' => $request->input('code'),
+                'ph_max' => $request->input('ph_max'),
+                'ph_min' => $request->input('ph_min'),
+                'ph_optimal' => $request->input('ph_optimal'),
+                'temp_max' => $request->input('temp_max'),
+                'temp_min' => $request->input('temp_min'),
+                'humidity_max' => $request->input('humidity_max'),
+                'humidity_min' => $request->input('humidity_min'),
+                'planting_distance' => $request->input('planting_distance'),
+                'umur_panen' => $request->input('umur_panen'),
+                'potential_results_max' => $request->input('potential_results_max'),
+                'potential_results_min' => $request->input('potential_results_min'),
+                'thumb' => $filename
+            ]);
+        } else {
+            DB::table('comodities')->insert([
+                'name' => $request->input('name'),
+                'latin' => $request->input('latin'),
+                'code' => $request->input('code'),
+                'ph_max' => $request->input('ph_max'),
+                'ph_min' => $request->input('ph_min'),
+                'ph_optimal' => $request->input('ph_optimal'),
+                'temp_max' => $request->input('temp_max'),
+                'temp_min' => $request->input('temp_min'),
+                'humidity_max' => $request->input('humidity_max'),
+                'humidity_min' => $request->input('humidity_min'),
+                'planting_distance' => $request->input('planting_distance'),
+                'umur_panen' => $request->input('umur_panen'),
+                'potential_results_max' => $request->input('potential_results_max'),
+                'potential_results_min' => $request->input('potential_results_min'),
+            ]);
+        }
 
-        // $file = $request->file('file_materi');
-        // $filename = time() . '-' . $file->getClientOriginalName();
-        // Storage::disk('public')->put('comodity/' . $filename, file_get_contents($file));
-
-        // $data = $request->validated();
-        // $data['file_materi'] = $filename;
-
-        Comodity::create([
-        'name' => $request->input('name'),
-        'latin' => $request->input('latin'),
-        'code' => $request->input('code'),
-        'ph_max' => $request->input('ph_max'),
-        'ph_min' => $request->input('ph_min'),
-        'ph_optimal' => $request->input('ph_optimal'),
-        'temp_max' => $request->input('temp_max'),
-        'temp_min' => $request->input('temp_min'),
-        'humidity_max' => $request->input('humidity_max'),
-        'humidity_min' => $request->input('humidity_min'),
-        'planting_distance' => $request->input('planting_distance'),
-        'umur_panen' => $request->input('umur_panen'),
-        'potential_results_max' => $request->input('potential_results_max'),
-        'potential_results_min' => $request->input('potential_results_min'),
-        'thumb' => $request->input('thumb')
-    ]);
         return redirect()->back()->with(['message' => 'Lahan berhasil ditambahkan','status' => 'success']);
     }
 

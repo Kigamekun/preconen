@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ url('assets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ url('assets/img/favicon.png') }}">
     <title>
-        Argon Dashboard 2 by Creative Tim
+        Preconen admin dashboard
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -26,6 +26,16 @@
 
 </head>
 
+<style>
+    .bg-primary {
+        background: #495e57 !important;
+    }
+    .btn-primary {
+        background: white !important;
+        color: #495e57 !important
+    }
+</style>
+
 <body class="g-sidenav-show   bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <aside
@@ -36,15 +46,15 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
                 target="_blank">
-                <img src="{{ url('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold">Argon Dashboard 2</span>
+                <img src="{{ url('/img/preconen-logo.svg') }}" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-2 mt-3 font-weight-bold">Preconen</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="./pages/dashboard.html">
+                    <a class="nav-link active" href="/admin">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -68,7 +78,6 @@
                     <a class="nav-link" href="{{ route('admin.product.index') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Product</span>
                     </a>
@@ -77,7 +86,6 @@
                     <a class="nav-link" href="{{ route('admin.user.index') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">User</span>
                     </a>
@@ -99,13 +107,7 @@
                     <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search"
-                                    aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" placeholder="Type here...">
-                        </div>
-                    </div>
+{{--
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
@@ -210,7 +212,7 @@
                                         </div>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </li>
                     </ul>
                 </div>
@@ -323,6 +325,35 @@
     <script src="{{ url('assets/js/argon-dashboard.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
+    @if (!is_null(Session::get('message')))
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: @json(Session::get('status')),
+                title: @json(Session::get('status')),
+                html: @json(Session::get('message')),
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+    @if (!empty($errors->all()))
+        <script>
+            var err = @json($errors->all());
+            var txt = '';
+            Object.keys(err).forEach(element => {
+                txt += err[element] + '<br>';
+            });
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Error',
+                html: txt,
+                showConfirmButton: false,
+                timer: 4000
+            })
+        </script>
+    @endif
     @yield('scripts')
 </body>
 
