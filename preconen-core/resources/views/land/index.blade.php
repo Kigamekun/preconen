@@ -8,7 +8,7 @@
 @endsection
 @section('content')
     <div class="mt-10 mb-40 min-w-full">
-        <h1 class="text-[#495E57] text-5xl font-bold">Lahan Saya</h1>
+        <h1 class="text-[#495E57] text-5xl font-extrabold">Lahan Saya</h1>
         <div class="text-sm breadcrumbs mb-8">
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>

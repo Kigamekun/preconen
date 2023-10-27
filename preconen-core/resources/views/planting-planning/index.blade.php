@@ -8,7 +8,7 @@
 @endsection
 @section('content')
     <div class="mx-auto mt-10 mb-10">
-        <h1 class="text-[#495E57] text-5xl font-bold">Rencana Tanam</h1>
+        <h1 class="text-[#495E57] text-5xl font-extrabold">Rencana Tanam</h1>
         <div class="text-sm breadcrumbs mb-8">
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -52,7 +52,8 @@
                             <td>{{ ucwords($item->comodity_name) }}</td>
                             <td>{{ Carbon::createFromFormat('Y-m-d', $item->start_from)->format('d-m-Y') }} -
                                 {{ Carbon::createFromFormat('Y-m-d', $item->end_at)->format('d-m-Y') }}</td>
-                            <td>{{ number_format(($item->potential_results_min * 1000 * $item->area) / 10000, 0, ',', '.') }} -
+                            <td>{{ number_format(($item->potential_results_min * 1000 * $item->area) / 10000, 0, ',', '.') }}
+                                -
                                 {{ number_format(($item->potential_results_max * 1000 * $item->area) / 10000, 0, ',', '.') }}
                             </td>
                         </tr>

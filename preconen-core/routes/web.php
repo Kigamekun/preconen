@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{UserController,ForecastController,DashboardController,ProductController,ComodityController,LandController,PlantingPlanningController};
+use App\Http\Controllers\{UserController,ForecastController,DashboardController,ProductController,ComodityController,LandController,PlantingPlanningController,SupplyController,MarketController};
 
 /*
 |--------------------------------------------------------------------------
@@ -97,8 +97,11 @@ Route::prefix('land')->middleware('auth')->group(function () {
 
 
 Route::prefix('supplies')->group(function () {
-    Route::get('/', [LandController::class,'index'])->name('supplies.index');
+    Route::get('/', [SupplyController::class,'index'])->name('supplies.index');
 });
 
+Route::prefix('market')->group(function () {
+    Route::get('/', [MarketController::class,'index'])->name('market.index');
+});
 
 require __DIR__ . '/auth.php';

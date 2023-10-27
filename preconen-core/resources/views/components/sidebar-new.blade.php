@@ -51,7 +51,7 @@
             </a>
 
 
-            <a href="#"
+            <a href="{{ route('market.index') }}"
                 class="flex items-center h-10 px-3  rounded-lg transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline  {{ $active == 'market' ? 'text-[#495E57] bg-white' : 'text-white bg-[#495E57] hover:bg-white hover:bg-opacity-75' }}">
                 <img class=" max-h-full aspect-square" :class="isSidebarExpanded ? 'p-1' : ''"
                     src="{{ asset('img/nav.market' . ($active == 'market' ? '' : '.white') . '.svg') }}" alt=""

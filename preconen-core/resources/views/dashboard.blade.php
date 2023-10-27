@@ -84,7 +84,8 @@
                 <p class="text-center text-2xl font-bold mb-4">Kecepatan Angin</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/wind')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> {{ $forecast[0]['speed'] }} km/h</p>
+                    <p class="text-4xl text-slate-500 font-bold">
+                        {{ isset($forecast[0]['speed']) ? $forecast[0]['speed'] : 0 }} km/h</p>
                 </div>
             </div>
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
@@ -93,7 +94,8 @@
                 <p class="text-center text-2xl font-bold mb-4 ">Kemungkinan Hujan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/rain')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> {{ $forecast[0]['rain'] }}%</p>
+                    <p class="text-4xl text-slate-500 font-bold">
+                        {{ isset($forecast[0]['rain']) ? $forecast[0]['rain'] : 0 }}%</p>
                 </div>
             </div>
             <div class="bg-white h-42 rounded-lg p-4 flex-col items-center"
@@ -102,7 +104,8 @@
                 <p class="text-center text-2xl font-bold mb-4">Tutupan Awan</p>
                 <div class="flex flex-1 justify-center items-center">
                     <div class="h-12 w-12 mx-2">@include('icons/cloud')</div>
-                    <p class="text-4xl text-slate-500 font-bold"> {{ $forecast[0]['clouds'] }}%</p>
+                    <p class="text-4xl text-slate-500 font-bold">
+                        {{ isset($forecast[0]['clouds']) ? $forecast[0]['clouds'] : 0 }}%</p>
                 </div>
             </div>
         </div>

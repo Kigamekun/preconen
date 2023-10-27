@@ -1,9 +1,10 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="max-w-7xl w-11/12 p-4 mx-auto">
+    <div class="mx-auto mt-10 mb-10 text-[#495E57]">
+        <h2 class="text-5xl font-extrabold mt-6 mb-8">Suplai Komoditas</h2>
         <div class="flex justify-between text-[#495E57] mb-3">
-            <h1 class="text-4xl  font-semibold flex-1">Warung Preconen</h1>
+
             <button class="btn btn-ghost text-xl normal-case"><img src="{{ asset('img/chat.icon.svg') }}" alt=""
                     class="mr-2 h-6">Pesan</button>
             <button class="btn btn-ghost text-xl normal-case"><img src="{{ asset('img/cart.icon.svg') }}" alt=""

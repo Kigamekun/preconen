@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Hash;
 class MarketController extends Controller
 {
 
+    public function index(){
+        return view('market.index');
+    }
+
     public function clean($string) {
         $string = str_replace(' ', '-', $string);
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
