@@ -81,14 +81,14 @@
                         </li>
                         <li class="border-b mb-3 ">
                             <p class="text-sm">Alamat</p>
-                            <p class="mb-4">{{ Auth::user()->phone }}</p>
+                            <p class="mb-4">{{ Auth::user()->alamat }}</p>
                             <iframe class="w-4/5 mx-auto aspect-video rounded-lg mb-2" frameborder="0" scrolling="no"
                                 marginheight="0" marginwidth="0"
                                 src="https://maps.google.com/maps?q={{ Auth::user()->lat }},{{ Auth::user()->long }}&hl=es;z=14&amp;output=embed">
                             </iframe>
                             <div class="w-4/5 mx-auto">
 
-                                <button class="btn bg-[#495E57] text-white w-full mx-auto">Set Lokasi</button>
+                                <button onclick="getP()" class="btn bg-[#495E57] text-white w-full mx-auto">Set Lokasi</button>
                             </div>
 
                         </li>
@@ -101,4 +101,54 @@
         @include('profile.contact-us')
 
     </div>
+@endsection
+
+
+@section('scripts')
+    <script>
+        function getP() {
+            Swal.fire({
+                title: 'Set data longitude latitude',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    getLocation();
+                    Swal.fire(
+                        'Success!',
+                        'Longitude latitude anda telah ditetapkan.',
+                        'success'
+                    )
+                }
+            })
+
+
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+
+            let currentURL = window.location.href;
+
+            let newParameter = `lat=${position.coords.latitude}&long=${position.coords.longitude}`;
+
+            if (currentURL.includes('?')) {
+                currentURL = currentURL + '&' + newParameter;
+            } else {
+                currentURL = currentURL + '?' + newParameter;
+            }
+
+            window.location.href = currentURL;
+        }
+    </script>
 @endsection

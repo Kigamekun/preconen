@@ -103,10 +103,10 @@
                             <label for="email">Role <span class="text-danger">*</span></label>
                             <select name="role" id="role" class="form-select">
                                 <option value="" selected>Pilih role</option>
-                                <option value="admin" >admin</option>
+                                <option value="admin">admin</option>
 
-                                <option value="farmer" >farmer</option>
-                                <option value="consumer" >consumer</option>
+                                <option value="farmer">farmer</option>
+                                <option value="consumer">consumer</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -140,8 +140,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('admin.user.index') }}",
-                columns: [
-                    {
+                columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
                         searchable: false
@@ -236,4 +235,6 @@
             $('#modal-content').html(html);
         });
     </script>
+
+
 @endsection
