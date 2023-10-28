@@ -41,12 +41,12 @@
         <h3 class="text-2xl font-bold mb-5">Terlaris</h3>
         <div class="grid grid-cols-6 gap-5 mb-8">
             @for ($i = 0; $i < 6; $i++)
-                <div class=" h-72 bg-[#495E57] rounded-lg text-white">
-                    <img src="{{ asset('storage/comodities/' . 'jagung.jpg') }}" alt="Gambar"
-                        class="w-full h-full object-cover rounded-lg rounded-b-0 h-40">
+                <div class="  bg-[#495E57] rounded-lg text-white">
+                    <img src="{{ asset('storage/products/' . 'pupuk.jpg') }}" alt="Gambar"
+                        style="height: 200px" class="w-full h-full object-cover rounded-lg rounded-b-0 ">
                     <div class="p-5 text-lg">
 
-                        <p class="font-semibold">Benih Jagung Manis</p>
+                        <p class="font-semibold">Pupuk</p>
                         <p>Rp. 50.000</p>
                         <p class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-star-fill mr-3" viewBox="0 0 16 16">
@@ -64,7 +64,7 @@
         </div> --}}
         <h3 class="text-2xl font-bold mb-5">Direkomendasikan untuk anda</h3>
         <div class="grid grid-cols-6 gap-5 mb-8">
-            @for ($i = 0; $i < 20; $i++)
+            @for ($i = 0; $i < 3; $i++)
                 <div class=" h-72 bg-[#495E57] rounded-lg text-white">
                     <img src="{{ asset('storage/comodities/' . 'jagung.jpg') }}" alt="Gambar"
                         class="w-full h-full object-cover rounded-lg rounded-b-0 h-40">
@@ -79,6 +79,80 @@
                             </svg> 4.5</p>
                     </div>
                 </div>
+                <div class=" h-72 bg-[#495E57] rounded-lg text-white">
+                    <img src="{{ asset('storage/comodities/' . 'tomat.jpg') }}" alt="Gambar"
+                        class="w-full h-full object-cover rounded-lg rounded-b-0 h-40">
+                    <div class="p-5 text-lg">
+
+                        <p class="font-semibold">Benih Tomat</p>
+                        <p>Rp. 50.000</p>
+                        <p class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-star-fill mr-3" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg> 4.5</p>
+                    </div>
+                </div>
+                <div class=" h-72 bg-[#495E57] rounded-lg text-white">
+                    <img src="{{ asset('storage/comodities/' . 'bawangmerah.jpg') }}" alt="Gambar"
+                        class="w-full h-full object-cover rounded-lg rounded-b-0 h-40">
+                    <div class="p-5 text-lg">
+
+                        <p class="font-semibold">Benih Bawang Merah</p>
+                        <p>Rp. 50.000</p>
+                        <p class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-star-fill mr-3" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg> 4.5</p>
+                    </div>
+                </div>
+                <div class=" h-72 bg-[#495E57] rounded-lg text-white">
+                    <img src="{{ asset('storage/comodities/' . 'bawangputih.jpg') }}" alt="Gambar"
+                        class="w-full h-full object-cover rounded-lg rounded-b-0 h-40">
+                    <div class="p-5 text-lg">
+
+                        <p class="font-semibold">Benih Bawang Putih</p>
+                        <p>Rp. 50.000</p>
+                        <p class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-star-fill mr-3" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg> 4.5</p>
+                    </div>
+                </div>
+
+                <div class=" h-72 bg-[#495E57] rounded-lg text-white">
+                    <img src="{{ asset('storage/comodities/' . 'cabebesar.svg') }}" alt="Gambar"
+                        class="w-full h-full object-cover rounded-lg rounded-b-0 h-40">
+                    <div class="p-5 text-lg">
+
+                        <p class="font-semibold">Benih Cabe Merah</p>
+                        <p>Rp. 50.000</p>
+                        <p class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-star-fill mr-3" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg> 4.5</p>
+                    </div>
+                </div>
+
+                <div class=" h-72 bg-[#495E57] rounded-lg text-white">
+                    <img src="{{ asset('storage/comodities/' . 'cabekeriting.svg') }}" alt="Gambar"
+                        class="w-full h-full object-cover rounded-lg rounded-b-0 h-40">
+                    <div class="p-5 text-lg">
+
+                        <p class="font-semibold">Benih Cabe Keriting</p>
+                        <p>Rp. 50.000</p>
+                        <p class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-star-fill mr-3" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg> 4.5</p>
+                    </div>
+                </div>
+
+
             @endfor
         </div>
     </div>
